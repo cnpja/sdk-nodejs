@@ -1,4 +1,6 @@
+import { CompanyService } from '../company/company.service';
 import { HttpService } from '../http/http.service';
+import { PersonService } from '../person/person.service';
 import { ZipService } from '../zip/zip.service';
 import { CnpjaOptions } from './cnpja.interface';
 
@@ -7,9 +9,9 @@ export class Cnpja {
   /** Operações relacionadas a API de Estabelecimentos. */
   public office: unknown;
   /** Operações relacionadas a API de Empresas. */
-  public company: unknown;
+  public company: CompanyService;
   /** Operações relacionadas a API de Pessoas. */
-  public person: unknown;
+  public person: PersonService;
 
   /** Operações relacionadas a API da Receita Federal. */
   public rfb: unknown;
@@ -43,6 +45,9 @@ export class Cnpja {
       baseUrl: 'https://api.cnpja.com',
       authorization: apiKey,
     });
+
+    this.company = new CompanyService(httpService);
+    this.person = new PersonService(httpService);
 
     this.zip = new ZipService(httpService);
   }
