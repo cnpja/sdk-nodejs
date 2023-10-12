@@ -377,7 +377,7 @@ export interface SuframaDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
+   * @example "2023-10-12T23:22:56.150Z"
    */
   updated: string;
   /**
@@ -477,12 +477,12 @@ export interface SimplesSimeiDto {
   history: SimplesSimeiHistoryDto[];
 }
 
-/** SimplesHistoryTrue */
-export interface SimplesHistoryTrue {
+/** SimplesDto */
+export interface SimplesDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
+   * @example "2023-10-12T23:22:56.150Z"
    */
   updated: string;
   /**
@@ -494,40 +494,6 @@ export interface SimplesHistoryTrue {
   simples: SimplesSimeiDto;
   /** Informações do enquadramento no MEI */
   simei: SimplesSimeiDto;
-}
-
-/** SimplesSimeiHistoryFalse */
-export interface SimplesSimeiHistoryFalse {
-  /**
-   * Indica se optante ou enquadrado
-   * @example true
-   */
-  optant: boolean;
-  /**
-   * Data de inclusão no período vigente
-   * @format iso8601
-   * @example "2020-06-05"
-   */
-  since: string;
-}
-
-/** SimplesHistoryFalse */
-export interface SimplesHistoryFalse {
-  /**
-   * Data da última atualização
-   * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
-   */
-  updated: string;
-  /**
-   * Número do CNPJ
-   * @example "37335118000180"
-   */
-  taxId: string;
-  /** Informações da opção pelo Simples Nacional */
-  simples: SimplesSimeiHistoryFalse;
-  /** Informações do enquadramento no MEI */
-  simei: SimplesSimeiHistoryFalse;
 }
 
 /** SignatureCreateDto */
@@ -732,7 +698,7 @@ export interface RfbDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
+   * @example "2023-10-12T23:22:56.150Z"
    */
   updated: string;
   /**
@@ -1123,7 +1089,7 @@ export interface OfficeDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
+   * @example "2023-10-12T23:22:56.150Z"
    */
   updated: string;
   /**
@@ -1393,7 +1359,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional
    * @format iso8601
-   * @example "2023-10-12T17:00:50.775Z"
+   * @example "2023-10-12T23:22:56.323Z"
    */
   last_update: string;
   /**
@@ -1472,7 +1438,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes
    * @format iso8601
-   * @example "2023-10-12T17:00:50.776Z"
+   * @example "2023-10-12T23:22:56.324Z"
    */
   last_update: string;
   /**
@@ -1603,7 +1569,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T17:00:50.776Z"
+   * @example "2023-10-12T23:22:56.325Z"
    */
   last_update: string;
   /**
@@ -1778,12 +1744,12 @@ export interface CompanyDto {
   offices: CompanyOfficeDto[];
 }
 
-/** CccStatusTrue */
-export interface CccStatusTrue {
+/** CccDto */
+export interface CccDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
+   * @example "2023-10-12T23:22:56.150Z"
    */
   updated: string;
   /**
@@ -1825,102 +1791,6 @@ export interface CccStatusTrue {
     | "TO";
   /** Inscrições Estaduais */
   registrations: RegistrationDto[];
-}
-
-/** CccRegistrationStatusFalse */
-export interface CccRegistrationStatusFalse {
-  /**
-   * Número da Inscrição Estadual
-   * @format numeric
-   * @example "0962101427"
-   */
-  number: string;
-  /**
-   * Unidade Federativa de registro
-   * @example "RS"
-   */
-  state:
-    | "AC"
-    | "AL"
-    | "AM"
-    | "AP"
-    | "BA"
-    | "CE"
-    | "DF"
-    | "ES"
-    | "GO"
-    | "MA"
-    | "MG"
-    | "MS"
-    | "MT"
-    | "PA"
-    | "PB"
-    | "PE"
-    | "PI"
-    | "PR"
-    | "RJ"
-    | "RN"
-    | "RO"
-    | "RR"
-    | "RS"
-    | "SC"
-    | "SP"
-    | "SE"
-    | "TO";
-  /**
-   * Indica se habilitada como contribuinte
-   * @example true
-   */
-  enabled: boolean;
-}
-
-/** CccStatusFalse */
-export interface CccStatusFalse {
-  /**
-   * Data da última atualização
-   * @format iso8601
-   * @example "2023-10-12T17:00:50.389Z"
-   */
-  updated: string;
-  /**
-   * Número do CNPJ
-   * @example "37335118000180"
-   */
-  taxId: string;
-  /**
-   * Unidade Federativa de origem do estabelecimento
-   * @example "PR"
-   */
-  originState:
-    | "AC"
-    | "AL"
-    | "AM"
-    | "AP"
-    | "BA"
-    | "CE"
-    | "DF"
-    | "ES"
-    | "GO"
-    | "MA"
-    | "MG"
-    | "MS"
-    | "MT"
-    | "PA"
-    | "PB"
-    | "PE"
-    | "PI"
-    | "PR"
-    | "RJ"
-    | "RN"
-    | "RO"
-    | "RR"
-    | "RS"
-    | "SC"
-    | "SP"
-    | "SE"
-    | "TO";
-  /** Inscrições Estaduais */
-  registrations: CccRegistrationStatusFalse[];
 }
 
 export interface ConsultaSuframaParams {
