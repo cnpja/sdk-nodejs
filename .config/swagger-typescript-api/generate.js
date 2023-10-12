@@ -7,6 +7,8 @@ const renamingDictionary = {
   ConsultaSimplesEMeiParams: 'SimplesReadDto',
   ComprovanteSimplesEMeiParams: 'SimplesCertificateReadDto',
   ConsultaCccParams: 'CccReadDto',
+  ConsultaSuframaParams: 'SuframaReadDto',
+  ComprovanteSuframaParams: 'SuframaCertificateReadDto',
   VisaoDaRuaParams: 'OfficeStreetParams',
 }
 

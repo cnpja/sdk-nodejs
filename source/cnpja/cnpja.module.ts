@@ -4,6 +4,7 @@ import { HttpService } from '../http/http.service';
 import { PersonService } from '../person/person.service';
 import { RfbService } from '../rfb/rfb.service';
 import { SimplesService } from '../simples/simples.service';
+import { SuframaService } from '../suframa/suframa.service';
 import { ZipService } from '../zip/zip.service';
 import { CnpjaOptions } from './cnpja.interface';
 
@@ -23,7 +24,7 @@ export class Cnpja {
   /** Operações relacionadas a API do Cadastro Centralizado de Contribuintes. */
   public ccc: CccService;
   /** Operações relacionadas a API do SUFRAMA. */
-  public suframa: unknown;
+  public suframa: SuframaService;
   /** Operações relacionadas a API dos Correios. */
   public zip: ZipService;
 
@@ -55,7 +56,7 @@ export class Cnpja {
     this.rfb = new RfbService(httpService);
     this.simples = new SimplesService(httpService);
     this.ccc = new CccService(httpService);
-
+    this.suframa = new SuframaService(httpService);
     this.zip = new ZipService(httpService);
   }
 

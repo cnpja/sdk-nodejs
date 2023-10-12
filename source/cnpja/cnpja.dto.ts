@@ -377,7 +377,7 @@ export interface SuframaDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:22:56.150Z"
+   * @example "2023-10-12T23:35:41.259Z"
    */
   updated: string;
   /**
@@ -482,7 +482,7 @@ export interface SimplesDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:22:56.150Z"
+   * @example "2023-10-12T23:35:41.259Z"
    */
   updated: string;
   /**
@@ -698,7 +698,7 @@ export interface RfbDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:22:56.150Z"
+   * @example "2023-10-12T23:35:41.259Z"
    */
   updated: string;
   /**
@@ -1089,7 +1089,7 @@ export interface OfficeDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:22:56.150Z"
+   * @example "2023-10-12T23:35:41.259Z"
    */
   updated: string;
   /**
@@ -1359,7 +1359,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional
    * @format iso8601
-   * @example "2023-10-12T23:22:56.323Z"
+   * @example "2023-10-12T23:35:41.420Z"
    */
   last_update: string;
   /**
@@ -1438,7 +1438,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes
    * @format iso8601
-   * @example "2023-10-12T23:22:56.324Z"
+   * @example "2023-10-12T23:35:41.420Z"
    */
   last_update: string;
   /**
@@ -1569,7 +1569,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:22:56.325Z"
+   * @example "2023-10-12T23:35:41.421Z"
    */
   last_update: string;
   /**
@@ -1749,7 +1749,7 @@ export interface CccDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:22:56.150Z"
+   * @example "2023-10-12T23:35:41.259Z"
    */
   updated: string;
   /**
@@ -1793,7 +1793,7 @@ export interface CccDto {
   registrations: RegistrationDto[];
 }
 
-export interface ConsultaSuframaParams {
+export interface SuframaReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
@@ -1801,7 +1801,7 @@ export interface ConsultaSuframaParams {
   taxId: string;
 }
 
-export interface ComprovantePdfParams {
+export interface SuframaCertificateReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
