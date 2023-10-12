@@ -1,5 +1,6 @@
 import { CccService } from '../ccc/ccc.service';
 import { CompanyService } from '../company/company.service';
+import { CreditService } from '../credit/credit.service';
 import { HttpService } from '../http/http.service';
 import { PersonService } from '../person/person.service';
 import { RfbService } from '../rfb/rfb.service';
@@ -32,7 +33,7 @@ export class Cnpja {
   /** Operações relacionadas a API de Assinaturas. */
   public signature: SignatureService;
   /** Operações relacionadas a API de Créditos. */
-  public credit: unknown;
+  public credit: CreditService;
 
   public constructor(
     private options: CnpjaOptions,
@@ -61,6 +62,7 @@ export class Cnpja {
     this.zip = new ZipService(httpService);
 
     this.signature = new SignatureService(httpService);
+    this.credit = new CreditService(httpService);
   }
 
 }
