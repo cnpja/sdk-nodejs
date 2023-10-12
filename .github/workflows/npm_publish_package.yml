@@ -1,0 +1,40 @@
+name: NPM Publish Package
+
+on:
+  push:
+    branches: [ master, beta, alpha ]
+
+env:
+  GH_TOKEN: ${{ secrets.GLB_GH_TOKEN }}
+  NPM_TOKEN: ${{ secrets.GLB_NPM_TOKEN }}
+
+jobs:
+  quality:
+    name: Quality Control
+    uses: cnpja/workflows/.github/workflows/nodejs_quality_control.yaml@master
+    secrets: inherit
+
+  publish:
+    name: NPM Publish
+    runs-on: ubuntu-latest
+    needs: quality
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Dependencies
+        run: |
+          npm i -g pnpm semantic-release
+          npm i -g @semantic-release/changelog @semantic-release/git
+          pnpm i --frozen-lockfile
+
+      - name: Build Distributable
+        run: pnpm build
+
+      - name: Publish Package
+        env:
+          HUSKY: 0
+        run: semantic-release
