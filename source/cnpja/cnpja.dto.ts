@@ -1939,7 +1939,7 @@ export interface ComprovantePdfParams {
   taxId: string;
 }
 
-export interface ConsultaSimplesEMeiParams {
+export interface SimplesReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
@@ -1975,7 +1975,7 @@ export interface ConsultaSimplesEMeiParams {
   sync?: boolean;
 }
 
-export interface ComprovanteSimplesEMeiParams {
+export interface SimplesCertificateReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
@@ -1983,7 +1983,7 @@ export interface ComprovanteSimplesEMeiParams {
   taxId: string;
 }
 
-export interface ConsultaReceitaFederalParams {
+export interface RfbReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
@@ -2013,7 +2013,7 @@ export interface ConsultaReceitaFederalParams {
   sync?: boolean;
 }
 
-export interface ComprovanteRfbParams {
+export interface RfbCertificateReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
@@ -2250,7 +2250,7 @@ export interface ReadLegacyBeta2Params {
   taxId: string;
 }
 
-export interface ConsultaCccParams {
+export interface CccReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"

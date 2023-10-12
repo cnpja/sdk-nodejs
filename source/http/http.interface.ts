@@ -6,7 +6,7 @@ export interface HttpRequestParams {
   /** Object containing replacement string for path variables. */
   replacements?: Record<string, string | number>;
   /** Request query params with array joining support. */
-  query?: Record<string, unknown>;
+  query?: Record<string, any>;
   /** Request body to be sent as JSON. */
-  json?: unknown;
+  json?: any;
 }

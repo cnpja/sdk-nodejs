@@ -1,6 +1,7 @@
 import { CompanyService } from '../company/company.service';
 import { HttpService } from '../http/http.service';
 import { PersonService } from '../person/person.service';
+import { RfbService } from '../rfb/rfb.service';
 import { ZipService } from '../zip/zip.service';
 import { CnpjaOptions } from './cnpja.interface';
 
@@ -14,7 +15,7 @@ export class Cnpja {
   public person: PersonService;
 
   /** Operações relacionadas a API da Receita Federal. */
-  public rfb: unknown;
+  public rfb: RfbService;
   /** Operações relacionadas a API do Simples Nacional. */
   public simples: unknown;
   /** Operações relacionadas a API do Cadastro Centralizado de Contribuintes. */
@@ -48,6 +49,8 @@ export class Cnpja {
 
     this.company = new CompanyService(httpService);
     this.person = new PersonService(httpService);
+
+    this.rfb = new RfbService(httpService);
 
     this.zip = new ZipService(httpService);
   }

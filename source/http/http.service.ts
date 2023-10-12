@@ -19,7 +19,7 @@ export class HttpService {
     const { baseUrl, authorization } = this.options;
 
     const replaceUrl = this.replaceUrlPlaceholders(`${baseUrl}/${url}`, replacements);
-    const strQuery = new URLSearchParams(query as Record<string, string>).toString();
+    const strQuery = new URLSearchParams(query).toString();
     const finalUrl = `${replaceUrl}${strQuery ? `?${strQuery}` : ''}`;
 
     const headers: Record<string, string> = { authorization };
