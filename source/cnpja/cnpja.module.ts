@@ -2,6 +2,7 @@ import { CccService } from '../ccc/ccc.service';
 import { CompanyService } from '../company/company.service';
 import { CreditService } from '../credit/credit.service';
 import { HttpService } from '../http/http.service';
+import { OfficeService } from '../office/office.service';
 import { PersonService } from '../person/person.service';
 import { RfbService } from '../rfb/rfb.service';
 import { SignatureService } from '../signature/signature.service';
@@ -13,7 +14,7 @@ import { CnpjaOptions } from './cnpja.interface';
 export class Cnpja {
 
   /** Operações relacionadas a API de Estabelecimentos. */
-  public office: unknown;
+  public office: OfficeService;
   /** Operações relacionadas a API de Empresas. */
   public company: CompanyService;
   /** Operações relacionadas a API de Pessoas. */
@@ -52,6 +53,7 @@ export class Cnpja {
       authorization: apiKey,
     });
 
+    this.office = new OfficeService(httpService);
     this.company = new CompanyService(httpService);
     this.person = new PersonService(httpService);
 

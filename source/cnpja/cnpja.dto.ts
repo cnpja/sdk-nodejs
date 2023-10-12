@@ -1896,7 +1896,7 @@ export interface RfbCertificateReadDto {
   pages?: "REGISTRATION" | "MEMBERS";
 }
 
-export interface ConsultaCnpjParams {
+export interface OfficeReadDto {
   /**
    * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona as informações de opção pelo
    * Simples e enquadramento no MEI
@@ -1987,7 +1987,7 @@ export interface ConsultaCnpjParams {
   taxId: string;
 }
 
-export interface MapaAereoParams {
+export interface OfficeMapReadDto {
   /**
    * Largura em pixels
    * @format integer
@@ -2036,7 +2036,7 @@ export interface MapaAereoParams {
   taxId: string;
 }
 
-export interface OfficeStreetParams {
+export interface OfficeStreetReadDto {
   /**
    * Largura em pixels
    * @format integer

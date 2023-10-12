@@ -2,6 +2,9 @@ const { generateApi } = require('swagger-typescript-api');
 const path = require('path');
 
 const renamingDictionary = {
+  ConsultaCnpjParams: 'OfficeReadDto',
+  MapaAereoParams: 'OfficeMapReadDto',
+  VisaoDaRuaParams: 'OfficeStreetReadDto',
   ConsultaReceitaFederalParams: 'RfbReadDto',
   ComprovanteRfbParams: 'RfbCertificateReadDto',
   ConsultaSimplesEMeiParams: 'SimplesReadDto',
@@ -9,7 +12,6 @@ const renamingDictionary = {
   ConsultaCccParams: 'CccReadDto',
   ConsultaSuframaParams: 'SuframaReadDto',
   ComprovanteSuframaParams: 'SuframaCertificateReadDto',
-  VisaoDaRuaParams: 'OfficeStreetParams',
 }
 
 generateApi({
