@@ -1,7 +1,7 @@
 {
   "name": "@cnpja/sdk",
   "version": "1.0.0",
-  "description": "CNPJá! SDK para integração a nossa API de Consultas CNPJ a Receita Federal, Simples Nacional, Cadastro de Contribuintes e SUFRAMA",
+  "description": "SDK para integração as APIs de consultas CNPJ a Receita Federal, Simples Nacional, Cadastro de Contribuintes e SUFRAMA, fornecidas pelo CNPJá!",
   "author": {
     "name": "Etienne Bechara",
     "email": "etienne.bechara@cnpja.com"
