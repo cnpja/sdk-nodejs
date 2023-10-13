@@ -33,7 +33,8 @@ export class HttpService {
 
     if (res.status >= Number(HttpStatus.BAD_REQUEST)) {
       const resJson: CnpjaExceptionResponse = await res.json();
-      throw new CnpjaException(resJson);
+      const { code, message, constraints } = resJson;
+      throw new CnpjaException(code, message, constraints);
     }
 
     const resContentType = res.headers.get('content-type');

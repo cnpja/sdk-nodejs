@@ -1,13 +1,13 @@
 import { HttpStatus } from '../http/http.enum';
-import { CnpjaExceptionResponse } from './cnpja.interface';
 
 export class CnpjaException extends Error {
 
   public constructor(
-    public response: CnpjaExceptionResponse,
+    public code: HttpStatus,
+    public message: string,
+    public constraints: string[],
   ) {
-    const { code, message } = response;
-    super(`${HttpStatus[code]} - ${message}`);
+    super(message);
   }
 
 }
