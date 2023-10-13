@@ -6,17 +6,17 @@ Baseado na especificação da API disponível em:
 https://cnpja.com/api
 
 - [Requisitos](#requisitos)
-- [Instalação](#instala--o)
-- [Autenticação](#autentica--o)
-- [Guia Rápido](#guia-r-pido)
+- [Instalação](#instalação)
+- [Autenticação](#autenticação)
+- [Guia Rápido](#guia-rápido)
 - [Dados Empresariais](#dados-empresariais)
-- [Mapas e Visão da Rua](#mapas-e-vis-o-da-rua)
+- [Mapas e Visão da Rua](#mapas-e-visão-da-rua)
 - [Receita Federal](#receita-federal)
 - [Simples Nacional](#simples-nacional)
 - [Cadastro de Contribuintes](#cadastro-de-contribuintes)
 - [SUFRAMA](#suframa)
 - [Correios](#correios)
-- [Utilitários](#utilit-rios)
+- [Utilitários](#utilitários)
 
 ---
 
