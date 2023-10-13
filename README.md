@@ -58,7 +58,7 @@ const office = await cnpja.office.read({
   taxId: '37335118000180', // CNPJ a ser consultado
   maxAge: 7, // Defasagem máxima dos dados em dias
   simples: true, // Adiciona se optante pelo Simples Nacional e MEI
-  registrations: 'BR', // Adiciona as Inscrições Estaduais
+  registrations: [ 'BR' ], // Adiciona as Inscrições Estaduais de todas UFs
   geocoding: true, // Adiciona latitude e longitude do endereço
 });
 

@@ -1,5 +1,6 @@
-import { RfbCertificateReadDto, RfbDto, RfbReadDto } from '../cnpja/cnpja.dto';
+import { RfbDto, RfbReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
+import { RfbCertificateReadDto } from './rfb.dto';
 
 export class RfbService {
 

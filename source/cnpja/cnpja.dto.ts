@@ -1883,7 +1883,7 @@ export interface RfbReadDto {
   sync?: boolean;
 }
 
-export interface RfbCertificateReadDto {
+export interface RfbCertificateRawReadDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
@@ -1896,7 +1896,7 @@ export interface RfbCertificateReadDto {
   pages?: "REGISTRATION" | "MEMBERS";
 }
 
-export interface OfficeReadDto {
+export interface OfficeReadRawDto {
   /**
    * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona as informações de opção pelo
    * Simples e enquadramento no MEI
@@ -2120,7 +2120,7 @@ export interface ReadLegacyBeta2Params {
   taxId: string;
 }
 
-export interface CccReadDto {
+export interface CccReadRawDto {
   /**
    * Número do CNPJ
    * @example "37335118000180"
