@@ -31,7 +31,7 @@
     "build:index": "rimraf ./source/index.ts && barrelsby -q -e \\.spec\\.ts$ -d ./source",
     "build:cleanup": "rimraf ./source/index.ts",
     "lint": "export TIMING=1 || set TIMING=1&& eslint **/*.ts --max-warnings=0",
-    "test": "jest --forceExit --config .config/jest/.jestrc.json",
+    "test": "jest --forceExit --config .config/jest/.jestrc.json --passWithNoTests",
     "generate": "node .config/swagger-typescript-api/generate.js"
   },
   "devDependencies": {
