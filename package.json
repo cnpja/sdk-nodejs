@@ -1,7 +1,7 @@
 {
   "name": "@cnpja/sdk",
   "version": "1.0.0",
-  "description": "SDK para integração as APIs de consultas CNPJ a Receita Federal, Simples Nacional, Cadastro de Contribuintes e SUFRAMA, fornecidas pelo CNPJá!",
+  "description": "APIs de consultas CNPJ a Receita Federal, Simples Nacional, Cadastro de Contribuintes e SUFRAMA, fornecidas pelo CNPJá!",
   "author": {
     "name": "Etienne Bechara",
     "email": "etienne.bechara@cnpja.com"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/cnpja/sdk-nodejs"
   },
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "main": "dist/index.js",
   "files": [
     "dist/**"
