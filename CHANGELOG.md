@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/cnpja/sdk-nodejs/compare/v1.0.0...v1.0.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* update package license to MIT ([31e0df6](https://github.com/cnpja/sdk-nodejs/commit/31e0df61a4e8836dfba530630c04559fd7676ccb))
+
 # 1.0.0 (2023-10-13)
 
 
