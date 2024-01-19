@@ -32,7 +32,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i -g pnpm semantic-release
+          npm i -g pnpm semantic-release@22
           npm i -g @semantic-release/changelog @semantic-release/git
           pnpm i --frozen-lockfile
 
