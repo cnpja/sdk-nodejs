@@ -9,6 +9,7 @@ import { SignatureService } from '../signature/signature.service';
 import { SimplesService } from '../simples/simples.service';
 import { SuframaService } from '../suframa/suframa.service';
 import { ZipService } from '../zip/zip.service';
+import { CnpjaEnvironment } from './cnpja.enum';
 import { CnpjaOptions } from './cnpja.interface';
 
 export class Cnpja {
@@ -46,10 +47,12 @@ export class Cnpja {
    * Resolve dependency tree and inject providers.
    */
   private setup(): void {
-    const { apiKey } = this.options;
+    const { apiKey, environment } = this.options;
 
     const httpService = new HttpService({
-      baseUrl: 'https://api.cnpja.com',
+      baseUrl: environment === CnpjaEnvironment.STAGING
+        ? 'https://api.stg.cnpja.com'
+        : 'https://api.cnpja.com',
       authorization: apiKey,
     });
 
