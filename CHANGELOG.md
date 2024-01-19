@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/cnpja/sdk-nodejs/compare/v1.0.1...v1.1.0) (2024-01-19)
+
+
+### Features
+
+* **cnpja:** add staging env support ([32d0dd6](https://github.com/cnpja/sdk-nodejs/commit/32d0dd69a15a6f641006da0f9e3ecd126c326577))
+
 ## [1.0.1](https://github.com/cnpja/sdk-nodejs/compare/v1.0.0...v1.0.1) (2023-10-13)
 
 
