@@ -1,6 +1,5 @@
-import { CccDto } from '../cnpja/cnpja.dto';
+import { CccDto, CccReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
-import { CccReadDto } from './ccc.dto';
 
 export class CccService {
 

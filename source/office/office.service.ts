@@ -1,6 +1,5 @@
-import { OfficeDto, OfficeMapReadDto } from '../cnpja/cnpja.dto';
+import { OfficeDto, OfficeMapReadDto, OfficeReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
-import { OfficeReadDto } from './office.dto';
 
 export class OfficeService {
 

@@ -45,6 +45,11 @@ export interface ZipDto {
    */
   street: string;
   /**
+   * Número
+   * @example "2369"
+   */
+  number: string;
+  /**
    * Bairro ou distrito
    * @example "Jardim Paulistano"
    */
@@ -214,6 +219,11 @@ export interface AddressDto {
    */
   street: string;
   /**
+   * Número
+   * @example "2369"
+   */
+  number: string;
+  /**
    * Bairro ou distrito
    * @example "Jardim Paulistano"
    */
@@ -255,11 +265,6 @@ export interface AddressDto {
     | "SP"
     | "SE"
     | "TO";
-  /**
-   * Número
-   * @example "2369"
-   */
-  number: string;
   /**
    * Complemento
    * @example "Conj 1102"
@@ -318,6 +323,7 @@ export interface SuframaStatusDto {
    * Código da situação cadastral:
    * 1\. Ativa
    * 2\. Bloqueada
+   * 3\. Inativa
    * @format integer
    * @example 1
    */
@@ -354,7 +360,7 @@ export interface SuframaIncentiveDto {
    * Nome do tributo incentivado
    * @example "IPI"
    */
-  tribute: string;
+  tribute: "ICMS" | "IPI";
   /**
    * Benefício aplicado ao incentivo
    * @example "Isenção"
@@ -377,11 +383,12 @@ export interface SuframaDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:35:41.259Z"
+   * @example "2024-03-28T23:52:46.111Z"
    */
   updated: string;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -482,11 +489,12 @@ export interface SimplesDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:35:41.259Z"
+   * @example "2024-03-28T23:52:46.111Z"
    */
   updated: string;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -698,11 +706,12 @@ export interface RfbDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:35:41.259Z"
+   * @example "2024-03-28T23:52:46.111Z"
    */
   updated: string;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1089,11 +1098,12 @@ export interface OfficeDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:35:41.259Z"
+   * @example "2024-03-28T23:52:46.111Z"
    */
   updated: string;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1153,80 +1163,6 @@ export interface OfficeDto {
   links: LinkDto[];
   /** Informações da empresa */
   company: OfficeCompanyDto;
-}
-
-/** UserBillingAddressDto */
-export interface UserBillingAddressDto {
-  /**
-   * @format numeric
-   * @minLength 8
-   * @maxLength 8
-   */
-  zip: string;
-  /** @minLength 1 */
-  street: string;
-  /** @minLength 1 */
-  number: string;
-  /** @minLength 1 */
-  details?: string;
-  /** @minLength 1 */
-  district: string;
-  /** @minLength 1 */
-  city: string;
-  state:
-    | "AC"
-    | "AL"
-    | "AM"
-    | "AP"
-    | "BA"
-    | "CE"
-    | "DF"
-    | "ES"
-    | "GO"
-    | "MA"
-    | "MG"
-    | "MS"
-    | "MT"
-    | "PA"
-    | "PB"
-    | "PE"
-    | "PI"
-    | "PR"
-    | "RJ"
-    | "RN"
-    | "RO"
-    | "RR"
-    | "RS"
-    | "SC"
-    | "SP"
-    | "SE"
-    | "TO";
-}
-
-/** UserBillingUpsertDto */
-export interface UserBillingUpsertDto {
-  /**
-   * @minLength 8
-   * @maxLength 150
-   */
-  name: string;
-  email?: string[];
-  address?: UserBillingAddressDto;
-}
-
-/** MeSubscriptionCreateDto */
-export interface MeSubscriptionCreateDto {
-  provider: "CNPJA" | "PAYPAL";
-  /** @minLength 1 */
-  planId: string;
-}
-
-/** MeTicketCreateDto */
-export interface MeTicketCreateDto {
-  /** @minLength 1 */
-  subject: string;
-  /** @minLength 1 */
-  body: string;
 }
 
 /** LegacyRegistrationDto */
@@ -1359,7 +1295,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional
    * @format iso8601
-   * @example "2023-10-12T23:35:41.420Z"
+   * @example "2024-03-28T23:52:46.425Z"
    */
   last_update: string;
   /**
@@ -1438,7 +1374,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes
    * @format iso8601
-   * @example "2023-10-12T23:35:41.420Z"
+   * @example "2024-03-28T23:52:46.426Z"
    */
   last_update: string;
   /**
@@ -1569,7 +1505,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:35:41.421Z"
+   * @example "2024-03-28T23:52:46.428Z"
    */
   last_update: string;
   /**
@@ -1584,6 +1520,7 @@ export interface LegacyCompanyDto {
   alias: string;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   tax_id: string;
@@ -1675,6 +1612,7 @@ export interface CreditoDto {
 export interface CompanyOfficeDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1749,11 +1687,12 @@ export interface CccDto {
   /**
    * Data da última atualização
    * @format iso8601
-   * @example "2023-10-12T23:35:41.259Z"
+   * @example "2024-03-28T23:52:46.111Z"
    */
   updated: string;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1796,6 +1735,7 @@ export interface CccDto {
 export interface SuframaReadDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1804,6 +1744,7 @@ export interface SuframaReadDto {
 export interface SuframaCertificateReadDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1812,6 +1753,7 @@ export interface SuframaCertificateReadDto {
 export interface SimplesReadDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1848,6 +1790,7 @@ export interface SimplesReadDto {
 export interface SimplesCertificateReadDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1856,6 +1799,7 @@ export interface SimplesCertificateReadDto {
 export interface RfbReadDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1883,9 +1827,10 @@ export interface RfbReadDto {
   sync?: boolean;
 }
 
-export interface RfbCertificateRawReadDto {
+export interface RfbCertificateReadDto {
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -1893,10 +1838,10 @@ export interface RfbCertificateRawReadDto {
    * Páginas a incluir no comprovante separadas por vírgula
    * @default "REGISTRATION,MEMBERS"
    */
-  pages?: "REGISTRATION" | "MEMBERS";
+  pages?: ("REGISTRATION" | "MEMBERS")[];
 }
 
-export interface OfficeReadRawDto {
+export interface OfficeReadDto {
   /**
    * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona as informações de opção pelo
    * Simples e enquadramento no MEI
@@ -1914,7 +1859,7 @@ export interface OfficeReadRawDto {
    * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas
    * @example "PR,RS,SC"
    */
-  registrations?:
+  registrations?: (
     | "BR"
     | "AC"
     | "AL"
@@ -1942,7 +1887,8 @@ export interface OfficeReadRawDto {
     | "SC"
     | "SP"
     | "SE"
-    | "TO";
+    | "TO"
+  )[];
   /**
    * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona a situação cadastral das Inscrições Estaduais
    * @default false
@@ -1957,7 +1903,7 @@ export interface OfficeReadRawDto {
    * Adiciona links públicos para visualização dos arquivos selecionados separados por vírgula
    * @example "RFB_CERTIFICATE,SIMPLES_CERTIFICATE"
    */
-  links?: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
+  links?: ("RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET")[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados
    * @default "CACHE_IF_FRESH"
@@ -1982,6 +1928,7 @@ export interface OfficeReadRawDto {
   sync?: boolean;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -2031,6 +1978,7 @@ export interface OfficeMapReadDto {
   type?: "roadmap" | "terrain" | "satellite" | "hybrid";
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -2063,6 +2011,7 @@ export interface OfficeStreetReadDto {
   fov?: number;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -2099,30 +2048,16 @@ export interface ConsultaCnpjLegadoParams {
   sintegra_max_age?: number;
   /**
    * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
 }
 
-export interface ReadLegacyBetaParams {
+export interface CccReadDto {
   /**
    * Número do CNPJ
-   * @example "37335118000180"
-   */
-  taxId: string;
-}
-
-export interface ReadLegacyBeta2Params {
-  /**
-   * Número do CNPJ
-   * @example "37335118000180"
-   */
-  taxId: string;
-}
-
-export interface CccReadRawDto {
-  /**
-   * Número do CNPJ
+   * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
@@ -2130,7 +2065,7 @@ export interface CccReadRawDto {
    * Unidades Federativas para consulta separadas por vírgula, utilize `BR` para considerar todas
    * @example "PR,RS,SC"
    */
-  states:
+  states: (
     | "BR"
     | "AC"
     | "AL"
@@ -2158,7 +2093,8 @@ export interface CccReadRawDto {
     | "SC"
     | "SP"
     | "SE"
-    | "TO";
+    | "TO"
+  )[];
   /**
    * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona a situação cadastral das Inscrições Estaduais
    * @default false

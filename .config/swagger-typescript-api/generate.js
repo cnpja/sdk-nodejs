@@ -4,19 +4,16 @@ const path = require('path');
 /**
  * Configures interfaces which should be renamed in
  * other to match project standards.
- * 
- * Any mapping referred as `*RawDto` means it has
- * further adjustments (see its domain folder).
  */
 const renamingDictionary = {
-  ConsultaCnpjParams: 'OfficeReadRawDto',
+  ConsultaCnpjParams: 'OfficeReadDto',
   MapaAereoParams: 'OfficeMapReadDto',
   VisaoDaRuaParams: 'OfficeStreetReadDto',
   ConsultaReceitaFederalParams: 'RfbReadDto',
-  ComprovanteRfbParams: 'RfbCertificateRawReadDto',
+  ComprovanteRfbParams: 'RfbCertificateReadDto',
   ConsultaSimplesEMeiParams: 'SimplesReadDto',
   ComprovanteSimplesEMeiParams: 'SimplesCertificateReadDto',
-  ConsultaCccParams: 'CccReadRawDto',
+  ConsultaCccParams: 'CccReadDto',
   ConsultaSuframaParams: 'SuframaReadDto',
   ComprovanteSuframaParams: 'SuframaCertificateReadDto',
 }
@@ -28,7 +25,7 @@ const renamingDictionary = {
 generateApi({
   name: 'cnpja.dto.ts',
   output: path.resolve(process.cwd(), './source/cnpja'),
-  url: 'https://api.cnpja.com/docs/json',
+  url: 'https://api.cnpja-stg.com/docs/json',
   generateClient: false,
   extractRequestParams: true,
   hooks: {
