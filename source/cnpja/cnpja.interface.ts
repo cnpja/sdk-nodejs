@@ -1,5 +1,4 @@
 import { HttpStatus } from '../http/http.enum';
-import { CnpjaEnvironment } from './cnpja.enum';
 
 export interface CnpjaOptions {
   /**
@@ -7,7 +6,11 @@ export interface CnpjaOptions {
    * https://cnpja.com/me.
    */
   apiKey: string;
-  environment?: CnpjaEnvironment;
+  /**
+   * Endereço da API, padrão:
+   * https://api.cnpja.com.
+   */
+  baseUrl?: string;
 }
 
 export interface CnpjaExceptionResponse {
