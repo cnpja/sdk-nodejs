@@ -178,4 +178,3 @@ const credit = await cnpja.credit.read();
 console.log(signature);
 console.log(credit);
 ```
-
