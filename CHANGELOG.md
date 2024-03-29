@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/cnpja/sdk-nodejs/compare/v1.1.0...v1.1.1) (2024-03-29)
+
+
+### Bug Fixes
+
+* **cnpja:** replace environment option with baseUrl ([41a31fc](https://github.com/cnpja/sdk-nodejs/commit/41a31fc594921e6bf8ab296af3afeaf3880b1865))
+* incorrect array types ([3c7a8c6](https://github.com/cnpja/sdk-nodejs/commit/3c7a8c66b89dbb4819eeb91941e418a741ba7851))
+
 # [1.1.0](https://github.com/cnpja/sdk-nodejs/compare/v1.0.1...v1.1.0) (2024-01-19)
 
 
