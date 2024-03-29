@@ -1,3 +1,10 @@
+## [1.1.2-beta.3](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2-beta.2...v1.1.2-beta.3) (2024-03-29)
+
+
+### Bug Fixes
+
+* **ci:** add quality ([09bca5a](https://github.com/cnpja/sdk-nodejs/commit/09bca5a8c426c8bdd6bfb9135e4d0bd55b624051))
+
 ## [1.1.2-beta.2](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2-beta.1...v1.1.2-beta.2) (2024-03-29)
 
 
