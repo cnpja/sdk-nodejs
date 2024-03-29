@@ -42,4 +42,4 @@ jobs:
       - name: Publish Package
         env:
           HUSKY: 0
-        run: semantic-release
+        run: pnpm release
