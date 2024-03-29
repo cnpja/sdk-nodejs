@@ -1,3 +1,10 @@
+## [1.1.2-beta.4](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2-beta.3...v1.1.2-beta.4) (2024-03-29)
+
+
+### Bug Fixes
+
+* **ci:** revert template ([e95fca2](https://github.com/cnpja/sdk-nodejs/commit/e95fca235b5eac0d625658eec289587e9f4ab0d4))
+
 ## [1.1.2-beta.3](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2-beta.2...v1.1.2-beta.3) (2024-03-29)
 
 
