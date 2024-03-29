@@ -1,3 +1,14 @@
+## [1.1.2-beta.1](https://github.com/cnpja/sdk-nodejs/compare/v1.1.1...v1.1.2-beta.1) (2024-03-29)
+
+
+### Bug Fixes
+
+* **ci:** do not persist credentials ([e6412a6](https://github.com/cnpja/sdk-nodejs/commit/e6412a6c0d216f5b838424f044d86ceb5f67be59))
+* **ci:** increase pat scopes ([c7d81a0](https://github.com/cnpja/sdk-nodejs/commit/c7d81a04ccd9c3d32330ab0316880b9585e608cf))
+* **ci:** install pnpm ([77be2bd](https://github.com/cnpja/sdk-nodejs/commit/77be2bd60cc514bd43a1d7a8b3cef6435b96d979))
+* **ci:** remove persist-credentials ([1230cc3](https://github.com/cnpja/sdk-nodejs/commit/1230cc3d473fb39ea4bcb610563a27cbb205fc2d))
+* **package:** add release script ([14994e9](https://github.com/cnpja/sdk-nodejs/commit/14994e92379ab94cea74c0174e2154fb656b7007))
+
 ## [1.1.1](https://github.com/cnpja/sdk-nodejs/compare/v1.1.0...v1.1.1) (2024-03-29)
 
 
