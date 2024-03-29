@@ -32,7 +32,9 @@ jobs:
           node-version: 20.x
 
       - name: Install Dependencies
-        run: pnpm i --frozen-lockfile
+        run: |
+          npm i -g pnpm
+          pnpm i --frozen-lockfile
 
       - name: Build Distributable
         run: pnpm build
