@@ -1,3 +1,22 @@
+## [1.1.2](https://github.com/cnpja/sdk-nodejs/compare/v1.1.1...v1.1.2) (2024-03-29)
+
+
+### Bug Fixes
+
+* **ci:** add quality ([09bca5a](https://github.com/cnpja/sdk-nodejs/commit/09bca5a8c426c8bdd6bfb9135e4d0bd55b624051))
+* **ci:** do not persist credentials ([e6412a6](https://github.com/cnpja/sdk-nodejs/commit/e6412a6c0d216f5b838424f044d86ceb5f67be59))
+* **ci:** increase pat scopes ([c7d81a0](https://github.com/cnpja/sdk-nodejs/commit/c7d81a04ccd9c3d32330ab0316880b9585e608cf))
+* **ci:** install pnpm ([39f4596](https://github.com/cnpja/sdk-nodejs/commit/39f4596f34bb2bf2e414833b8e368f7d3d1289fd))
+* **ci:** install pnpm ([77be2bd](https://github.com/cnpja/sdk-nodejs/commit/77be2bd60cc514bd43a1d7a8b3cef6435b96d979))
+* **ci:** re-add GITHUB_TOKEN ([1ab647b](https://github.com/cnpja/sdk-nodejs/commit/1ab647ba64828888fa1ee1c56f5d60130fa85525))
+* **ci:** remove persist-credentials ([1230cc3](https://github.com/cnpja/sdk-nodejs/commit/1230cc3d473fb39ea4bcb610563a27cbb205fc2d))
+* **ci:** resolve release issues ([141d06b](https://github.com/cnpja/sdk-nodejs/commit/141d06b98dc8caa48d93a148d50e3d1ee1bf2874))
+* **ci:** revert template ([e95fca2](https://github.com/cnpja/sdk-nodejs/commit/e95fca235b5eac0d625658eec289587e9f4ab0d4))
+* **ci:** tempalte ([29b18f8](https://github.com/cnpja/sdk-nodejs/commit/29b18f88bc70eaf73e568aba8deaba60275c6d82))
+* **ci:** typo ([5caaa7b](https://github.com/cnpja/sdk-nodejs/commit/5caaa7b8e5d21675a3e5f00903a3edc738e75516))
+* **ci:** use pnpm ([57dbd4d](https://github.com/cnpja/sdk-nodejs/commit/57dbd4dbd1fbbba2da9437644709f311a3a57566))
+* **package:** add release script ([14994e9](https://github.com/cnpja/sdk-nodejs/commit/14994e92379ab94cea74c0174e2154fb656b7007))
+
 ## [1.1.2-beta.4](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2-beta.3...v1.1.2-beta.4) (2024-03-29)
 
 
