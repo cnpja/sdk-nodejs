@@ -1,3 +1,14 @@
+## [1.1.2-beta.2](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2-beta.1...v1.1.2-beta.2) (2024-03-29)
+
+
+### Bug Fixes
+
+* **ci:** install pnpm ([39f4596](https://github.com/cnpja/sdk-nodejs/commit/39f4596f34bb2bf2e414833b8e368f7d3d1289fd))
+* **ci:** re-add GITHUB_TOKEN ([1ab647b](https://github.com/cnpja/sdk-nodejs/commit/1ab647ba64828888fa1ee1c56f5d60130fa85525))
+* **ci:** tempalte ([29b18f8](https://github.com/cnpja/sdk-nodejs/commit/29b18f88bc70eaf73e568aba8deaba60275c6d82))
+* **ci:** typo ([5caaa7b](https://github.com/cnpja/sdk-nodejs/commit/5caaa7b8e5d21675a3e5f00903a3edc738e75516))
+* **ci:** use pnpm ([57dbd4d](https://github.com/cnpja/sdk-nodejs/commit/57dbd4dbd1fbbba2da9437644709f311a3a57566))
+
 ## [1.1.2-beta.1](https://github.com/cnpja/sdk-nodejs/compare/v1.1.1...v1.1.2-beta.1) (2024-03-29)
 
 
