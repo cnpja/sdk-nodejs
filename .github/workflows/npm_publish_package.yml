@@ -24,18 +24,26 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
-      - name: Install dependencies
-        run: npm i -g pnpm && pnpm i
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: |
+          npm i -g pnpm
+          pnpm i --frozen-lockfile
+
+      - name: Build Distributable
+        run: pnpm build
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpx semantic-release
+        run: pnpm release
