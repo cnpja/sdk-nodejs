@@ -44,7 +44,7 @@ export class HttpService {
     }
     else {
       const arrayBuffer = await res.arrayBuffer();
-      return Buffer.from(arrayBuffer) as T;
+      return new Uint8Array(arrayBuffer) as T;
     }
   }
 
