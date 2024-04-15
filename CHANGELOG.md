@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2...v1.1.3) (2024-04-15)
+
+
+### Bug Fixes
+
+* **http:** use Uint8Array instead of Buffer for browser support ([e36bae8](https://github.com/cnpja/sdk-nodejs/commit/e36bae81dee973b7128760504566199b2c591007))
+
 ## [1.1.2](https://github.com/cnpja/sdk-nodejs/compare/v1.1.1...v1.1.2) (2024-03-29)
 
 
