@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/cnpja/sdk-nodejs/compare/v1.1.3...v1.1.4) (2024-07-16)
+
+
+### Bug Fixes
+
+* **cnpja:** bump to latest open api spec ([efd84a5](https://github.com/cnpja/sdk-nodejs/commit/efd84a5d6a3d582277d97cab2b834a3c30f0c3d1))
+
 ## [1.1.3](https://github.com/cnpja/sdk-nodejs/compare/v1.1.2...v1.1.3) (2024-04-15)
 
 
