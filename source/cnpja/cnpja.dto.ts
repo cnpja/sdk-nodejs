@@ -12,13 +12,13 @@
 /** ErrorUnauthorizedDto */
 export interface ErrorUnauthorizedDto {
   /**
-   * Código do status HTTP
+   * Código do status HTTP.
    * @format integer
    * @example 401
    */
   code: number;
   /**
-   * Mensagem de erro
+   * Mensagem de erro.
    * @example "invalid authentication"
    */
   message: string;
@@ -32,7 +32,7 @@ export interface ZipDto {
    */
   municipality: number;
   /**
-   * Código de Endereçamento Postal
+   * Código de Endereçamento Postal.
    * @format numeric
    * @minLength 8
    * @maxLength 8
@@ -40,27 +40,27 @@ export interface ZipDto {
    */
   zip: string;
   /**
-   * Logradouro
+   * Logradouro.
    * @example "Avenida Brigadeiro Faria Lima"
    */
   street: string;
   /**
-   * Número
+   * Número.
    * @example "2369"
    */
   number: string;
   /**
-   * Bairro ou distrito
+   * Bairro ou distrito.
    * @example "Jardim Paulistano"
    */
   district: string;
   /**
-   * Município
+   * Município.
    * @example "São Paulo"
    */
   city: string;
   /**
-   * Sigla da Unidade Federativa
+   * Sigla da Unidade Federativa.
    * @example "SP"
    */
   state:
@@ -96,18 +96,18 @@ export interface ZipDto {
 /** ErrorBadRequestDto */
 export interface ErrorBadRequestDto {
   /**
-   * Código do status HTTP
+   * Código do status HTTP.
    * @format integer
    * @example 400
    */
   code: number;
   /**
-   * Mensagem de erro
+   * Mensagem de erro.
    * @example "request validation failed"
    */
   message: string;
   /**
-   * Lista com as falhas de validação
+   * Lista com as falhas de validação.
    * @example ["taxId must be a numeric string that obeys digit verification algorithm"]
    */
   constraints: string[];
@@ -116,13 +116,13 @@ export interface ErrorBadRequestDto {
 /** ErrorNotFoundDto */
 export interface ErrorNotFoundDto {
   /**
-   * Código do status HTTP
+   * Código do status HTTP.
    * @format integer
    * @example 404
    */
   code: number;
   /**
-   * Mensagem de erro
+   * Mensagem de erro.
    * @example "tax id not registered at revenue service"
    */
   message: string;
@@ -131,24 +131,24 @@ export interface ErrorNotFoundDto {
 /** ErrorTooManyRequestsDto */
 export interface ErrorTooManyRequestsDto {
   /**
-   * Código do status HTTP
+   * Código do status HTTP.
    * @format integer
    * @example 429
    */
   code: number;
   /**
-   * Mensagem de erro
+   * Mensagem de erro.
    * @example "not enough credits"
    */
   message: string;
   /**
-   * Créditos necessários para completar a consulta
+   * Créditos necessários para completar a consulta.
    * @format integer
    * @example 3
    */
   required: number;
   /**
-   * Créditos restantes em sua conta
+   * Créditos restantes em sua conta.
    * @format integer
    * @example 1
    */
@@ -158,13 +158,13 @@ export interface ErrorTooManyRequestsDto {
 /** ErrorServiceUnavailableDto */
 export interface ErrorServiceUnavailableDto {
   /**
-   * Código do status HTTP
+   * Código do status HTTP.
    * @format integer
    * @example 503
    */
   code: number;
   /**
-   * Mensagem de erro
+   * Mensagem de erro.
    * @example "revenue service is offline"
    */
   message: string;
@@ -178,7 +178,7 @@ export interface NatureDto {
    */
   id: number;
   /**
-   * Descrição da natureza jurídica
+   * Descrição da natureza jurídica.
    * @example "Sociedade Empresária Limitada"
    */
   text: string;
@@ -192,7 +192,7 @@ export interface CountryDto {
    */
   id: number;
   /**
-   * Nome do país
+   * Nome do país.
    * @example "Brasil"
    */
   name: string;
@@ -206,7 +206,7 @@ export interface AddressDto {
    */
   municipality: number;
   /**
-   * Código de Endereçamento Postal
+   * Código de Endereçamento Postal.
    * @format numeric
    * @minLength 8
    * @maxLength 8
@@ -214,27 +214,27 @@ export interface AddressDto {
    */
   zip: string;
   /**
-   * Logradouro
+   * Logradouro.
    * @example "Avenida Brigadeiro Faria Lima"
    */
   street: string;
   /**
-   * Número
+   * Número.
    * @example "2369"
    */
   number: string;
   /**
-   * Bairro ou distrito
+   * Bairro ou distrito.
    * @example "Jardim Paulistano"
    */
   district: string;
   /**
-   * Município
+   * Município.
    * @example "São Paulo"
    */
   city: string;
   /**
-   * Sigla da Unidade Federativa
+   * Sigla da Unidade Federativa.
    * @example "SP"
    */
   state:
@@ -266,36 +266,36 @@ export interface AddressDto {
     | "SE"
     | "TO";
   /**
-   * Complemento
+   * Complemento.
    * @example "Conj 1102"
    */
   details: string;
   /**
-   * Latitude
+   * Latitude.
    * @format float
    * @example -23.5774994
    */
-  latitude: number;
+  latitude?: number;
   /**
-   * Longitude
+   * Longitude.
    * @format float
    * @example -46.6864608
    */
-  longitude: number;
-  /** Informações do país */
+  longitude?: number;
+  /** Informações do país. */
   country: CountryDto;
 }
 
 /** PhoneDto */
 export interface PhoneDto {
   /**
-   * Código de DDD
+   * Código de DDD.
    * @format numeric
    * @example "11"
    */
   area: string;
   /**
-   * Número
+   * Número.
    * @format numeric
    * @example "971564144"
    */
@@ -305,13 +305,13 @@ export interface PhoneDto {
 /** EmailDto */
 export interface EmailDto {
   /**
-   * Endereço de e-mail
+   * Endereço de e-mail.
    * @format e-mail
    * @example "contato@cnpja.com"
    */
   address: string;
   /**
-   * Domínio de registro
+   * Domínio de registro.
    * @example "cnpja.com"
    */
   domain: string;
@@ -321,15 +321,15 @@ export interface EmailDto {
 export interface SuframaStatusDto {
   /**
    * Código da situação cadastral:
-   * 1\. Ativa
-   * 2\. Bloqueada
-   * 3\. Inativa
+   * 1\. Ativa.
+   * 2\. Bloqueada.
+   * 3\. Inativa.
    * @format integer
    * @example 1
    */
   id: number;
   /**
-   * Descrição da situação cadastral
+   * Descrição da situação cadastral.
    * @example "Ativa"
    */
   text: string;
@@ -343,12 +343,12 @@ export interface SuframaActivityDto {
    */
   id: number;
   /**
-   * Descrição da atividade econômica
+   * Descrição da atividade econômica.
    * @example "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
    */
   text: string;
   /**
-   * Indica se a atividade econômica é exercida
+   * Indica se a atividade econômica é exercida.
    * @example true
    */
   performed: boolean;
@@ -357,22 +357,22 @@ export interface SuframaActivityDto {
 /** SuframaIncentiveDto */
 export interface SuframaIncentiveDto {
   /**
-   * Nome do tributo incentivado
+   * Nome do tributo incentivado.
    * @example "IPI"
    */
   tribute: "ICMS" | "IPI";
   /**
-   * Benefício aplicado ao incentivo
+   * Benefício aplicado ao incentivo.
    * @example "Isenção"
    */
   benefit: string;
   /**
-   * Finalidade do incentivo
+   * Finalidade do incentivo.
    * @example "Consumo Interno, Industrialização e Utilização"
    */
   purpose: string;
   /**
-   * Base legal do incentivo
+   * Base legal do incentivo.
    * @example "Decreto 7.212 de 2010 (Art. 81)"
    */
   basis: string;
@@ -381,65 +381,65 @@ export interface SuframaIncentiveDto {
 /** SuframaDto */
 export interface SuframaDto {
   /**
-   * Data da última atualização
-   * @format iso8601
-   * @example "2024-03-28T23:52:46.111Z"
-   */
-  updated: string;
-  /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Razão social
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  /**
+   * Razão social.
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
-  /** Informações da natureza jurídica */
+  /** Informações da natureza jurídica. */
   nature: NatureDto;
   /**
-   * Indica se o estabelecimento é a Matriz
+   * Indica se o estabelecimento é a Matriz.
    * @example true
    */
   head: boolean;
-  /** Informações do endereço */
+  /** Informações do endereço. */
   address: AddressDto;
-  /** Lista de telefones */
+  /** Lista de telefones. */
   phones: PhoneDto[];
-  /** Lista de e-mails */
+  /** Lista de e-mails. */
   emails: EmailDto[];
   /**
-   * Número da inscrição SUFRAMA
+   * Número da inscrição SUFRAMA.
    * @format numeric
    * @example "200400029"
    */
   number: string;
   /**
-   * Data de inscrição na SUFRAMA
+   * Data de inscrição na SUFRAMA.
    * @format iso8601
    * @example "2020-01-01"
    */
   since: string;
   /**
-   * Indica se o projeto está aprovado
+   * Indica se o projeto está aprovado.
    * @example true
    */
   approved: boolean;
   /**
-   * Data de aprovação do projeto
+   * Data de aprovação do projeto.
    * @format iso8601
    * @example "2021-01-01"
    */
   approvalDate: string;
-  /** Informações da situação cadastral */
+  /** Informações da situação cadastral. */
   status: SuframaStatusDto;
-  /** Informações da atividade econômica principal */
+  /** Informações da atividade econômica principal. */
   mainActivity: SuframaActivityDto;
-  /** Lista de atividades econômicas secundárias */
+  /** Lista de atividades econômicas secundárias. */
   sideActivities: SuframaActivityDto[];
-  /** Lista de incentivos fiscais */
+  /** Lista de incentivos fiscais. */
   incentives: SuframaIncentiveDto[];
 }
 
@@ -449,19 +449,19 @@ export type Buffer = object;
 /** SimplesSimeiHistoryDto */
 export interface SimplesSimeiHistoryDto {
   /**
-   * Data de início do período
+   * Data de início do período.
    * @format iso8601
    * @example "2012-12-26"
    */
   from: string;
   /**
-   * Data de término do período
+   * Data de término do período.
    * @format iso8601
    * @example "2013-12-31"
    */
   until: string;
   /**
-   * Motivo de encerramento
+   * Motivo de encerramento.
    * @example "Excluída por Ato Administrativo praticado pela Receita Federal do Brasil"
    */
   text: string;
@@ -470,94 +470,58 @@ export interface SimplesSimeiHistoryDto {
 /** SimplesSimeiDto */
 export interface SimplesSimeiDto {
   /**
-   * Indica se optante ou enquadrado
+   * Indica se optante ou enquadrado.
    * @example true
    */
   optant: boolean;
   /**
-   * Data de inclusão no período vigente
+   * Data de inclusão no período vigente.
    * @format iso8601
    * @example "2020-06-05"
    */
   since: string;
-  /** Histórico de períodos anteriores */
-  history: SimplesSimeiHistoryDto[];
+  /** Histórico de períodos anteriores. */
+  history?: SimplesSimeiHistoryDto[];
 }
 
 /** SimplesDto */
 export interface SimplesDto {
   /**
-   * Data da última atualização
-   * @format iso8601
-   * @example "2024-03-28T23:52:46.111Z"
-   */
-  updated: string;
-  /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
-  /** Informações da opção pelo Simples Nacional */
+  /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  /** Informações da opção pelo Simples Nacional. */
   simples: SimplesSimeiDto;
-  /** Informações do enquadramento no MEI */
+  /** Informações do enquadramento no MEI. */
   simei: SimplesSimeiDto;
-}
-
-/** SignatureCreateDto */
-export interface SignatureCreateDto {
-  /**
-   * URL da consulta a ser assinada
-   * @format url
-   * @example "https://api.cnpja.com/rfb/certificate?taxId=37335118000180"
-   */
-  url: string;
-  /**
-   * Tempo de expiração em segundos
-   * @format float
-   * @min 0
-   * @max 7776000
-   * @default 7776000
-   */
-  ttl?: number;
-}
-
-/** SignatureDto */
-export interface SignatureDto {
-  /**
-   * URL assinada que pode ser acessada sem envio de autenticação nos cabeçalhos
-   * @format url
-   * @example "https://api.cnpja.com/rfb/certificate?taxId=37335118000180&signature=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZDdhNTVhNy1hMTYxLTRiNTAtODI5ZC1iNDg4MjE5NGMwYjciLCJ1cmwiOiIvcmZiL2NlcnRpZmljYXRlP3RheElkPTM3MzM1MTE4MDAwMTgwIiwiaWF0IjoxNjI1ODkxMzczLCJleHAiOjE2MjU4OTQ5NzMsImF1ZCI6Imh0dHBzOi8vY25wamEuY29tLyIsImlzcyI6Imh0dHBzOi8vY25wamEuY29tLyJ9.AY9YgQfRk5jEMbkDQL7Hx2s5gEChncPQME8D5hx7PpXQdf6oqjHvN5s_Zk_y2F6srN1ZfMt1oyPJ62JZcwhWtIEL6j_7N_lnv-64w16uAL5xDBfGboNcqtxABV1Mtq-B0-mdKCHsMIw6eHDkBJXnQgGY4EELKYAOMXBF4XgcNWZN00_1nAA_iEivEIOKgyDAVbPg2Pd-zowqL_taSPuOYU_9fpLWxB2nsXLa4QfhCjdp_7kllcI83DbDAjfpVcDNYh4zuVhgoHkGHIzRFyeqOH_RU1sO-_3zDd75cF2B2u0qtyLn0i4KDcJxjK21_5Oh7oJTUd8E08-anjCdIZAIoyQyobc9Awulb86LuASFzvrE_R8uFlnglzAH_CHyGyg-VCBuKRUm0ES7iKVhaKVcWBoEb4r5BIzqO1c0nBvK9Jd_Uc3f2Zu6ouNiyQPYM9PjCRCwed8NomivJkYcUugR-KKp_M21AliocPFpHrM5zIgORxSeK-FUq4zc9jZGQo93I3f1U2Ao5kid3-xviNcNNDbON4m3GDJ1vXGjE2ZWA4IfbzdcPnJvx1-A5QD5J-gFvGRb91mrQof3ujxnTxzCgs939EXrXKL3SQ0S90b5jgrBMYFcCPQbetBGooC0zC-se4ykqEYxY95pAsqIPncoAojQ94rxztDeM4cDy-vcIlg"
-   */
-  signedUrl: string;
-  /**
-   * Tempo de expiração em segundos
-   * @format float
-   * @min 0
-   * @max 7776000
-   * @example 3600
-   */
-  ttl: number;
 }
 
 /** CompanySizeDto */
 export interface CompanySizeDto {
   /**
    * Código do porte:
-   * 1\. ME - Microempresa
-   * 3\. EPP - Empresa de Pequeno Porte
-   * 5\. DEMAIS - Demais
+   * 1\. ME - Microempresa.
+   * 3\. EPP - Empresa de Pequeno Porte.
+   * 5\. DEMAIS - Demais.
    * @format integer
    * @example 1
    */
   id: number;
   /**
-   * Sigla do porte
+   * Sigla do porte.
    * @example "ME"
    */
   acronym: string;
   /**
-   * Descrição do porte
+   * Descrição do porte.
    * @example "Microempresa"
    */
   text: string;
@@ -567,17 +531,17 @@ export interface CompanySizeDto {
 export interface OfficeStatusDto {
   /**
    * Código da situação cadastral:
-   * 1\. Nula
-   * 2\. Ativa
-   * 3\. Suspensa
-   * 4\. Inapta
-   * 8\. Baixada
+   * 1\. Nula.
+   * 2\. Ativa.
+   * 3\. Suspensa.
+   * 4\. Inapta.
+   * 8\. Baixada.
    * @format integer
    * @example 2
    */
   id: number;
   /**
-   * Descrição da situação cadastral
+   * Descrição da situação cadastral.
    * @example "Ativa"
    */
   text: string;
@@ -591,7 +555,7 @@ export interface OfficeReasonDto {
    */
   id: number;
   /**
-   * Descrição do motivo da situação cadastral
+   * Descrição do motivo da situação cadastral.
    * @example "Extinção Por Encerramento Liquidação Voluntária"
    */
   text: string;
@@ -605,7 +569,7 @@ export interface OfficeSpecialDto {
    */
   id: number;
   /**
-   * Descrição da situação especial
+   * Descrição da situação especial.
    * @example "Início de Liquidação Judicial"
    */
   text: string;
@@ -619,7 +583,7 @@ export interface ActivityDto {
    */
   id: number;
   /**
-   * Descrição da atividade econômica
+   * Descrição da atividade econômica.
    * @example "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
    */
   text: string;
@@ -633,300 +597,259 @@ export interface RoleDto {
    */
   id: number;
   /**
-   * Descrição da qualificação
+   * Descrição da qualificação.
    * @example "Sócio-Administrador"
    */
   text: string;
 }
 
-/** RfbPersonDto */
-export interface RfbPersonDto {
-  /**
-   * Tipo da pessoa:
-   * • `NATURAL`: Pessoa física
-   * • `LEGAL`: Pessoa jurídica
-   * • `FOREIGN`: Pessoa residente no exterior
-   * • `UNKNOWN`: Desconhecida
-   * @example "NATURAL"
-   */
-  type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
-  /**
-   * Nome ou razão social
-   * @example "João Silva"
-   */
-  name: string;
-  /**
-   * Presente quando `type == 'NATURAL' | 'LEGAL'`
-   * CPF ou CNPJ
-   * @example "***123456**"
-   */
-  taxId: string;
-  /**
-   * Presente quando `type == 'NATURAL'`
-   * Faixa etária
-   * @example "31-40"
-   */
-  age: string;
-  /**
-   * Presente quando `type == 'FOREIGN'`
-   * País de origem
-   */
-  country: CountryDto;
-}
-
-/** RfbMemberAgentDto */
-export interface RfbMemberAgentDto {
-  /** Informações da qualificação do representante legal */
-  role: RoleDto;
-  /** Informações da pessoa representante legal */
-  person: RfbPersonDto;
-}
-
-/** RfbMemberDto */
-export interface RfbMemberDto {
-  /**
-   * Data de entrada na sociedade
-   * @format iso8601
-   * @example "2020-06-05"
-   */
-  since: string;
-  /** Informações da qualificação */
-  role: RoleDto;
-  /** Informações do sócio ou administrador */
-  person: RfbPersonDto;
-  /**
-   * Presente quando aplicável na qualificação
-   * Informações do representante legal
-   */
-  agent: RfbMemberAgentDto;
-}
-
-/** RfbDto */
-export interface RfbDto {
-  /**
-   * Data da última atualização
-   * @format iso8601
-   * @example "2024-03-28T23:52:46.111Z"
-   */
-  updated: string;
-  /**
-   * Número do CNPJ
-   * @format cnpj
-   * @example "37335118000180"
-   */
-  taxId: string;
-  /**
-   * Razão social
-   * @example "CNPJA TECNOLOGIA LTDA"
-   */
-  name: string;
-  /**
-   * Ente federativo responsável
-   * @example "Uniao"
-   */
-  jurisdiction: string;
-  /**
-   * Capital social
-   * @format float
-   * @example 1000
-   */
-  equity: number;
-  /** Informações da natureza jurídica */
-  nature: NatureDto;
-  /** Informações do porte */
-  size: CompanySizeDto;
-  /**
-   * Nome fantasia
-   * @example "CNPJA"
-   */
-  alias: string;
-  /**
-   * Data de abertura
-   * @format iso8601
-   * @example "2020-06-05"
-   */
-  founded: string;
-  /**
-   * Indica se o estabelecimento é a Matriz
-   * @example true
-   */
-  head: boolean;
-  /**
-   * Data da situação cadastral
-   * @format iso8601
-   * @example "2020-06-05"
-   */
-  statusDate: string;
-  /** Informações da situação cadastral */
-  status: OfficeStatusDto;
-  /**
-   * Presente quando `status.id != 2`
-   * Informações do motivo da situação cadastral
-   */
-  reason: OfficeReasonDto;
-  /**
-   * Data da situação especial
-   * @format iso8601
-   * @example "2022-01-01"
-   */
-  specialDate: string;
-  /**
-   * Presente quando `specialDate != undefined`
-   * Informações da situação especial
-   */
-  special: OfficeSpecialDto;
-  /** Informações do endereço */
-  address: AddressDto;
-  /** Lista de telefones */
-  phones: PhoneDto[];
-  /** Lista de e-mails */
-  emails: EmailDto[];
-  /** Informações da atividade econômica principal */
-  mainActivity: ActivityDto;
-  /** Lista de atividades econômicas secundárias */
-  sideActivities: ActivityDto[];
-  /** Quadro de sócios e administradores */
-  members: RfbMemberDto[];
-}
-
 /** PersonBaseDto */
 export interface PersonBaseDto {
   /**
-   * Código da pessoa
+   * Código da pessoa.
    * @format uuid
    * @example "1e5ed433-0f39-4309-8e85-8d21a571b212"
    */
   id: string;
   /**
    * Tipo da pessoa:
-   * • `NATURAL`: Pessoa física
-   * • `LEGAL`: Pessoa jurídica
-   * • `FOREIGN`: Pessoa residente no exterior
-   * • `UNKNOWN`: Desconhecida
+   * - `NATURAL`: Pessoa física.
+   * - `LEGAL`: Pessoa jurídica.
+   * - `FOREIGN`: Pessoa residente no exterior.
+   * - `UNKNOWN`: Desconhecida.
    * @example "NATURAL"
    */
   type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
   /**
-   * Nome ou razão social
+   * Nome ou razão social.
    * @example "João Silva"
    */
   name: string;
   /**
    * Presente quando `type == 'NATURAL' | 'LEGAL'`
-   * CPF ou CNPJ
+   * CPF ou CNPJ.
    * @example "***123456**"
    */
-  taxId: string;
+  taxId?: string;
   /**
    * Presente quando `type == 'NATURAL'`
-   * Faixa etária
+   * Faixa etária.
    * @example "31-40"
    */
-  age: string;
+  age?: string;
   /**
    * Presente quando `type == 'FOREIGN'`
-   * País de origem
+   * País de origem.
    */
-  country: CountryDto;
+  country?: CountryDto;
 }
 
 /** MemberAgentDto */
 export interface MemberAgentDto {
-  /** Informações da pessoa representante legal */
+  /** Informações da pessoa representante legal. */
   person: PersonBaseDto;
-  /** Informações da qualificação do representante legal */
+  /** Informações da qualificação do representante legal. */
   role: RoleDto;
 }
 
-/** PersonMemberCompanyDto */
-export interface PersonMemberCompanyDto {
+/** RfbMemberDto */
+export interface RfbMemberDto {
   /**
-   * Código da empresa, idem aos 8 primeiros dígitos do CNPJ
-   * @format integer
-   * @example 37335118
+   * Data de entrada na sociedade.
+   * @format iso8601
+   * @example "2020-06-05"
    */
-  id: number;
+  since: string;
+  /** Informações da qualificação. */
+  role: RoleDto;
+  /** Informações do sócio ou administrador. */
+  person: PersonBaseDto;
   /**
-   * Razão social
+   * Presente quando aplicável na qualificação
+   * Informações do representante legal.
+   */
+  agent: MemberAgentDto;
+}
+
+/** RfbDto */
+export interface RfbDto {
+  /**
+   * Número do CNPJ.
+   * @format cnpj
+   * @example "37335118000180"
+   */
+  taxId: string;
+  /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  /**
+   * Razão social.
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
-   * Ente federativo responsável
+   * Presente quando `nature.id < 2000`
+   * Ente federativo responsável.
    * @example "Uniao"
    */
-  jurisdiction: string;
+  jurisdiction?: string;
   /**
    * Capital social
    * @format float
    * @example 1000
    */
   equity: number;
-  /** Informações da natureza jurídica */
+  /** Informações da natureza jurídica. */
   nature: NatureDto;
-  /** Informações do porte */
+  /** Informações do porte. */
+  size: CompanySizeDto;
+  /**
+   * Nome fantasia.
+   * @example "CNPJA"
+   */
+  alias: string;
+  /**
+   * Data de abertura.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  founded: string;
+  /**
+   * Indica se o estabelecimento é a Matriz.
+   * @example true
+   */
+  head: boolean;
+  /**
+   * Data da situação cadastral.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  statusDate: string;
+  /** Informações da situação cadastral. */
+  status: OfficeStatusDto;
+  /**
+   * Presente quando `status.id != 2`
+   * Informações do motivo da situação cadastral.
+   */
+  reason?: OfficeReasonDto;
+  /**
+   * Data da situação especial.
+   * @format iso8601
+   * @example "2022-01-01"
+   */
+  specialDate?: string;
+  /**
+   * Presente quando `specialDate != undefined`
+   * Informações da situação especial.
+   */
+  special?: OfficeSpecialDto;
+  /** Informações do endereço. */
+  address: AddressDto;
+  /** Lista de telefones. */
+  phones: PhoneDto[];
+  /** Lista de e-mails. */
+  emails: EmailDto[];
+  /** Informações da atividade econômica principal. */
+  mainActivity: ActivityDto;
+  /** Lista de atividades econômicas secundárias. */
+  sideActivities: ActivityDto[];
+  /** Quadro de sócios e administradores. */
+  members: RfbMemberDto[];
+}
+
+/** PersonMemberCompanyDto */
+export interface PersonMemberCompanyDto {
+  /**
+   * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
+   * @format integer
+   * @example 37335118
+   */
+  id: number;
+  /**
+   * Razão social.
+   * @example "CNPJA TECNOLOGIA LTDA"
+   */
+  name: string;
+  /**
+   * Presente quando `nature.id < 2000`
+   * Ente federativo responsável.
+   * @example "Uniao"
+   */
+  jurisdiction?: string;
+  /**
+   * Capital social
+   * @format float
+   * @example 1000
+   */
+  equity: number;
+  /** Informações da natureza jurídica. */
+  nature: NatureDto;
+  /** Informações do porte. */
   size: CompanySizeDto;
 }
 
 /** PersonMemberDto */
 export interface PersonMemberDto {
   /**
-   * Data de entrada na sociedade
+   * Data de entrada na sociedade.
    * @format iso8601
    * @example "2020-06-05"
    */
   since: string;
-  /** Informações da qualificação */
+  /** Informações da qualificação. */
   role: RoleDto;
   /**
    * Presente quando aplicável na qualificação
-   * Informações do representante legal
+   * Informações do representante legal.
    */
-  agent: MemberAgentDto;
-  /** Informações da empresa */
+  agent?: MemberAgentDto;
+  /** Informações da empresa. */
   company: PersonMemberCompanyDto;
 }
 
 /** PersonDto */
 export interface PersonDto {
   /**
-   * Código da pessoa
+   * Código da pessoa.
    * @format uuid
    * @example "1e5ed433-0f39-4309-8e85-8d21a571b212"
    */
   id: string;
   /**
    * Tipo da pessoa:
-   * • `NATURAL`: Pessoa física
-   * • `LEGAL`: Pessoa jurídica
-   * • `FOREIGN`: Pessoa residente no exterior
-   * • `UNKNOWN`: Desconhecida
+   * - `NATURAL`: Pessoa física.
+   * - `LEGAL`: Pessoa jurídica.
+   * - `FOREIGN`: Pessoa residente no exterior.
+   * - `UNKNOWN`: Desconhecida.
    * @example "NATURAL"
    */
   type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
   /**
-   * Nome ou razão social
+   * Nome ou razão social.
    * @example "João Silva"
    */
   name: string;
   /**
    * Presente quando `type == 'NATURAL' | 'LEGAL'`
-   * CPF ou CNPJ
+   * CPF ou CNPJ.
    * @example "***123456**"
    */
-  taxId: string;
+  taxId?: string;
   /**
    * Presente quando `type == 'NATURAL'`
-   * Faixa etária
+   * Faixa etária.
    * @example "31-40"
    */
-  age: string;
+  age?: string;
   /**
    * Presente quando `type == 'FOREIGN'`
-   * País de origem
+   * País de origem.
    */
-  country: CountryDto;
-  /** Lista de sociedades participantes */
+  country?: CountryDto;
+  /** Lista de sociedades participantes. */
   membership: PersonMemberDto[];
 }
 
@@ -934,15 +857,15 @@ export interface PersonDto {
 export interface RegistrationStatusDto {
   /**
    * Código da situação cadastral:
-   * 1\. Sem restrição
-   * 2\. Bloqueado como destinatário na UF
-   * 3\. Vedada operação como destinatário na UF
+   * 1\. Sem restrição.
+   * 2\. Bloqueado como destinatário na UF.
+   * 3\. Vedada operação como destinatário na UF.
    * @format integer
    * @example 2
    */
   id: number;
   /**
-   * Descrição da situação cadastral
+   * Descrição da situação cadastral.
    * @example "Bloqueado como destinatário na UF"
    */
   text: string;
@@ -952,16 +875,16 @@ export interface RegistrationStatusDto {
 export interface RegistrationTypeDto {
   /**
    * Código do tipo:
-   * 1\. IE Normal
-   * 2\. IE Substituto Tributário
-   * 3\. IE Não Contribuinte (Canteiro de Obras, IE Virtual, outros)
-   * 4\. IE de Produtor Rural
+   * 1\. IE Normal.
+   * 2\. IE Substituto Tributário.
+   * 3\. IE Não Contribuinte (Canteiro de Obras, IE Virtual, outros).
+   * 4\. IE de Produtor Rural.
    * @format integer
    * @example 2
    */
   id: number;
   /**
-   * Descrição do tipo
+   * Descrição do tipo.
    * @example "IE Substituto Tributário"
    */
   text: string;
@@ -970,13 +893,13 @@ export interface RegistrationTypeDto {
 /** RegistrationDto */
 export interface RegistrationDto {
   /**
-   * Número da Inscrição Estadual
+   * Número da Inscrição Estadual.
    * @format numeric
    * @example "0962101427"
    */
   number: string;
   /**
-   * Unidade Federativa de registro
+   * Unidade Federativa de registro.
    * @example "RS"
    */
   state:
@@ -1008,188 +931,188 @@ export interface RegistrationDto {
     | "SE"
     | "TO";
   /**
-   * Indica se habilitada como contribuinte
+   * Indica se habilitada como contribuinte.
    * @example true
    */
   enabled: boolean;
   /**
-   * Data da situação cadastral
+   * Data da situação cadastral.
    * @format iso8601
    * @example "2021-01-21"
    */
   statusDate: string;
-  /** Situação cadastral da inscrição */
+  /** Situação cadastral da inscrição. */
   status: RegistrationStatusDto;
-  /** Tipo da inscrição */
+  /** Tipo da inscrição. */
   type: RegistrationTypeDto;
-}
-
-/** LinkDto */
-export interface LinkDto {
-  /**
-   * Tipo de arquivo a qual o link se refere
-   * @example "RFB_CERTIFICATE"
-   */
-  type: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
-  /**
-   * URL pública de acesso ao arquivo
-   * @example "https://api.cnpja.com/rfb/certificate?taxId=37335118000180&signature=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZDdhNTVhNy1hMTYxLTRiNTAtODI5ZC1iNDg4MjE5NGMwYjciLCJ1cmwiOiIvcmZiL2NlcnRpZmljYXRlP3RheElkPTM3MzM1MTE4MDAwMTgwIiwiaWF0IjoxNjI1ODkxMzczLCJleHAiOjE2MjU4OTQ5NzMsImF1ZCI6Imh0dHBzOi8vY25wamEuY29tLyIsImlzcyI6Imh0dHBzOi8vY25wamEuY29tLyJ9.AY9YgQfRk5jEMbkDQL7Hx2s5gEChncPQME8D5hx7PpXQdf6oqjHvN5s_Zk_y2F6srN1ZfMt1oyPJ62JZcwhWtIEL6j_7N_lnv-64w16uAL5xDBfGboNcqtxABV1Mtq-B0-mdKCHsMIw6eHDkBJXnQgGY4EELKYAOMXBF4XgcNWZN00_1nAA_iEivEIOKgyDAVbPg2Pd-zowqL_taSPuOYU_9fpLWxB2nsXLa4QfhCjdp_7kllcI83DbDAjfpVcDNYh4zuVhgoHkGHIzRFyeqOH_RU1sO-_3zDd75cF2B2u0qtyLn0i4KDcJxjK21_5Oh7oJTUd8E08-anjCdIZAIoyQyobc9Awulb86LuASFzvrE_R8uFlnglzAH_CHyGyg-VCBuKRUm0ES7iKVhaKVcWBoEb4r5BIzqO1c0nBvK9Jd_Uc3f2Zu6ouNiyQPYM9PjCRCwed8NomivJkYcUugR-KKp_M21AliocPFpHrM5zIgORxSeK-FUq4zc9jZGQo93I3f1U2Ao5kid3-xviNcNNDbON4m3GDJ1vXGjE2ZWA4IfbzdcPnJvx1-A5QD5J-gFvGRb91mrQof3ujxnTxzCgs939EXrXKL3SQ0S90b5jgrBMYFcCPQbetBGooC0zC-se4ykqEYxY95pAsqIPncoAojQ94rxztDeM4cDy-vcIlg"
-   */
-  url: string;
 }
 
 /** MemberDto */
 export interface MemberDto {
   /**
-   * Data de entrada na sociedade
+   * Data de entrada na sociedade.
    * @format iso8601
    * @example "2020-06-05"
    */
   since: string;
-  /** Informações do sócio ou administrador */
+  /** Informações do sócio ou administrador. */
   person: PersonBaseDto;
-  /** Informações da qualificação */
+  /** Informações da qualificação. */
   role: RoleDto;
   /**
    * Presente quando aplicável na qualificação
-   * Informações do representante legal
+   * Informações do representante legal.
    */
-  agent: MemberAgentDto;
+  agent?: MemberAgentDto;
 }
 
 /** OfficeCompanyDto */
 export interface OfficeCompanyDto {
   /**
-   * Código da empresa, idem aos 8 primeiros dígitos do CNPJ
+   * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
    * @format integer
    * @example 37335118
    */
   id: number;
   /**
-   * Razão social
+   * Razão social.
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
-   * Ente federativo responsável
+   * Presente quando `nature.id < 2000`
+   * Ente federativo responsável.
    * @example "Uniao"
    */
-  jurisdiction: string;
+  jurisdiction?: string;
   /**
    * Capital social
    * @format float
    * @example 1000
    */
   equity: number;
-  /** Informações da natureza jurídica */
+  /** Informações da natureza jurídica. */
   nature: NatureDto;
-  /** Informações do porte */
+  /** Informações do porte. */
   size: CompanySizeDto;
-  /** Informações da opção pelo Simples Nacional */
+  /** Informações da opção pelo Simples Nacional. */
   simples?: SimplesSimeiDto;
-  /** Informações do enquadramento no MEI */
+  /** Informações do enquadramento no MEI. */
   simei?: SimplesSimeiDto;
-  /** Quadro de sócios e administradores */
+  /** Quadro de sócios e administradores. */
   members: MemberDto[];
+}
+
+/** OfficeLinkDto */
+export interface OfficeLinkDto {
+  /**
+   * Tipo de arquivo a qual o link se refere.
+   * @example "RFB_CERTIFICATE"
+   */
+  type: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
+  /**
+   * URL pública de acesso ao arquivo.
+   * @example "https://api.cnpja.com/rfb/certificate?taxId=37335118000180&signature=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZDdhNTVhNy1hMTYxLTRiNTAtODI5ZC1iNDg4MjE5NGMwYjciLCJ1cmwiOiIvcmZiL2NlcnRpZmljYXRlP3RheElkPTM3MzM1MTE4MDAwMTgwIiwiaWF0IjoxNjI1ODkxMzczLCJleHAiOjE2MjU4OTQ5NzMsImF1ZCI6Imh0dHBzOi8vY25wamEuY29tLyIsImlzcyI6Imh0dHBzOi8vY25wamEuY29tLyJ9.AY9YgQfRk5jEMbkDQL7Hx2s5gEChncPQME8D5hx7PpXQdf6oqjHvN5s_Zk_y2F6srN1ZfMt1oyPJ62JZcwhWtIEL6j_7N_lnv-64w16uAL5xDBfGboNcqtxABV1Mtq-B0-mdKCHsMIw6eHDkBJXnQgGY4EELKYAOMXBF4XgcNWZN00_1nAA_iEivEIOKgyDAVbPg2Pd-zowqL_taSPuOYU_9fpLWxB2nsXLa4QfhCjdp_7kllcI83DbDAjfpVcDNYh4zuVhgoHkGHIzRFyeqOH_RU1sO-_3zDd75cF2B2u0qtyLn0i4KDcJxjK21_5Oh7oJTUd8E08-anjCdIZAIoyQyobc9Awulb86LuASFzvrE_R8uFlnglzAH_CHyGyg-VCBuKRUm0ES7iKVhaKVcWBoEb4r5BIzqO1c0nBvK9Jd_Uc3f2Zu6ouNiyQPYM9PjCRCwed8NomivJkYcUugR-KKp_M21AliocPFpHrM5zIgORxSeK-FUq4zc9jZGQo93I3f1U2Ao5kid3-xviNcNNDbON4m3GDJ1vXGjE2ZWA4IfbzdcPnJvx1-A5QD5J-gFvGRb91mrQof3ujxnTxzCgs939EXrXKL3SQ0S90b5jgrBMYFcCPQbetBGooC0zC-se4ykqEYxY95pAsqIPncoAojQ94rxztDeM4cDy-vcIlg"
+   */
+  url: string;
 }
 
 /** OfficeDto */
 export interface OfficeDto {
   /**
-   * Data da última atualização
+   * Data da última atualização.
    * @format iso8601
-   * @example "2024-03-28T23:52:46.111Z"
+   * @example "2024-06-05T17:52:39.136Z"
    */
   updated: string;
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Nome fantasia
+   * Nome fantasia.
    * @example "CNPJA"
    */
   alias: string;
   /**
-   * Data de abertura
+   * Data de abertura.
    * @format iso8601
    * @example "2020-06-05"
    */
   founded: string;
   /**
-   * Indica se o estabelecimento é a Matriz
+   * Indica se o estabelecimento é a Matriz.
    * @example true
    */
   head: boolean;
   /**
-   * Data da situação cadastral
+   * Data da situação cadastral.
    * @format iso8601
    * @example "2020-06-05"
    */
   statusDate: string;
-  /** Informações da situação cadastral */
+  /** Informações da situação cadastral. */
   status: OfficeStatusDto;
   /**
    * Presente quando `status.id != 2`
-   * Informações do motivo da situação cadastral
+   * Informações do motivo da situação cadastral.
    */
-  reason: OfficeReasonDto;
+  reason?: OfficeReasonDto;
   /**
-   * Data da situação especial
+   * Data da situação especial.
    * @format iso8601
    * @example "2022-01-01"
    */
-  specialDate: string;
+  specialDate?: string;
   /**
    * Presente quando `specialDate != undefined`
-   * Informações da situação especial
+   * Informações da situação especial.
    */
-  special: OfficeSpecialDto;
-  /** Informações do endereço */
+  special?: OfficeSpecialDto;
+  /** Informações do endereço. */
   address: AddressDto;
-  /** Lista de telefones */
+  /** Lista de telefones. */
   phones: PhoneDto[];
-  /** Lista de e-mails */
+  /** Lista de e-mails. */
   emails: EmailDto[];
-  /** Informações da atividade econômica principal */
+  /** Informações da atividade econômica principal. */
   mainActivity: ActivityDto;
-  /** Lista de atividades econômicas secundárias */
+  /** Lista de atividades econômicas secundárias. */
   sideActivities: ActivityDto[];
-  /** Lista de Inscrições Estaduais */
-  registrations: RegistrationDto[];
-  /** Lista de links para arquivos */
-  links: LinkDto[];
-  /** Informações da empresa */
+  /** Lista de Inscrições Estaduais. */
+  registrations?: RegistrationDto[];
   company: OfficeCompanyDto;
+  /** Lista de links para arquivos. */
+  links?: OfficeLinkDto[];
 }
 
 /** LegacyRegistrationDto */
 export interface LegacyRegistrationDto {
   /**
-   * Situação cadastral: `NULA`, `ATIVA`, `SUSPENSA`, `INAPTA` ou `BAIXADA`
+   * Situação cadastral: `NULA`, `ATIVA`, `SUSPENSA`, `INAPTA` ou `BAIXADA`.
    * @example "ATIVA"
    */
   status: "NULA" | "ATIVA" | "SUSPENSA" | "INAPTA" | "BAIXADA";
   /**
-   * Data da situação especial
+   * Data da situação especial.
    * @format iso8601
    * @example "2022-01-01"
    */
   status_date: string;
   /**
-   * Motivo da situação cadastral
+   * Motivo da situação cadastral.
    * @example "Extinção Por Encerramento Liquidação Voluntária"
    */
   status_reason: string;
   /**
-   * Descrição da situação especial
+   * Descrição da situação especial.
    * @example "Início de Liquidação Judicial"
    */
   special_status: string;
   /**
-   * Data da situação especial
+   * Data da situação especial.
    * @format iso8601
    * @example "2022-01-01"
    */
@@ -1199,27 +1122,27 @@ export interface LegacyRegistrationDto {
 /** LegacyAddressDto */
 export interface LegacyAddressDto {
   /**
-   * Logradouro
+   * Logradouro.
    * @example "Avenida Brigadeiro Faria Lima"
    */
   street: string;
   /**
-   * Número
+   * Número.
    * @example "2369"
    */
   number: string;
   /**
-   * Complemento
+   * Complemento.
    * @example "Conj 1102"
    */
   details: string;
   /**
-   * Bairro ou distrito
+   * Bairro ou distrito.
    * @example "Jardim Paulistano"
    */
   neighborhood: string;
   /**
-   * Município
+   * Município.
    * @example "São Paulo"
    */
   city: string;
@@ -1229,7 +1152,7 @@ export interface LegacyAddressDto {
    */
   city_ibge: string;
   /**
-   * Sigla da Unidade Federativa
+   * Sigla da Unidade Federativa.
    * @example "SP"
    */
   state:
@@ -1261,13 +1184,13 @@ export interface LegacyAddressDto {
     | "SE"
     | "TO";
   /**
-   * Código da Unidade Federativa conforme IBGE
+   * Código da Unidade Federativa conforme IBGE.
    * @format numeric
    * @example "35"
    */
   state_ibge: string;
   /**
-   * Código de Endereçamento Postal
+   * Código de Endereçamento Postal.
    * @format numeric
    * @minLength 8
    * @maxLength 8
@@ -1284,7 +1207,7 @@ export interface LegacyLegalNatureDto {
    */
   code: string;
   /**
-   * Descrição da natureza jurídica
+   * Descrição da natureza jurídica.
    * @example "Sociedade Empresária Limitada"
    */
   description: string;
@@ -1293,30 +1216,30 @@ export interface LegacyLegalNatureDto {
 /** LegacySimplesNacionalDto */
 export interface LegacySimplesNacionalDto {
   /**
-   * Data da última atualização do Simples Nacional
+   * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-03-28T23:52:46.425Z"
+   * @example "2024-07-16T00:26:07.095Z"
    */
   last_update: string;
   /**
-   * Indica se optante pelo Simples Nacional
+   * Indica se optante pelo Simples Nacional.
    * @example true
    */
   simples_optant: boolean;
   /**
-   * Data de inclusão no período vigente
+   * Data de inclusão no período vigente.
    * @format iso8601
    * @example "2020-06-05"
    */
   simples_included: string;
   /**
-   * [Removido] Data de encerramento do último período
+   * [Removido] Data de encerramento do último período.
    * @format iso8601
    * @example "2021-06-05"
    */
   simples_excluded: string;
   /**
-   * Indica se enquadrado no MEI
+   * Indica se enquadrado no MEI.
    * @example true
    */
   simei_optant: boolean;
@@ -1325,13 +1248,13 @@ export interface LegacySimplesNacionalDto {
 /** LegacySintegraRegistrationDto */
 export interface LegacySintegraRegistrationDto {
   /**
-   * Número da Inscrição Estadual
+   * Número da Inscrição Estadual.
    * @format numeric
    * @example "0962101427"
    */
   number: string;
   /**
-   * Unidade Federativa de registro
+   * Unidade Federativa de registro.
    * @example "RS"
    */
   state:
@@ -1363,7 +1286,7 @@ export interface LegacySintegraRegistrationDto {
     | "SE"
     | "TO";
   /**
-   * Indica se habilitada como contribuinte
+   * Indica se habilitada como contribuinte.
    * @example true
    */
   enabled: boolean;
@@ -1372,18 +1295,18 @@ export interface LegacySintegraRegistrationDto {
 /** LegacySintegraDto */
 export interface LegacySintegraDto {
   /**
-   * Data da última atualização do Cadastro de Contribuintes
+   * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-03-28T23:52:46.426Z"
+   * @example "2024-07-16T00:26:07.112Z"
    */
   last_update: string;
   /**
-   * Número da Inscrição Estadual no estado de origem
+   * Número da Inscrição Estadual no estado de origem.
    * @format numeric
    * @example "0962101427"
    */
   home_state_registration: string;
-  /** Lista de Inscrições Estaduais */
+  /** Lista de Inscrições Estaduais. */
   registrations: LegacySintegraRegistrationDto[];
 }
 
@@ -1395,7 +1318,7 @@ export interface LegacyActivityDto {
    */
   code: string;
   /**
-   * Descrição da atividade econômica
+   * Descrição da atividade econômica.
    * @example "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
    */
   description: string;
@@ -1409,7 +1332,7 @@ export interface LegacyRoleDto {
    */
   code: string;
   /**
-   * Descrição da qualificação
+   * Descrição da qualificação.
    * @example "Sócio-Administrador"
    */
   description: string;
@@ -1418,46 +1341,46 @@ export interface LegacyRoleDto {
 /** LegacyMemberAgentDto */
 export interface LegacyMemberAgentDto {
   /**
-   * Nome ou razão social
+   * Nome ou razão social.
    * @example "João Silva"
    */
   name: string;
   /**
-   * CPF ou CNPJ
+   * CPF ou CNPJ.
    * @example "***123456**"
    */
   tax_id: string;
   /**
-   * Nome do país de origem
+   * Nome do país de origem.
    * @example "BRASIL"
    */
   home_country: string;
-  /** Informações da qualificação */
+  /** Informações da qualificação. */
   role: LegacyRoleDto;
 }
 
 /** LegacyMemberDto */
 export interface LegacyMemberDto {
   /**
-   * Nome ou razão social
+   * Nome ou razão social.
    * @example "João Silva"
    */
   name: string;
   /**
-   * CPF ou CNPJ
+   * CPF ou CNPJ.
    * @example "***123456**"
    */
   tax_id: string;
   /**
-   * Nome do país de origem
+   * Nome do país de origem.
    * @example "BRASIL"
    */
   home_country: string;
-  /** Informações da qualificação */
+  /** Informações da qualificação. */
   role: LegacyRoleDto;
   /**
    * Presente quando aplicável na qualificação
-   * Informações do representante legal
+   * Informações do representante legal.
    */
   legal_rep: LegacyMemberAgentDto;
 }
@@ -1465,13 +1388,13 @@ export interface LegacyMemberDto {
 /** LegacyFilesDto */
 export interface LegacyFilesDto {
   /**
-   * Comprovante de inscrição em PDF
+   * Comprovante de inscrição em PDF.
    * @format url
    * @example "https://api.cnpja.com/[...]"
    */
   registration: string;
   /**
-   * Quadro de sócios e administradores em PDF
+   * Quadro de sócios e administradores em PDF.
    * @format url
    * @example "https://api.cnpja.com/[...]"
    */
@@ -1481,19 +1404,19 @@ export interface LegacyFilesDto {
 /** LegacyMapsDto */
 export interface LegacyMapsDto {
   /**
-   * Mapa aéreo de vias
+   * Mapa aéreo de vias.
    * @format url
    * @example "https://api.cnpja.com/[...]"
    */
   roads: string;
   /**
-   * Mapa aéreo de satélite
+   * Mapa aéreo de satélite.
    * @format url
    * @example "https://api.cnpja.com/[...]"
    */
   satellite: string;
   /**
-   * Visão da rua
+   * Visão da rua.
    * @format url
    * @example "https://api.cnpja.com/[...]"
    */
@@ -1503,105 +1426,105 @@ export interface LegacyMapsDto {
 /** LegacyCompanyDto */
 export interface LegacyCompanyDto {
   /**
-   * Data da última atualização
+   * Data da última atualização.
    * @format iso8601
-   * @example "2024-03-28T23:52:46.428Z"
+   * @example "2024-07-16T00:26:07.113Z"
    */
   last_update: string;
   /**
-   * Razão social
+   * Razão social.
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
-   * Nome fantasia
+   * Nome fantasia.
    * @example "CNPJA"
    */
   alias: string;
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   tax_id: string;
   /**
-   * Tipo do estabelecimento: `MATRIZ` ou `FILIAL`
+   * Tipo do estabelecimento: `MATRIZ` ou `FILIAL`.
    * @example "MATRIZ"
    */
   type: "MATRIZ" | "FILIAL";
   /**
-   * Data de abertura
+   * Data de abertura.
    * @format iso8601
    * @example "2020-06-05"
    */
   founded: string;
   /**
-   * Porte da empresa: `ME`, `EPP` ou `DEMAIS`
+   * Porte da empresa: `ME`, `EPP` ou `DEMAIS`.
    * @example "ME"
    */
   size: "ME" | "EPP" | "DEMAIS";
   /**
-   * Capital social
+   * Capital social.
    * @format float
    * @example 1000
    */
   capital: number;
   /**
-   * Endereço de e-mail
+   * Endereço de e-mail.
    * @format e-mail
    * @example "contato@cnpja.com"
    */
   email: string;
   /**
-   * Número do telefone
+   * Número do telefone.
    * @format numeric
    * @example "11971564144"
    */
   phone: string;
   /**
-   * Número do telefone alternativo
+   * Número do telefone alternativo.
    * @format numeric
    * @example "11971564144"
    */
   phone_alt: string;
   /**
-   * Ente federativo responsável
+   * Ente federativo responsável.
    * @example "Uniao"
    */
   federal_entity: string;
-  /** Informações da situação cadastral */
+  /** Informações da situação cadastral. */
   registration: LegacyRegistrationDto;
-  /** Informações da situação cadastral */
+  /** Informações da situação cadastral. */
   address: LegacyAddressDto;
-  /** Informações da natureza jurídica */
+  /** Informações da natureza jurídica. */
   legal_nature: LegacyLegalNatureDto;
-  /** Informações do Simples Nacional */
+  /** Informações do Simples Nacional. */
   simples_nacional: LegacySimplesNacionalDto;
-  /** Informações do Cadastro de Contribuintes */
+  /** Informações do Cadastro de Contribuintes. */
   sintegra: LegacySintegraDto;
-  /** Informações da atividade econômica principal */
+  /** Informações da atividade econômica principal. */
   primary_activity: LegacyActivityDto;
-  /** Lista de atividades econômicas secundárias */
+  /** Lista de atividades econômicas secundárias. */
   secondary_activities: LegacyActivityDto[];
-  /** Quadro de sócios e administradores */
+  /** Quadro de sócios e administradores. */
   membership: LegacyMemberDto[];
   partnership: object;
-  /** Links para download de arquivos */
+  /** Links para download de arquivos. */
   files: LegacyFilesDto;
-  /** Links para download de mapas */
+  /** Links para download de mapas. */
   maps: LegacyMapsDto;
 }
 
 /** CreditoDto */
 export interface CreditoDto {
   /**
-   * Créditos acumulados de meses anteriores ou bonificados por upgrade de plano
+   * Créditos acumulados de meses anteriores.
    * @format integer
    * @example 2000
    */
   perpetual: number;
   /**
-   * Créditos mensais restantes, determinados pelo plano atual
+   * Créditos do mês atual.
    * @format integer
    * @example 10000
    */
@@ -1611,93 +1534,94 @@ export interface CreditoDto {
 /** CompanyOfficeDto */
 export interface CompanyOfficeDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Nome fantasia
+   * Nome fantasia.
    * @example "CNPJA"
    */
   alias: string;
   /**
-   * Data de abertura
+   * Data de abertura.
    * @format iso8601
    * @example "2020-06-05"
    */
   founded: string;
   /**
-   * Indica se o estabelecimento é a Matriz
+   * Indica se o estabelecimento é a Matriz.
    * @example true
    */
   head: boolean;
   /**
-   * Data da situação cadastral
+   * Data da situação cadastral.
    * @format iso8601
    * @example "2020-06-05"
    */
   statusDate: string;
-  /** Informações da situação cadastral */
+  /** Informações da situação cadastral. */
   status: OfficeStatusDto;
-  /** Informações da atividade econômica principal */
+  /** Informações da atividade econômica principal. */
   mainActivity: ActivityDto;
 }
 
 /** CompanyDto */
 export interface CompanyDto {
   /**
-   * Código da empresa, idem aos 8 primeiros dígitos do CNPJ
+   * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
    * @format integer
    * @example 37335118
    */
   id: number;
   /**
-   * Razão social
+   * Razão social.
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
-   * Ente federativo responsável
+   * Presente quando `nature.id < 2000`
+   * Ente federativo responsável.
    * @example "Uniao"
    */
-  jurisdiction: string;
+  jurisdiction?: string;
   /**
    * Capital social
    * @format float
    * @example 1000
    */
   equity: number;
-  /** Informações da natureza jurídica */
+  /** Informações da natureza jurídica. */
   nature: NatureDto;
-  /** Informações do porte */
+  /** Informações do porte. */
   size: CompanySizeDto;
-  /** Informações da opção pelo Simples Nacional */
+  /** Informações da opção pelo Simples Nacional. */
   simples?: SimplesSimeiDto;
-  /** Informações do enquadramento no MEI */
+  /** Informações do enquadramento no MEI. */
   simei?: SimplesSimeiDto;
-  /** Quadro de sócios e administradores */
+  /** Quadro de sócios e administradores. */
   members: MemberDto[];
-  /** Lista de estabelecimentos */
+  /** Lista de estabelecimentos. */
   offices: CompanyOfficeDto[];
 }
 
 /** CccDto */
 export interface CccDto {
   /**
-   * Data da última atualização
-   * @format iso8601
-   * @example "2024-03-28T23:52:46.111Z"
-   */
-  updated: string;
-  /**
-   * Número do CNPJ
-   * @format cnpj
+   * Número do CNPJ ou CPF.
+   * @format cnpj|cpf
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Unidade Federativa de origem do estabelecimento
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  /**
+   * Unidade Federativa de origem.
    * @example "PR"
    */
   originState:
@@ -1728,13 +1652,13 @@ export interface CccDto {
     | "SP"
     | "SE"
     | "TO";
-  /** Inscrições Estaduais */
+  /** Inscrições Estaduais. */
   registrations: RegistrationDto[];
 }
 
 export interface SuframaReadDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1743,7 +1667,7 @@ export interface SuframaReadDto {
 
 export interface SuframaCertificateReadDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1752,24 +1676,28 @@ export interface SuframaCertificateReadDto {
 
 export interface SimplesReadDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona o histórico de períodos
-   * anteriores do Simples e MEI
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona o histórico de períodos
+   * anteriores do Simples e MEI.
    * @default false
    */
   history?: boolean;
   /**
-   * Estratégia de cache utilizada na aquisição dos dados
-   * @default "CACHE_IF_FRESH"
+   * Estratégia de cache utilizada na aquisição dos dados:
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
   /**
-   * Idade máxima em dias que um dado em cache é aceite
+   * Idade máxima, em dias, que um dado em cache é aceite, relevante para as estratégias `CACHE_IF_FRESH` e `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -1777,19 +1705,20 @@ export interface SimplesReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima em dias que um dado em cache é aceite em caso de erro na busca online
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
    * @format integer
    * @min 1
    * @max 3650
+   * @default 365
    */
   maxStale?: number;
-  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost` */
+  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
   sync?: boolean;
 }
 
 export interface SimplesCertificateReadDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1798,18 +1727,22 @@ export interface SimplesCertificateReadDto {
 
 export interface RfbReadDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Estratégia de cache utilizada na aquisição dos dados
-   * @default "CACHE_IF_FRESH"
+   * Estratégia de cache utilizada na aquisição dos dados:
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
   /**
-   * Idade máxima em dias que um dado em cache é aceite
+   * Idade máxima, em dias, que um dado em cache é aceite, relevante para as estratégias `CACHE_IF_FRESH` e `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -1817,25 +1750,26 @@ export interface RfbReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima em dias que um dado em cache é aceite em caso de erro na busca online
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
    * @format integer
    * @min 1
    * @max 3650
+   * @default 365
    */
   maxStale?: number;
-  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost` */
+  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
   sync?: boolean;
 }
 
 export interface RfbCertificateReadDto {
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Páginas a incluir no comprovante separadas por vírgula
+   * Páginas a incluir no comprovante separadas por vírgula.
    * @default "REGISTRATION,MEMBERS"
    */
   pages?: ("REGISTRATION" | "MEMBERS")[];
@@ -1843,20 +1777,20 @@ export interface RfbCertificateReadDto {
 
 export interface OfficeReadDto {
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona as informações de opção pelo
-   * Simples e enquadramento no MEI
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona as informações de opção pelo
+   * Simples e enquadramento no MEI.
    * @default false
    */
   simples?: boolean;
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona o histórico de períodos
-   * anteriores do Simples e MEI
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona o histórico de períodos
+   * anteriores do Simples e MEI.
    * @default false
    */
   simplesHistory?: boolean;
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona as Inscrições Estaduais para as selecionadas
-   * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona as Inscrições Estaduais para as selecionadas
+   * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas.
    * @example "PR,RS,SC"
    */
   registrations?: (
@@ -1890,27 +1824,26 @@ export interface OfficeReadDto {
     | "TO"
   )[];
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona a situação cadastral das Inscrições Estaduais
-   * @default false
-   */
-  registrationsStatus?: boolean;
-  /**
-   * <span style="color: #EAED37"><b>[ +7 ₪ ]</b></span> Adiciona a latitude e longitude do endereço
+   * <span style="color: #EAED37">[ +7 ₪ ]</span> Adiciona a latitude e longitude do endereço.
    * @default false
    */
   geocoding?: boolean;
   /**
-   * Adiciona links públicos para visualização dos arquivos selecionados separados por vírgula
+   * Adiciona links públicos para visualização dos arquivos selecionados separados por vírgula.
    * @example "RFB_CERTIFICATE,SIMPLES_CERTIFICATE"
    */
   links?: ("RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET")[];
   /**
-   * Estratégia de cache utilizada na aquisição dos dados
-   * @default "CACHE_IF_FRESH"
+   * Estratégia de cache utilizada na aquisição dos dados:
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
   /**
-   * Idade máxima em dias que um dado em cache é aceite
+   * Idade máxima, em dias, que um dado em cache é aceite, relevante para as estratégias `CACHE_IF_FRESH` e `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -1918,16 +1851,17 @@ export interface OfficeReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima em dias que um dado em cache é aceite em caso de erro na busca online
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
    * @format integer
    * @min 1
    * @max 3650
+   * @default 365
    */
   maxStale?: number;
-  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost` */
+  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
   sync?: boolean;
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1936,7 +1870,7 @@ export interface OfficeReadDto {
 
 export interface OfficeMapReadDto {
   /**
-   * Largura em pixels
+   * Largura em pixels.
    * @format integer
    * @min 80
    * @max 640
@@ -1944,7 +1878,7 @@ export interface OfficeMapReadDto {
    */
   width?: number;
   /**
-   * Altura em pixels
+   * Altura em pixels.
    * @format integer
    * @min 80
    * @max 640
@@ -1952,7 +1886,7 @@ export interface OfficeMapReadDto {
    */
   height?: number;
   /**
-   * Multiplicador de densidade de pixels
+   * Multiplicador de densidade de pixels.
    * @format integer
    * @min 1
    * @max 2
@@ -1960,7 +1894,7 @@ export interface OfficeMapReadDto {
    */
   scale?: number;
   /**
-   * Nível de ampliação
+   * Nível de ampliação.
    * @format integer
    * @min 1
    * @max 20
@@ -1969,15 +1903,15 @@ export interface OfficeMapReadDto {
   zoom?: number;
   /**
    * Tipo do mapa:
-   * • `roadmap`: Rodovias
-   * • `terrain`: Elevação
-   * • `satellite`: Satélite
-   * • `hybrid`: Rodovias e satélite
+   * • `roadmap`: Rodovias.
+   * • `terrain`: Elevação.
+   * • `satellite`: Satélite.
+   * • `hybrid`: Rodovias e satélite.
    * @default "roadmap"
    */
   type?: "roadmap" | "terrain" | "satellite" | "hybrid";
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1986,7 +1920,7 @@ export interface OfficeMapReadDto {
 
 export interface OfficeStreetReadDto {
   /**
-   * Largura em pixels
+   * Largura em pixels.
    * @format integer
    * @min 80
    * @max 640
@@ -1994,7 +1928,7 @@ export interface OfficeStreetReadDto {
    */
   width?: number;
   /**
-   * Altura em pixels
+   * Altura em pixels.
    * @format integer
    * @min 80
    * @max 640
@@ -2002,7 +1936,7 @@ export interface OfficeStreetReadDto {
    */
   height?: number;
   /**
-   * Campo de visão em graus
+   * Campo de visão em graus.
    * @format integer
    * @min 60
    * @max 120
@@ -2010,44 +1944,44 @@ export interface OfficeStreetReadDto {
    */
   fov?: number;
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
 }
 
-export interface ConsultaCnpjLegadoParams {
+export interface ConsultaCnpjDescontParams {
   /**
-   * Habilita retornar dados em cache caso a busca em tempo real falhe
+   * Habilita retornar dados em cache caso a busca em tempo real falhe.
    * @default false
    */
   enable_cache_fallback?: boolean;
   /**
-   * Idade máxima que um dado em cache da Receita Federal é aceite
+   * Idade máxima que um dado em cache da Receita Federal é aceite.
    * @format integer
    * @min 0
    * @default 30
    */
   company_max_age?: number;
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona as informações de opção pelo Simples e
-   * enquadramento no MEI, e configura a idade máxima que um dado em cache do Simples Nacional é aceite
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona as informações de opção pelo Simples e
+   * enquadramento no MEI, e configura a idade máxima que um dado em cache do Simples Nacional é aceite.
    * @format integer
    * @min 0
    * @default 30
    */
   simples_max_age?: number;
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona a lista de Inscrições Estaduais e configura
-   * a idade máxima que um dado em cache do Cadastro de Contribuintes é aceite
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona a lista de Inscrições Estaduais e configura
+   * a idade máxima que um dado em cache do Cadastro de Contribuintes é aceite.
    * @format integer
    * @min 0
    * @default 30
    */
   sintegra_max_age?: number;
   /**
-   * Número do CNPJ
+   * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -2056,13 +1990,13 @@ export interface ConsultaCnpjLegadoParams {
 
 export interface CccReadDto {
   /**
-   * Número do CNPJ
-   * @format cnpj
+   * Número do CNPJ ou CPF.
+   * @format cnpj|cpf
    * @example "37335118000180"
    */
   taxId: string;
   /**
-   * Unidades Federativas para consulta separadas por vírgula, utilize `BR` para considerar todas
+   * Unidades Federativas para consulta separadas por vírgula, utilize `BR` para considerar todas.
    * @example "PR,RS,SC"
    */
   states: (
@@ -2096,17 +2030,16 @@ export interface CccReadDto {
     | "TO"
   )[];
   /**
-   * <span style="color: #EAED37"><b>[ +1 ₪ ]</b></span> Adiciona a situação cadastral das Inscrições Estaduais
-   * @default false
-   */
-  status?: boolean;
-  /**
-   * Estratégia de cache utilizada na aquisição dos dados
-   * @default "CACHE_IF_FRESH"
+   * Estratégia de cache utilizada na aquisição dos dados:
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
   /**
-   * Idade máxima em dias que um dado em cache é aceite
+   * Idade máxima, em dias, que um dado em cache é aceite, relevante para as estratégias `CACHE_IF_FRESH` e `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -2114,12 +2047,13 @@ export interface CccReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima em dias que um dado em cache é aceite em caso de erro na busca online
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
    * @format integer
    * @min 1
    * @max 3650
+   * @default 365
    */
   maxStale?: number;
-  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost` */
+  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
   sync?: boolean;
 }

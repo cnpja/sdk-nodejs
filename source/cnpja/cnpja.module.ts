@@ -5,7 +5,6 @@ import { HttpService } from '../http/http.service';
 import { OfficeService } from '../office/office.service';
 import { PersonService } from '../person/person.service';
 import { RfbService } from '../rfb/rfb.service';
-import { SignatureService } from '../signature/signature.service';
 import { SimplesService } from '../simples/simples.service';
 import { SuframaService } from '../suframa/suframa.service';
 import { ZipService } from '../zip/zip.service';
@@ -31,8 +30,6 @@ export class Cnpja {
   /** Operações relacionadas a API dos Correios. */
   public zip: ZipService;
 
-  /** Operações relacionadas a API de Assinaturas. */
-  public signature: SignatureService;
   /** Operações relacionadas a API de Créditos. */
   public credit: CreditService;
 
@@ -63,7 +60,6 @@ export class Cnpja {
     this.suframa = new SuframaService(httpService);
     this.zip = new ZipService(httpService);
 
-    this.signature = new SignatureService(httpService);
     this.credit = new CreditService(httpService);
   }
 
