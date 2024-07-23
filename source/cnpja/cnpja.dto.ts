@@ -108,7 +108,7 @@ export interface ErrorBadRequestDto {
   message: string;
   /**
    * Lista com as falhas de validação.
-   * @example ["taxId must be a numeric string that obeys digit verification algorithm"]
+   * @example ["taxId must be a string that obeys cnpj verification algorithm"]
    */
   constraints: string[];
 }
@@ -322,8 +322,10 @@ export interface SuframaStatusDto {
   /**
    * Código da situação cadastral:
    * 1\. Ativa.
-   * 2\. Bloqueada.
-   * 3\. Inativa.
+   * 2\. Inativa.
+   * 3\. Bloqueada.
+   * 4\. Cancelada.
+   * 5\. Cancelada Ag. Rec.
    * @format integer
    * @example 1
    */
@@ -381,8 +383,8 @@ export interface SuframaIncentiveDto {
 /** SuframaDto */
 export interface SuframaDto {
   /**
-   * Número do CNPJ.
-   * @format cnpj
+   * Número do CNPJ ou CPF.
+   * @format cnpj|cpf
    * @example "37335118000180"
    */
   taxId: string;
@@ -853,6 +855,62 @@ export interface PersonDto {
   membership: PersonMemberDto[];
 }
 
+/** MemberDto */
+export interface MemberDto {
+  /**
+   * Data de entrada na sociedade.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  since: string;
+  /** Informações do sócio ou administrador. */
+  person: PersonBaseDto;
+  /** Informações da qualificação. */
+  role: RoleDto;
+  /**
+   * Presente quando aplicável na qualificação
+   * Informações do representante legal.
+   */
+  agent?: MemberAgentDto;
+}
+
+/** OfficeCompanyDto */
+export interface OfficeCompanyDto {
+  /**
+   * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
+   * @format integer
+   * @example 37335118
+   */
+  id: number;
+  /**
+   * Razão social.
+   * @example "CNPJA TECNOLOGIA LTDA"
+   */
+  name: string;
+  /**
+   * Presente quando `nature.id < 2000`
+   * Ente federativo responsável.
+   * @example "Uniao"
+   */
+  jurisdiction?: string;
+  /**
+   * Capital social
+   * @format float
+   * @example 1000
+   */
+  equity: number;
+  /** Informações da natureza jurídica. */
+  nature: NatureDto;
+  /** Informações do porte. */
+  size: CompanySizeDto;
+  /** Informações da opção pelo Simples Nacional. */
+  simples?: SimplesSimeiDto;
+  /** Informações do enquadramento no MEI. */
+  simei?: SimplesSimeiDto;
+  /** Quadro de sócios e administradores. */
+  members: MemberDto[];
+}
+
 /** RegistrationStatusDto */
 export interface RegistrationStatusDto {
   /**
@@ -947,60 +1005,35 @@ export interface RegistrationDto {
   type: RegistrationTypeDto;
 }
 
-/** MemberDto */
-export interface MemberDto {
+/** OfficeSuframaDto */
+export interface OfficeSuframaDto {
   /**
-   * Data de entrada na sociedade.
+   * Número da inscrição SUFRAMA.
+   * @format numeric
+   * @example "200400029"
+   */
+  number: string;
+  /**
+   * Data de inscrição na SUFRAMA.
    * @format iso8601
-   * @example "2020-06-05"
+   * @example "2020-01-01"
    */
   since: string;
-  /** Informações do sócio ou administrador. */
-  person: PersonBaseDto;
-  /** Informações da qualificação. */
-  role: RoleDto;
   /**
-   * Presente quando aplicável na qualificação
-   * Informações do representante legal.
+   * Indica se o projeto está aprovado.
+   * @example true
    */
-  agent?: MemberAgentDto;
-}
-
-/** OfficeCompanyDto */
-export interface OfficeCompanyDto {
+  approved: boolean;
   /**
-   * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
-   * @format integer
-   * @example 37335118
+   * Data de aprovação do projeto.
+   * @format iso8601
+   * @example "2021-01-01"
    */
-  id: number;
-  /**
-   * Razão social.
-   * @example "CNPJA TECNOLOGIA LTDA"
-   */
-  name: string;
-  /**
-   * Presente quando `nature.id < 2000`
-   * Ente federativo responsável.
-   * @example "Uniao"
-   */
-  jurisdiction?: string;
-  /**
-   * Capital social
-   * @format float
-   * @example 1000
-   */
-  equity: number;
-  /** Informações da natureza jurídica. */
-  nature: NatureDto;
-  /** Informações do porte. */
-  size: CompanySizeDto;
-  /** Informações da opção pelo Simples Nacional. */
-  simples?: SimplesSimeiDto;
-  /** Informações do enquadramento no MEI. */
-  simei?: SimplesSimeiDto;
-  /** Quadro de sócios e administradores. */
-  members: MemberDto[];
+  approvalDate: string;
+  /** Informações da situação cadastral. */
+  status: SuframaStatusDto;
+  /** Lista de incentivos fiscais. */
+  incentives: SuframaIncentiveDto[];
 }
 
 /** OfficeLinkDto */
@@ -1009,7 +1042,7 @@ export interface OfficeLinkDto {
    * Tipo de arquivo a qual o link se refere.
    * @example "RFB_CERTIFICATE"
    */
-  type: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
+  type: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "SUFRAMA_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
   /**
    * URL pública de acesso ao arquivo.
    * @example "https://api.cnpja.com/rfb/certificate?taxId=37335118000180&signature=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZDdhNTVhNy1hMTYxLTRiNTAtODI5ZC1iNDg4MjE5NGMwYjciLCJ1cmwiOiIvcmZiL2NlcnRpZmljYXRlP3RheElkPTM3MzM1MTE4MDAwMTgwIiwiaWF0IjoxNjI1ODkxMzczLCJleHAiOjE2MjU4OTQ5NzMsImF1ZCI6Imh0dHBzOi8vY25wamEuY29tLyIsImlzcyI6Imh0dHBzOi8vY25wamEuY29tLyJ9.AY9YgQfRk5jEMbkDQL7Hx2s5gEChncPQME8D5hx7PpXQdf6oqjHvN5s_Zk_y2F6srN1ZfMt1oyPJ62JZcwhWtIEL6j_7N_lnv-64w16uAL5xDBfGboNcqtxABV1Mtq-B0-mdKCHsMIw6eHDkBJXnQgGY4EELKYAOMXBF4XgcNWZN00_1nAA_iEivEIOKgyDAVbPg2Pd-zowqL_taSPuOYU_9fpLWxB2nsXLa4QfhCjdp_7kllcI83DbDAjfpVcDNYh4zuVhgoHkGHIzRFyeqOH_RU1sO-_3zDd75cF2B2u0qtyLn0i4KDcJxjK21_5Oh7oJTUd8E08-anjCdIZAIoyQyobc9Awulb86LuASFzvrE_R8uFlnglzAH_CHyGyg-VCBuKRUm0ES7iKVhaKVcWBoEb4r5BIzqO1c0nBvK9Jd_Uc3f2Zu6ouNiyQPYM9PjCRCwed8NomivJkYcUugR-KKp_M21AliocPFpHrM5zIgORxSeK-FUq4zc9jZGQo93I3f1U2Ao5kid3-xviNcNNDbON4m3GDJ1vXGjE2ZWA4IfbzdcPnJvx1-A5QD5J-gFvGRb91mrQof3ujxnTxzCgs939EXrXKL3SQ0S90b5jgrBMYFcCPQbetBGooC0zC-se4ykqEYxY95pAsqIPncoAojQ94rxztDeM4cDy-vcIlg"
@@ -1020,17 +1053,18 @@ export interface OfficeLinkDto {
 /** OfficeDto */
 export interface OfficeDto {
   /**
-   * Data da última atualização.
-   * @format iso8601
-   * @example "2024-06-05T17:52:39.136Z"
-   */
-  updated: string;
-  /**
    * Número do CNPJ.
    * @format cnpj
    * @example "37335118000180"
    */
   taxId: string;
+  /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  company: OfficeCompanyDto;
   /**
    * Nome fantasia.
    * @example "CNPJA"
@@ -1083,7 +1117,8 @@ export interface OfficeDto {
   sideActivities: ActivityDto[];
   /** Lista de Inscrições Estaduais. */
   registrations?: RegistrationDto[];
-  company: OfficeCompanyDto;
+  /** Lista de inscrições SUFRAMA */
+  suframa?: OfficeSuframaDto[];
   /** Lista de links para arquivos. */
   links?: OfficeLinkDto[];
 }
@@ -1218,7 +1253,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-07-16T00:26:07.095Z"
+   * @example "2024-07-23T21:32:09.529Z"
    */
   last_update: string;
   /**
@@ -1297,7 +1332,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-07-16T00:26:07.112Z"
+   * @example "2024-07-23T21:32:09.542Z"
    */
   last_update: string;
   /**
@@ -1428,7 +1463,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização.
    * @format iso8601
-   * @example "2024-07-16T00:26:07.113Z"
+   * @example "2024-07-23T21:32:09.543Z"
    */
   last_update: string;
   /**
@@ -1658,17 +1693,44 @@ export interface CccDto {
 
 export interface SuframaReadDto {
   /**
-   * Número do CNPJ.
-   * @format cnpj
+   * Número do CNPJ ou CPF.
+   * @format cnpj|cpf
    * @example "37335118000180"
    */
   taxId: string;
+  /**
+   * Estratégia de cache utilizada na aquisição dos dados:
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * @default "CACHE_IF_ERROR"
+   */
+  strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
+  /**
+   * Idade máxima, em dias, que um dado em cache é aceite, relevante para as estratégias `CACHE_IF_FRESH` e `CACHE_IF_ERROR`.
+   * @format integer
+   * @min 1
+   * @max 3650
+   * @default 45
+   */
+  maxAge?: number;
+  /**
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * @format integer
+   * @min 1
+   * @max 3650
+   * @default 365
+   */
+  maxStale?: number;
+  /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
+  sync?: boolean;
 }
 
 export interface SuframaCertificateReadDto {
   /**
-   * Número do CNPJ.
-   * @format cnpj
+   * Número do CNPJ ou CPF.
+   * @format cnpj|cpf
    * @example "37335118000180"
    */
   taxId: string;
@@ -1824,6 +1886,11 @@ export interface OfficeReadDto {
     | "TO"
   )[];
   /**
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona a inscrição na SUFRAMA.
+   * @default false
+   */
+  suframa?: boolean;
+  /**
    * <span style="color: #EAED37">[ +7 ₪ ]</span> Adiciona a latitude e longitude do endereço.
    * @default false
    */
@@ -1832,7 +1899,7 @@ export interface OfficeReadDto {
    * Adiciona links públicos para visualização dos arquivos selecionados separados por vírgula.
    * @example "RFB_CERTIFICATE,SIMPLES_CERTIFICATE"
    */
-  links?: ("RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET")[];
+  links?: ("RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "SUFRAMA_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET")[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
    * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
@@ -1990,13 +2057,14 @@ export interface ConsultaCnpjDescontParams {
 
 export interface CccReadDto {
   /**
-   * Número do CNPJ ou CPF.
+   * CNPJ ou CPF de produtor rural
    * @format cnpj|cpf
    * @example "37335118000180"
    */
   taxId: string;
   /**
    * Unidades Federativas para consulta separadas por vírgula, utilize `BR` para considerar todas.
+   * Consultas de CPF de produtor rural exigem informar a UF exata.
    * @example "PR,RS,SC"
    */
   states: (
