@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/cnpja/sdk-nodejs/compare/v1.1.4...v1.2.0) (2024-07-23)
+
+
+### Features
+
+* **suframa:** add cache support ([3a05f91](https://github.com/cnpja/sdk-nodejs/commit/3a05f912d3420efc4a29095069280ea389d300c1))
+
 ## [1.1.4](https://github.com/cnpja/sdk-nodejs/compare/v1.1.3...v1.1.4) (2024-07-16)
 
 
