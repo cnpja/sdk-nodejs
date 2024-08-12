@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/cnpja/sdk-nodejs/compare/v1.2.0...v1.3.0) (2024-08-12)
+
+
+### Features
+
+* **open:** add open api support ([d99145b](https://github.com/cnpja/sdk-nodejs/commit/d99145b8f3c8b3f37f072e218a3d77d263766d72))
+
 # [1.2.0](https://github.com/cnpja/sdk-nodejs/compare/v1.1.4...v1.2.0) (2024-07-23)
 
 
