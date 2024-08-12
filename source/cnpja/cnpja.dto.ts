@@ -170,6 +170,26 @@ export interface ErrorServiceUnavailableDto {
   message: string;
 }
 
+/** SuframaStatusDto */
+export interface SuframaStatusDto {
+  /**
+   * Código da situação cadastral:
+   * 1\. Ativa.
+   * 2\. Inativa.
+   * 3\. Bloqueada.
+   * 4\. Cancelada.
+   * 5\. Cancelada Ag. Rec.
+   * @format integer
+   * @example 1
+   */
+  id: number;
+  /**
+   * Descrição da situação cadastral.
+   * @example "Ativa"
+   */
+  text: string;
+}
+
 /** NatureDto */
 export interface NatureDto {
   /**
@@ -317,26 +337,6 @@ export interface EmailDto {
   domain: string;
 }
 
-/** SuframaStatusDto */
-export interface SuframaStatusDto {
-  /**
-   * Código da situação cadastral:
-   * 1\. Ativa.
-   * 2\. Inativa.
-   * 3\. Bloqueada.
-   * 4\. Cancelada.
-   * 5\. Cancelada Ag. Rec.
-   * @format integer
-   * @example 1
-   */
-  id: number;
-  /**
-   * Descrição da situação cadastral.
-   * @example "Ativa"
-   */
-  text: string;
-}
-
 /** SuframaActivityDto */
 export interface SuframaActivityDto {
   /**
@@ -395,35 +395,27 @@ export interface SuframaDto {
    */
   updated: string;
   /**
-   * Razão social.
-   * @example "CNPJA TECNOLOGIA LTDA"
-   */
-  name: string;
-  /** Informações da natureza jurídica. */
-  nature: NatureDto;
-  /**
-   * Indica se o estabelecimento é a Matriz.
-   * @example true
-   */
-  head: boolean;
-  /** Informações do endereço. */
-  address: AddressDto;
-  /** Lista de telefones. */
-  phones: PhoneDto[];
-  /** Lista de e-mails. */
-  emails: EmailDto[];
-  /**
    * Número da inscrição SUFRAMA.
    * @format numeric
    * @example "200400029"
    */
   number: string;
   /**
+   * Razão social.
+   * @example "CNPJA TECNOLOGIA LTDA"
+   */
+  name: string;
+  /**
    * Data de inscrição na SUFRAMA.
    * @format iso8601
    * @example "2020-01-01"
    */
   since: string;
+  /**
+   * Indica se o estabelecimento é a Matriz.
+   * @example true
+   */
+  head: boolean;
   /**
    * Indica se o projeto está aprovado.
    * @example true
@@ -437,6 +429,14 @@ export interface SuframaDto {
   approvalDate: string;
   /** Informações da situação cadastral. */
   status: SuframaStatusDto;
+  /** Informações da natureza jurídica. */
+  nature: NatureDto;
+  /** Informações do endereço. */
+  address: AddressDto;
+  /** Lista de telefones. */
+  phones: PhoneDto[];
+  /** Lista de e-mails. */
+  emails: EmailDto[];
   /** Informações da atividade econômica principal. */
   mainActivity: SuframaActivityDto;
   /** Lista de atividades econômicas secundárias. */
@@ -1253,7 +1253,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-07-23T21:32:09.529Z"
+   * @example "2024-08-12T21:40:01.505Z"
    */
   last_update: string;
   /**
@@ -1332,7 +1332,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-07-23T21:32:09.542Z"
+   * @example "2024-08-12T21:40:01.511Z"
    */
   last_update: string;
   /**
@@ -1463,7 +1463,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização.
    * @format iso8601
-   * @example "2024-07-23T21:32:09.543Z"
+   * @example "2024-08-12T21:40:01.512Z"
    */
   last_update: string;
   /**

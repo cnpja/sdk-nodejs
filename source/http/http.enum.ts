@@ -1,6 +1,6 @@
 export interface HttpOptions {
   baseUrl: string;
-  authorization: string;
+  authorization?: string;
 }
 
 export enum HttpMethod {
