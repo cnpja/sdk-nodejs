@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/cnpja/sdk-nodejs/compare/v1.4.0...v1.4.1) (2024-08-24)
+
+
+### Bug Fixes
+
+* **docs:** ccc certificate docs ([32723e8](https://github.com/cnpja/sdk-nodejs/commit/32723e8b3d4c3ebfffda7cdd69f3e1d5f9a22de7))
+
 # [1.4.0](https://github.com/cnpja/sdk-nodejs/compare/v1.3.0...v1.4.0) (2024-08-24)
 
 
