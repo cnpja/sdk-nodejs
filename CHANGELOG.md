@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/cnpja/sdk-nodejs/compare/v1.3.0...v1.4.0) (2024-08-24)
+
+
+### Features
+
+* **ccc:** add certificate read method ([6ec953d](https://github.com/cnpja/sdk-nodejs/commit/6ec953d110e6d675639115c1f0108e842d510419))
+
 # [1.3.0](https://github.com/cnpja/sdk-nodejs/compare/v1.2.0...v1.3.0) (2024-08-12)
 
 
