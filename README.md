@@ -140,8 +140,10 @@ Dados das Inscrições Estaduais:
 
 ```ts
 const ccc = await cnpja.ccc.read({ taxId: '00028986014753' });
+const cccCertificate = await cnpja.ccc.certificate({ taxId: '28575910000111' });
 
 console.log(ccc);
+fs.writeFileSync('./ccc.certificate.pdf', cccCertificate);
 ```
 
 ## SUFRAMA
@@ -169,12 +171,10 @@ console.log(zip);
 
 ## Utilitários
 
-Ferramentas para assinatura de URLs públicas e consulta de créditos
+Consulta de créditos:
 
 ```ts
-const signature = await cnpja.signature.create({ url: 'https://api.cnpja.com/company/37335118' });
 const credit = await cnpja.credit.read();
 
-console.log(signature);
 console.log(credit);
 ```
