@@ -14,6 +14,7 @@ const renamingDictionary = {
   ConsultaSimplesEMeiParams: 'SimplesReadDto',
   ComprovanteSimplesEMeiParams: 'SimplesCertificateReadDto',
   ConsultaCccParams: 'CccReadDto',
+  ComprovanteCccParams: 'CccCertificateReadDto',
   ConsultaSuframaParams: 'SuframaReadDto',
   ComprovanteSuframaParams: 'SuframaCertificateReadDto',
 }

@@ -19,6 +19,7 @@ export interface ErrorUnauthorizedDto {
   code: number;
   /**
    * Mensagem de erro.
+   * @format not empty
    * @example "invalid authentication"
    */
   message: string;
@@ -41,21 +42,25 @@ export interface ZipDto {
   zip: string;
   /**
    * Logradouro.
+   * @format not empty
    * @example "Avenida Brigadeiro Faria Lima"
    */
   street: string;
   /**
    * Número.
+   * @format not empty
    * @example "2369"
    */
   number: string;
   /**
    * Bairro ou distrito.
+   * @format not empty
    * @example "Jardim Paulistano"
    */
   district: string;
   /**
    * Município.
+   * @format not empty
    * @example "São Paulo"
    */
   city: string;
@@ -103,6 +108,7 @@ export interface ErrorBadRequestDto {
   code: number;
   /**
    * Mensagem de erro.
+   * @format not empty
    * @example "request validation failed"
    */
   message: string;
@@ -123,6 +129,7 @@ export interface ErrorNotFoundDto {
   code: number;
   /**
    * Mensagem de erro.
+   * @format not empty
    * @example "tax id not registered at revenue service"
    */
   message: string;
@@ -138,6 +145,7 @@ export interface ErrorTooManyRequestsDto {
   code: number;
   /**
    * Mensagem de erro.
+   * @format not empty
    * @example "not enough credits"
    */
   message: string;
@@ -165,6 +173,7 @@ export interface ErrorServiceUnavailableDto {
   code: number;
   /**
    * Mensagem de erro.
+   * @format not empty
    * @example "revenue service is offline"
    */
   message: string;
@@ -185,6 +194,7 @@ export interface SuframaStatusDto {
   id: number;
   /**
    * Descrição da situação cadastral.
+   * @format not empty
    * @example "Ativa"
    */
   text: string;
@@ -199,6 +209,7 @@ export interface NatureDto {
   id: number;
   /**
    * Descrição da natureza jurídica.
+   * @format not empty
    * @example "Sociedade Empresária Limitada"
    */
   text: string;
@@ -213,6 +224,7 @@ export interface CountryDto {
   id: number;
   /**
    * Nome do país.
+   * @format not empty
    * @example "Brasil"
    */
   name: string;
@@ -235,21 +247,25 @@ export interface AddressDto {
   zip: string;
   /**
    * Logradouro.
+   * @format not empty
    * @example "Avenida Brigadeiro Faria Lima"
    */
   street: string;
   /**
    * Número.
+   * @format not empty
    * @example "2369"
    */
   number: string;
   /**
    * Bairro ou distrito.
+   * @format not empty
    * @example "Jardim Paulistano"
    */
   district: string;
   /**
    * Município.
+   * @format not empty
    * @example "São Paulo"
    */
   city: string;
@@ -287,6 +303,7 @@ export interface AddressDto {
     | "TO";
   /**
    * Complemento.
+   * @format not empty
    * @example "Conj 1102"
    */
   details: string;
@@ -332,6 +349,7 @@ export interface EmailDto {
   address: string;
   /**
    * Domínio de registro.
+   * @format not empty
    * @example "cnpja.com"
    */
   domain: string;
@@ -346,6 +364,7 @@ export interface SuframaActivityDto {
   id: number;
   /**
    * Descrição da atividade econômica.
+   * @format not empty
    * @example "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
    */
   text: string;
@@ -365,16 +384,19 @@ export interface SuframaIncentiveDto {
   tribute: "ICMS" | "IPI";
   /**
    * Benefício aplicado ao incentivo.
+   * @format not empty
    * @example "Isenção"
    */
   benefit: string;
   /**
    * Finalidade do incentivo.
+   * @format not empty
    * @example "Consumo Interno, Industrialização e Utilização"
    */
   purpose: string;
   /**
    * Base legal do incentivo.
+   * @format not empty
    * @example "Decreto 7.212 de 2010 (Art. 81)"
    */
   basis: string;
@@ -402,6 +424,7 @@ export interface SuframaDto {
   number: string;
   /**
    * Razão social.
+   * @format not empty
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
@@ -464,6 +487,7 @@ export interface SimplesSimeiHistoryDto {
   until: string;
   /**
    * Motivo de encerramento.
+   * @format not empty
    * @example "Excluída por Ato Administrativo praticado pela Receita Federal do Brasil"
    */
   text: string;
@@ -519,11 +543,13 @@ export interface CompanySizeDto {
   id: number;
   /**
    * Sigla do porte.
+   * @format not empty
    * @example "ME"
    */
   acronym: string;
   /**
    * Descrição do porte.
+   * @format not empty
    * @example "Microempresa"
    */
   text: string;
@@ -544,6 +570,7 @@ export interface OfficeStatusDto {
   id: number;
   /**
    * Descrição da situação cadastral.
+   * @format not empty
    * @example "Ativa"
    */
   text: string;
@@ -558,6 +585,7 @@ export interface OfficeReasonDto {
   id: number;
   /**
    * Descrição do motivo da situação cadastral.
+   * @format not empty
    * @example "Extinção Por Encerramento Liquidação Voluntária"
    */
   text: string;
@@ -572,6 +600,7 @@ export interface OfficeSpecialDto {
   id: number;
   /**
    * Descrição da situação especial.
+   * @format not empty
    * @example "Início de Liquidação Judicial"
    */
   text: string;
@@ -586,6 +615,7 @@ export interface ActivityDto {
   id: number;
   /**
    * Descrição da atividade econômica.
+   * @format not empty
    * @example "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
    */
   text: string;
@@ -600,6 +630,7 @@ export interface RoleDto {
   id: number;
   /**
    * Descrição da qualificação.
+   * @format not empty
    * @example "Sócio-Administrador"
    */
   text: string;
@@ -624,18 +655,21 @@ export interface PersonBaseDto {
   type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
   /**
    * Nome ou razão social.
+   * @format not empty
    * @example "João Silva"
    */
   name: string;
   /**
    * Presente quando `type == 'NATURAL' | 'LEGAL'`
    * CPF ou CNPJ.
+   * @format not empty
    * @example "***123456**"
    */
   taxId?: string;
   /**
    * Presente quando `type == 'NATURAL'`
    * Faixa etária.
+   * @format not empty
    * @example "31-40"
    */
   age?: string;
@@ -689,12 +723,14 @@ export interface RfbDto {
   updated: string;
   /**
    * Razão social.
+   * @format not empty
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
    * Presente quando `nature.id < 2000`
    * Ente federativo responsável.
+   * @format not empty
    * @example "Uniao"
    */
   jurisdiction?: string;
@@ -710,6 +746,7 @@ export interface RfbDto {
   size: CompanySizeDto;
   /**
    * Nome fantasia.
+   * @format not empty
    * @example "CNPJA"
    */
   alias: string;
@@ -772,12 +809,14 @@ export interface PersonMemberCompanyDto {
   id: number;
   /**
    * Razão social.
+   * @format not empty
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
    * Presente quando `nature.id < 2000`
    * Ente federativo responsável.
+   * @format not empty
    * @example "Uniao"
    */
   jurisdiction?: string;
@@ -831,18 +870,21 @@ export interface PersonDto {
   type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
   /**
    * Nome ou razão social.
+   * @format not empty
    * @example "João Silva"
    */
   name: string;
   /**
    * Presente quando `type == 'NATURAL' | 'LEGAL'`
    * CPF ou CNPJ.
+   * @format not empty
    * @example "***123456**"
    */
   taxId?: string;
   /**
    * Presente quando `type == 'NATURAL'`
    * Faixa etária.
+   * @format not empty
    * @example "31-40"
    */
   age?: string;
@@ -884,12 +926,14 @@ export interface OfficeCompanyDto {
   id: number;
   /**
    * Razão social.
+   * @format not empty
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
    * Presente quando `nature.id < 2000`
    * Ente federativo responsável.
+   * @format not empty
    * @example "Uniao"
    */
   jurisdiction?: string;
@@ -924,6 +968,7 @@ export interface RegistrationStatusDto {
   id: number;
   /**
    * Descrição da situação cadastral.
+   * @format not empty
    * @example "Bloqueado como destinatário na UF"
    */
   text: string;
@@ -943,6 +988,7 @@ export interface RegistrationTypeDto {
   id: number;
   /**
    * Descrição do tipo.
+   * @format not empty
    * @example "IE Substituto Tributário"
    */
   text: string;
@@ -1045,6 +1091,7 @@ export interface OfficeLinkDto {
   type: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "SUFRAMA_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
   /**
    * URL pública de acesso ao arquivo.
+   * @format not empty
    * @example "https://api.cnpja.com/rfb/certificate?taxId=37335118000180&signature=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZDdhNTVhNy1hMTYxLTRiNTAtODI5ZC1iNDg4MjE5NGMwYjciLCJ1cmwiOiIvcmZiL2NlcnRpZmljYXRlP3RheElkPTM3MzM1MTE4MDAwMTgwIiwiaWF0IjoxNjI1ODkxMzczLCJleHAiOjE2MjU4OTQ5NzMsImF1ZCI6Imh0dHBzOi8vY25wamEuY29tLyIsImlzcyI6Imh0dHBzOi8vY25wamEuY29tLyJ9.AY9YgQfRk5jEMbkDQL7Hx2s5gEChncPQME8D5hx7PpXQdf6oqjHvN5s_Zk_y2F6srN1ZfMt1oyPJ62JZcwhWtIEL6j_7N_lnv-64w16uAL5xDBfGboNcqtxABV1Mtq-B0-mdKCHsMIw6eHDkBJXnQgGY4EELKYAOMXBF4XgcNWZN00_1nAA_iEivEIOKgyDAVbPg2Pd-zowqL_taSPuOYU_9fpLWxB2nsXLa4QfhCjdp_7kllcI83DbDAjfpVcDNYh4zuVhgoHkGHIzRFyeqOH_RU1sO-_3zDd75cF2B2u0qtyLn0i4KDcJxjK21_5Oh7oJTUd8E08-anjCdIZAIoyQyobc9Awulb86LuASFzvrE_R8uFlnglzAH_CHyGyg-VCBuKRUm0ES7iKVhaKVcWBoEb4r5BIzqO1c0nBvK9Jd_Uc3f2Zu6ouNiyQPYM9PjCRCwed8NomivJkYcUugR-KKp_M21AliocPFpHrM5zIgORxSeK-FUq4zc9jZGQo93I3f1U2Ao5kid3-xviNcNNDbON4m3GDJ1vXGjE2ZWA4IfbzdcPnJvx1-A5QD5J-gFvGRb91mrQof3ujxnTxzCgs939EXrXKL3SQ0S90b5jgrBMYFcCPQbetBGooC0zC-se4ykqEYxY95pAsqIPncoAojQ94rxztDeM4cDy-vcIlg"
    */
   url: string;
@@ -1067,6 +1114,7 @@ export interface OfficeDto {
   company: OfficeCompanyDto;
   /**
    * Nome fantasia.
+   * @format not empty
    * @example "CNPJA"
    */
   alias: string;
@@ -1138,11 +1186,13 @@ export interface LegacyRegistrationDto {
   status_date: string;
   /**
    * Motivo da situação cadastral.
+   * @format not empty
    * @example "Extinção Por Encerramento Liquidação Voluntária"
    */
   status_reason: string;
   /**
    * Descrição da situação especial.
+   * @format not empty
    * @example "Início de Liquidação Judicial"
    */
   special_status: string;
@@ -1158,26 +1208,31 @@ export interface LegacyRegistrationDto {
 export interface LegacyAddressDto {
   /**
    * Logradouro.
+   * @format not empty
    * @example "Avenida Brigadeiro Faria Lima"
    */
   street: string;
   /**
    * Número.
+   * @format not empty
    * @example "2369"
    */
   number: string;
   /**
    * Complemento.
+   * @format not empty
    * @example "Conj 1102"
    */
   details: string;
   /**
    * Bairro ou distrito.
+   * @format not empty
    * @example "Jardim Paulistano"
    */
   neighborhood: string;
   /**
    * Município.
+   * @format not empty
    * @example "São Paulo"
    */
   city: string;
@@ -1243,6 +1298,7 @@ export interface LegacyLegalNatureDto {
   code: string;
   /**
    * Descrição da natureza jurídica.
+   * @format not empty
    * @example "Sociedade Empresária Limitada"
    */
   description: string;
@@ -1253,7 +1309,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-08-12T21:40:01.505Z"
+   * @example "2024-08-24T21:39:13.122Z"
    */
   last_update: string;
   /**
@@ -1332,7 +1388,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-08-12T21:40:01.511Z"
+   * @example "2024-08-24T21:39:13.128Z"
    */
   last_update: string;
   /**
@@ -1354,6 +1410,7 @@ export interface LegacyActivityDto {
   code: string;
   /**
    * Descrição da atividade econômica.
+   * @format not empty
    * @example "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
    */
   description: string;
@@ -1368,6 +1425,7 @@ export interface LegacyRoleDto {
   code: string;
   /**
    * Descrição da qualificação.
+   * @format not empty
    * @example "Sócio-Administrador"
    */
   description: string;
@@ -1377,16 +1435,19 @@ export interface LegacyRoleDto {
 export interface LegacyMemberAgentDto {
   /**
    * Nome ou razão social.
+   * @format not empty
    * @example "João Silva"
    */
   name: string;
   /**
    * CPF ou CNPJ.
+   * @format not empty
    * @example "***123456**"
    */
   tax_id: string;
   /**
    * Nome do país de origem.
+   * @format not empty
    * @example "BRASIL"
    */
   home_country: string;
@@ -1398,16 +1459,19 @@ export interface LegacyMemberAgentDto {
 export interface LegacyMemberDto {
   /**
    * Nome ou razão social.
+   * @format not empty
    * @example "João Silva"
    */
   name: string;
   /**
    * CPF ou CNPJ.
+   * @format not empty
    * @example "***123456**"
    */
   tax_id: string;
   /**
    * Nome do país de origem.
+   * @format not empty
    * @example "BRASIL"
    */
   home_country: string;
@@ -1463,16 +1527,18 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização.
    * @format iso8601
-   * @example "2024-08-12T21:40:01.512Z"
+   * @example "2024-08-24T21:39:13.129Z"
    */
   last_update: string;
   /**
    * Razão social.
+   * @format not empty
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
    * Nome fantasia.
+   * @format not empty
    * @example "CNPJA"
    */
   alias: string;
@@ -1524,6 +1590,7 @@ export interface LegacyCompanyDto {
   phone_alt: string;
   /**
    * Ente federativo responsável.
+   * @format not empty
    * @example "Uniao"
    */
   federal_entity: string;
@@ -1576,6 +1643,7 @@ export interface CompanyOfficeDto {
   taxId: string;
   /**
    * Nome fantasia.
+   * @format not empty
    * @example "CNPJA"
    */
   alias: string;
@@ -1612,12 +1680,14 @@ export interface CompanyDto {
   id: number;
   /**
    * Razão social.
+   * @format not empty
    * @example "CNPJA TECNOLOGIA LTDA"
    */
   name: string;
   /**
    * Presente quando `nature.id < 2000`
    * Ente federativo responsável.
+   * @format not empty
    * @example "Uniao"
    */
   jurisdiction?: string;
@@ -2021,7 +2091,7 @@ export interface OfficeStreetReadDto {
 export interface ConsultaCnpjDescontParams {
   /**
    * Habilita retornar dados em cache caso a busca em tempo real falhe.
-   * @default false
+   * @default true
    */
   enable_cache_fallback?: boolean;
   /**
@@ -2124,4 +2194,45 @@ export interface CccReadDto {
   maxStale?: number;
   /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
   sync?: boolean;
+}
+
+export interface CccCertificateReadDto {
+  /**
+   * Número do CNPJ ou CPF.
+   * @format cnpj|cpf
+   * @example "37335118000180"
+   */
+  taxId: string;
+  /**
+   * Unidade Federativa de origem. Consultas de CPF de produtor rural exigem informar a UF exata.
+   * @example "SP"
+   */
+  state?:
+    | "AC"
+    | "AL"
+    | "AM"
+    | "AP"
+    | "BA"
+    | "CE"
+    | "DF"
+    | "ES"
+    | "GO"
+    | "MA"
+    | "MG"
+    | "MS"
+    | "MT"
+    | "PA"
+    | "PB"
+    | "PE"
+    | "PI"
+    | "PR"
+    | "RJ"
+    | "RN"
+    | "RO"
+    | "RR"
+    | "RS"
+    | "SC"
+    | "SP"
+    | "SE"
+    | "TO";
 }
