@@ -1,3 +1,11 @@
+## [1.4.2](https://github.com/cnpja/sdk-nodejs/compare/v1.4.1...v1.4.2) (2024-09-07)
+
+
+### Bug Fixes
+
+* **cnpja:** update interfaces ([ab99886](https://github.com/cnpja/sdk-nodejs/commit/ab99886cc90b17cddedd4b1156dfb50bfd4fc3d0))
+* **zip:** code interface ([10f9e7c](https://github.com/cnpja/sdk-nodejs/commit/10f9e7c2a11089abd7deeecf667974a06d98df06))
+
 ## [1.4.1](https://github.com/cnpja/sdk-nodejs/compare/v1.4.0...v1.4.1) (2024-08-24)
 
 
