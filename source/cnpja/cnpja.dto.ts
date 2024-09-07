@@ -28,6 +28,12 @@ export interface ErrorUnauthorizedDto {
 /** ZipDto */
 export interface ZipDto {
   /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  /**
    * @format integer
    * @example 3550308
    */
@@ -39,7 +45,7 @@ export interface ZipDto {
    * @maxLength 8
    * @example "01452922"
    */
-  zip: string;
+  code: string;
   /**
    * Logradouro.
    * @format not empty
@@ -238,14 +244,6 @@ export interface AddressDto {
    */
   municipality: number;
   /**
-   * Código de Endereçamento Postal.
-   * @format numeric
-   * @minLength 8
-   * @maxLength 8
-   * @example "01452922"
-   */
-  zip: string;
-  /**
    * Logradouro.
    * @format not empty
    * @example "Avenida Brigadeiro Faria Lima"
@@ -308,6 +306,14 @@ export interface AddressDto {
    */
   details: string;
   /**
+   * Código de Endereçamento Postal.
+   * @format numeric
+   * @minLength 8
+   * @maxLength 8
+   * @example "01452922"
+   */
+  zip: string;
+  /**
    * Latitude.
    * @format float
    * @example -23.5774994
@@ -328,12 +334,16 @@ export interface PhoneDto {
   /**
    * Código de DDD.
    * @format numeric
+   * @minLength 2
+   * @maxLength 2
    * @example "11"
    */
   area: string;
   /**
    * Número.
    * @format numeric
+   * @minLength 8
+   * @maxLength 9
    * @example "971564144"
    */
   number: string;
@@ -405,7 +415,7 @@ export interface SuframaIncentiveDto {
 /** SuframaDto */
 export interface SuframaDto {
   /**
-   * Número do CNPJ ou CPF.
+   * Número do CNPJ ou CPF sem pontuação.
    * @format cnpj|cpf
    * @example "37335118000180"
    */
@@ -513,7 +523,7 @@ export interface SimplesSimeiDto {
 /** SimplesDto */
 export interface SimplesDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -669,10 +679,9 @@ export interface PersonBaseDto {
   /**
    * Presente quando `type == 'NATURAL'`
    * Faixa etária.
-   * @format not empty
    * @example "31-40"
    */
-  age?: string;
+  age?: "0-12" | "13-20" | "21-30" | "31-40" | "41-50" | "51-60" | "61-70" | "71-80" | "81+";
   /**
    * Presente quando `type == 'FOREIGN'`
    * País de origem.
@@ -710,7 +719,7 @@ export interface RfbMemberDto {
 /** RfbDto */
 export interface RfbDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -884,10 +893,9 @@ export interface PersonDto {
   /**
    * Presente quando `type == 'NATURAL'`
    * Faixa etária.
-   * @format not empty
    * @example "31-40"
    */
-  age?: string;
+  age?: "0-12" | "13-20" | "21-30" | "31-40" | "41-50" | "51-60" | "61-70" | "71-80" | "81+";
   /**
    * Presente quando `type == 'FOREIGN'`
    * País de origem.
@@ -999,6 +1007,8 @@ export interface RegistrationDto {
   /**
    * Número da Inscrição Estadual.
    * @format numeric
+   * @minLength 8
+   * @maxLength 14
    * @example "0962101427"
    */
   number: string;
@@ -1088,7 +1098,13 @@ export interface OfficeLinkDto {
    * Tipo de arquivo a qual o link se refere.
    * @example "RFB_CERTIFICATE"
    */
-  type: "RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "SUFRAMA_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET";
+  type:
+    | "RFB_CERTIFICATE"
+    | "SIMPLES_CERTIFICATE"
+    | "CCC_CERTIFICATE"
+    | "SUFRAMA_CERTIFICATE"
+    | "OFFICE_MAP"
+    | "OFFICE_STREET";
   /**
    * URL pública de acesso ao arquivo.
    * @format not empty
@@ -1100,7 +1116,7 @@ export interface OfficeLinkDto {
 /** OfficeDto */
 export interface OfficeDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1309,7 +1325,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-08-24T21:39:13.122Z"
+   * @example "2024-09-07T00:09:10.829Z"
    */
   last_update: string;
   /**
@@ -1388,7 +1404,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-08-24T21:39:13.128Z"
+   * @example "2024-09-07T00:09:10.841Z"
    */
   last_update: string;
   /**
@@ -1527,7 +1543,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização.
    * @format iso8601
-   * @example "2024-08-24T21:39:13.129Z"
+   * @example "2024-09-07T00:09:10.842Z"
    */
   last_update: string;
   /**
@@ -1636,7 +1652,7 @@ export interface CreditoDto {
 /** CompanyOfficeDto */
 export interface CompanyOfficeDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1714,7 +1730,7 @@ export interface CompanyDto {
 /** CccDto */
 export interface CccDto {
   /**
-   * Número do CNPJ ou CPF.
+   * Número do CNPJ ou CPF sem pontuação.
    * @format cnpj|cpf
    * @example "37335118000180"
    */
@@ -1763,7 +1779,7 @@ export interface CccDto {
 
 export interface SuframaReadDto {
   /**
-   * Número do CNPJ ou CPF.
+   * Número do CNPJ ou CPF sem pontuação.
    * @format cnpj|cpf
    * @example "37335118000180"
    */
@@ -1799,7 +1815,7 @@ export interface SuframaReadDto {
 
 export interface SuframaCertificateReadDto {
   /**
-   * Número do CNPJ ou CPF.
+   * Número do CNPJ ou CPF sem pontuação.
    * @format cnpj|cpf
    * @example "37335118000180"
    */
@@ -1808,7 +1824,7 @@ export interface SuframaCertificateReadDto {
 
 export interface SimplesReadDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1850,7 +1866,7 @@ export interface SimplesReadDto {
 
 export interface SimplesCertificateReadDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1859,7 +1875,7 @@ export interface SimplesCertificateReadDto {
 
 export interface RfbReadDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1895,7 +1911,7 @@ export interface RfbReadDto {
 
 export interface RfbCertificateReadDto {
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -1961,7 +1977,7 @@ export interface OfficeReadDto {
    */
   suframa?: boolean;
   /**
-   * <span style="color: #EAED37">[ +7 ₪ ]</span> Adiciona a latitude e longitude do endereço.
+   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona a latitude e longitude do endereço.
    * @default false
    */
   geocoding?: boolean;
@@ -1969,7 +1985,14 @@ export interface OfficeReadDto {
    * Adiciona links públicos para visualização dos arquivos selecionados separados por vírgula.
    * @example "RFB_CERTIFICATE,SIMPLES_CERTIFICATE"
    */
-  links?: ("RFB_CERTIFICATE" | "SIMPLES_CERTIFICATE" | "SUFRAMA_CERTIFICATE" | "OFFICE_MAP" | "OFFICE_STREET")[];
+  links?: (
+    | "RFB_CERTIFICATE"
+    | "SIMPLES_CERTIFICATE"
+    | "CCC_CERTIFICATE"
+    | "SUFRAMA_CERTIFICATE"
+    | "OFFICE_MAP"
+    | "OFFICE_STREET"
+  )[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
    * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
@@ -1998,7 +2021,7 @@ export interface OfficeReadDto {
   /** Aguarda a compensação dos créditos de forma síncrona, retornando o cabeçalho `cnpja-request-cost`. */
   sync?: boolean;
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -2048,7 +2071,7 @@ export interface OfficeMapReadDto {
    */
   type?: "roadmap" | "terrain" | "satellite" | "hybrid";
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -2081,7 +2104,7 @@ export interface OfficeStreetReadDto {
    */
   fov?: number;
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -2118,7 +2141,7 @@ export interface ConsultaCnpjDescontParams {
    */
   sintegra_max_age?: number;
   /**
-   * Número do CNPJ.
+   * Número do CNPJ sem pontuação.
    * @format cnpj
    * @example "37335118000180"
    */
@@ -2198,7 +2221,7 @@ export interface CccReadDto {
 
 export interface CccCertificateReadDto {
   /**
-   * Número do CNPJ ou CPF.
+   * Número do CNPJ ou CPF sem pontuação.
    * @format cnpj|cpf
    * @example "37335118000180"
    */

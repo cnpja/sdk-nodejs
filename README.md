@@ -163,7 +163,7 @@ fs.writeFileSync('./suframa.certificate.pdf', suframaCertificate);
 Consulta de CEP:
 
 ```ts
-const zip = await cnpja.zip.read({ zip: '01452922' });
+const zip = await cnpja.zip.read({ code: '01452922' });
 
 console.log(zip);
 ```
