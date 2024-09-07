@@ -12,11 +12,11 @@ export class ZipService {
    * Busca um Código de Endereçamento Postal nos Correios e o enriquece com o município no IBGE.
    * @param params
    */
-  public read(params: Pick<ZipDto, 'zip'>): Promise<ZipDto> {
-    const { zip } = params;
+  public read(params: Pick<ZipDto, 'code'>): Promise<ZipDto> {
+    const { code } = params;
 
-    return this.httpService.get('zip/:zip', {
-      replacements: { zip },
+    return this.httpService.get('zip/:code', {
+      replacements: { code },
     });
   }
 
