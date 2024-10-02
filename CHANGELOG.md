@@ -1,3 +1,10 @@
+# [1.5.0-beta.1](https://github.com/cnpja/sdk-nodejs/compare/v1.4.2...v1.5.0-beta.1) (2024-10-02)
+
+
+### Features
+
+* **person:** add person search support ([148df3c](https://github.com/cnpja/sdk-nodejs/commit/148df3c2b43e1d67ca1f934b22e9b57e998cb2f8))
+
 ## [1.4.2](https://github.com/cnpja/sdk-nodejs/compare/v1.4.1...v1.4.2) (2024-09-07)
 
 

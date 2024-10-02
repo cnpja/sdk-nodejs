@@ -1,6 +1,6 @@
 {
   "name": "@cnpja/sdk",
-  "version": "1.4.2",
+  "version": "1.5.0-beta.1",
   "description": "APIs de consultas CNPJ a Receita Federal, Simples Nacional, Cadastro de Contribuintes e SUFRAMA, fornecidas pelo CNPJá!",
   "author": {
     "name": "Etienne Bechara",
