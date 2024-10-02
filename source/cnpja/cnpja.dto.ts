@@ -9,6 +9,27 @@
  * ---------------------------------------------------------------
  */
 
+/** ErrorBadRequestDto */
+export interface ErrorBadRequestDto {
+  /**
+   * Código do status HTTP.
+   * @format integer
+   * @example 400
+   */
+  code: number;
+  /**
+   * Mensagem de erro.
+   * @format not empty
+   * @example "request validation failed"
+   */
+  message: string;
+  /**
+   * Lista com as falhas de validação.
+   * @example ["taxId must be a string that obeys cnpj verification algorithm"]
+   */
+  constraints: string[];
+}
+
 /** ErrorUnauthorizedDto */
 export interface ErrorUnauthorizedDto {
   /**
@@ -25,6 +46,82 @@ export interface ErrorUnauthorizedDto {
   message: string;
 }
 
+/** ErrorNotFoundDto */
+export interface ErrorNotFoundDto {
+  /**
+   * Código do status HTTP.
+   * @format integer
+   * @example 404
+   */
+  code: number;
+  /**
+   * Mensagem de erro.
+   * @format not empty
+   * @example "tax id not registered at revenue service"
+   */
+  message: string;
+}
+
+/** ErrorTooManyRequestsDto */
+export interface ErrorTooManyRequestsDto {
+  /**
+   * Código do status HTTP.
+   * @format integer
+   * @example 429
+   */
+  code: number;
+  /**
+   * Mensagem de erro.
+   * @format not empty
+   * @example "not enough credits"
+   */
+  message: string;
+  /**
+   * Créditos necessários para completar a consulta.
+   * @format integer
+   * @example 3
+   */
+  required: number;
+  /**
+   * Créditos restantes em sua conta.
+   * @format integer
+   * @example 1
+   */
+  remaining: number;
+}
+
+/** ErrorInternalServerErrorDto */
+export interface ErrorInternalServerErrorDto {
+  /**
+   * Código do status HTTP.
+   * @format integer
+   * @example 500
+   */
+  code: number;
+  /**
+   * Mensagem de erro.
+   * @format not empty
+   * @example "unexpected error"
+   */
+  message: string;
+}
+
+/** ErrorServiceUnavailableDto */
+export interface ErrorServiceUnavailableDto {
+  /**
+   * Código do status HTTP.
+   * @format integer
+   * @example 503
+   */
+  code: number;
+  /**
+   * Mensagem de erro.
+   * @format not empty
+   * @example "revenue service is offline"
+   */
+  message: string;
+}
+
 /** ZipDto */
 export interface ZipDto {
   /**
@@ -34,6 +131,8 @@ export interface ZipDto {
    */
   updated: string;
   /**
+   * Código do município conforme
+   * [IBGE 🡭](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
    * @format integer
    * @example 3550308
    */
@@ -104,87 +203,6 @@ export interface ZipDto {
     | "TO";
 }
 
-/** ErrorBadRequestDto */
-export interface ErrorBadRequestDto {
-  /**
-   * Código do status HTTP.
-   * @format integer
-   * @example 400
-   */
-  code: number;
-  /**
-   * Mensagem de erro.
-   * @format not empty
-   * @example "request validation failed"
-   */
-  message: string;
-  /**
-   * Lista com as falhas de validação.
-   * @example ["taxId must be a string that obeys cnpj verification algorithm"]
-   */
-  constraints: string[];
-}
-
-/** ErrorNotFoundDto */
-export interface ErrorNotFoundDto {
-  /**
-   * Código do status HTTP.
-   * @format integer
-   * @example 404
-   */
-  code: number;
-  /**
-   * Mensagem de erro.
-   * @format not empty
-   * @example "tax id not registered at revenue service"
-   */
-  message: string;
-}
-
-/** ErrorTooManyRequestsDto */
-export interface ErrorTooManyRequestsDto {
-  /**
-   * Código do status HTTP.
-   * @format integer
-   * @example 429
-   */
-  code: number;
-  /**
-   * Mensagem de erro.
-   * @format not empty
-   * @example "not enough credits"
-   */
-  message: string;
-  /**
-   * Créditos necessários para completar a consulta.
-   * @format integer
-   * @example 3
-   */
-  required: number;
-  /**
-   * Créditos restantes em sua conta.
-   * @format integer
-   * @example 1
-   */
-  remaining: number;
-}
-
-/** ErrorServiceUnavailableDto */
-export interface ErrorServiceUnavailableDto {
-  /**
-   * Código do status HTTP.
-   * @format integer
-   * @example 503
-   */
-  code: number;
-  /**
-   * Mensagem de erro.
-   * @format not empty
-   * @example "revenue service is offline"
-   */
-  message: string;
-}
-
 /** SuframaStatusDto */
 export interface SuframaStatusDto {
   /**
@@ -209,6 +227,8 @@ export interface SuframaStatusDto {
 /** NatureDto */
 export interface NatureDto {
   /**
+   * Código da natureza jurídica conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2021).
    * @format integer
    * @example 2062
    */
@@ -224,6 +244,7 @@ export interface NatureDto {
 /** CountryDto */
 export interface CountryDto {
   /**
+   * Código do país conforme [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
    * @format integer
    * @example 76
    */
@@ -239,6 +260,8 @@ export interface CountryDto {
 /** AddressDto */
 export interface AddressDto {
   /**
+   * Código do município conforme
+   * [IBGE 🡭](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
    * @format integer
    * @example 3550308
    */
@@ -368,6 +391,8 @@ export interface EmailDto {
 /** SuframaActivityDto */
 export interface SuframaActivityDto {
   /**
+   * Código da atividade econômica conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
    * @format integer
    * @example 6311900
    */
@@ -589,6 +614,8 @@ export interface OfficeStatusDto {
 /** OfficeReasonDto */
 export interface OfficeReasonDto {
   /**
+   * Código do motivo da situação cadastral conforme
+   * [Receita Federal 🡭](http://www.consultas.cge.rj.gov.br/scadastral.pdf).
    * @format integer
    * @example 1
    */
@@ -604,6 +631,8 @@ export interface OfficeReasonDto {
 /** OfficeSpecialDto */
 export interface OfficeSpecialDto {
   /**
+   * Código da situação especial conforme
+   * [Receita Federal 🡭](http://www38.receita.fazenda.gov.br/cadsincnac/jsp/coleta/ajuda/topicos/Eventos_de_Alteracao.htm).
    * @format integer
    * @example 416
    */
@@ -619,6 +648,8 @@ export interface OfficeSpecialDto {
 /** ActivityDto */
 export interface ActivityDto {
   /**
+   * Código da atividade econômica conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
    * @format integer
    * @example 6311900
    */
@@ -634,6 +665,8 @@ export interface ActivityDto {
 /** RoleDto */
 export interface RoleDto {
   /**
+   * Código da qualificação conforme
+   * [Receita Federal 🡭](http://www.consultas.cge.rj.gov.br/codsocio.pdf).
    * @format integer
    * @example 49
    */
@@ -662,7 +695,7 @@ export interface PersonBaseDto {
    * - `UNKNOWN`: Desconhecida.
    * @example "NATURAL"
    */
-  type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
+  type: "LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN";
   /**
    * Nome ou razão social.
    * @format not empty
@@ -876,7 +909,7 @@ export interface PersonDto {
    * - `UNKNOWN`: Desconhecida.
    * @example "NATURAL"
    */
-  type: "NATURAL" | "LEGAL" | "FOREIGN" | "UNKNOWN";
+  type: "LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN";
   /**
    * Nome ou razão social.
    * @format not empty
@@ -903,6 +936,35 @@ export interface PersonDto {
   country?: CountryDto;
   /** Lista de sociedades participantes. */
   membership: PersonMemberDto[];
+}
+
+/** PersonPageDto */
+export interface PersonPageDto {
+  /**
+   * Token da próxima página.
+   * @format not empty
+   * @minLength 32
+   * @maxLength 32
+   * @example "8d47bdcbde4a7a2d4a98d5f555a19701"
+   */
+  next: string;
+  /**
+   * Quantidade de registros lidos.
+   * @format integer
+   * @min 1
+   * @max 100
+   * @example 100
+   */
+  limit: number;
+  /**
+   * Quantidade de registros disponíveis.
+   * @format integer
+   * @min 0
+   * @example 345
+   */
+  count: number;
+  /** Lista de pessoas que obedecem aos critérios de pesquisa. */
+  records: PersonDto[];
 }
 
 /** MemberDto */
@@ -1325,7 +1387,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-09-07T00:09:10.829Z"
+   * @example "2024-10-02T14:53:40.408Z"
    */
   last_update: string;
   /**
@@ -1404,7 +1466,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-09-07T00:09:10.841Z"
+   * @example "2024-10-02T14:53:40.419Z"
    */
   last_update: string;
   /**
@@ -1543,7 +1605,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização.
    * @format iso8601
-   * @example "2024-09-07T00:09:10.842Z"
+   * @example "2024-10-02T14:53:40.419Z"
    */
   last_update: string;
   /**
@@ -1682,6 +1744,22 @@ export interface CompanyOfficeDto {
   statusDate: string;
   /** Informações da situação cadastral. */
   status: OfficeStatusDto;
+  /**
+   * Presente quando `status.id != 2`
+   * Informações do motivo da situação cadastral.
+   */
+  reason?: OfficeReasonDto;
+  /**
+   * Data da situação especial.
+   * @format iso8601
+   * @example "2022-01-01"
+   */
+  specialDate?: string;
+  /**
+   * Presente quando `specialDate != undefined`
+   * Informações da situação especial.
+   */
+  special?: OfficeSpecialDto;
   /** Informações da atividade econômica principal. */
   mainActivity: ActivityDto;
 }
@@ -1921,6 +1999,74 @@ export interface RfbCertificateReadDto {
    * @default "REGISTRATION,MEMBERS"
    */
   pages?: ("REGISTRATION" | "MEMBERS")[];
+}
+
+export interface PersonSearchBaseDto {
+  /**
+   * Token de paginação, mutualmente exclusivo com as demais propriedades.
+   * @format not empty
+   * @minLength 32
+   * @maxLength 32
+   * @example "8d47bdcbde4a7a2d4a98d5f555a19701"
+   */
+  token?: string;
+  /**
+   * Quantidade de registros a serem lidos por página.
+   * @format integer
+   * @min 1
+   * @max 100
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Tipos de pessoa a serem incluídos, separados por vírgula.
+   * - `NATURAL`: Pessoa física.
+   * - `LEGAL`: Pessoa jurídica.
+   * - `FOREIGN`: Pessoa residente no exterior.
+   * - `UNKNOWN`: Desconhecida.
+   * @example "NATURAL,LEGAL"
+   */
+  "type.in"?: ("LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN")[];
+  /**
+   * Nomes a serem incluídos, separados por espaço para correspondência na mesma pessoa,
+   * ou separados por vírgula para correspondência em diferentes.
+   * @format not empty
+   * @example "Miguel Sousa,Maria,João "
+   */
+  "name.in"?: string[];
+  /**
+   * Nomes a serem excluídos, separados por espaço para correspondência na mesma pessoa,
+   * ou separados por vírgula para correspondência em diferentes.
+   * @format not empty
+   * @example "Pedro Silva,Santos,Oliveira"
+   */
+  "name.nin"?: string[];
+  /**
+   * CPFs a serem incluídos, separados por vírgula. A correspondência será feita pelos dígitos
+   * entre o quarto e nono, uma vez que não armazenamos CPFs completos em nossa plataforma.
+   * @format cpf
+   * @example "78326957062,92854908082"
+   */
+  "taxId.in"?: string[];
+  /**
+   * Faixas etárias a serem incluídas, separadas por vírgula.
+   * @example "21-30,31-40"
+   */
+  "age.in"?: ("0-12" | "13-20" | "21-30" | "31-40" | "41-50" | "51-60" | "61-70" | "71-80" | "81+")[];
+  /**
+   * Códigos de países a serem incluídos, separados por vírgula, conforme
+   * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
+   * @format integer
+   * @example "250,276,724"
+   */
+  "country.id.in"?: number[];
+  /**
+   * Códigos de países a serem excluídos, separados por vírgula, conforme
+   * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
+   * @format integer
+   * @example "32,152,600"
+   */
+  "country.id.nin"?: number[];
 }
 
 export interface OfficeReadDto {

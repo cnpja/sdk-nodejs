@@ -18,9 +18,9 @@ export class HttpService {
     const { method, replacements, query, json } = params;
     const { baseUrl, authorization } = this.options;
 
-    const replaceUrl = this.replaceUrlPlaceholders(`${baseUrl}/${url}`, replacements);
-    const strQuery = new URLSearchParams(query).toString();
-    const finalUrl = `${replaceUrl}${strQuery ? `?${strQuery}` : ''}`;
+    const replacedUrl = this.replaceUrlPlaceholders(`${baseUrl}/${url}`, replacements);
+    const queryUrl = this.buildUrlQuery(query);
+    const finalUrl = `${replacedUrl}${queryUrl ? `?${queryUrl}` : ''}`;
 
     const headers: Record<string, string> = { authorization };
     const body = JSON.stringify(json);
@@ -70,6 +70,47 @@ export class HttpService {
     }
 
     return replacedUrl;
+  }
+
+  /**
+   * Builds search query by removing `undefined` properties
+   * and stringifying input object.
+   * @param query
+   */
+  private buildUrlQuery(query: Record<string, any>): string {
+    for (const key in query) {
+      if (query[key] === undefined) {
+        delete query[key];
+      }
+    }
+
+    return new URLSearchParams(query).toString();
+  }
+
+  /**
+   * Sends a request with async iterable pagination support.
+   * @param url
+   * @param params
+   */
+  public async *getPage<T>(url: string, params: HttpRequestParams = { }): AsyncIterable<T[]> {
+    let token: string;
+
+    while (true) {
+      const requestParams = token ? { ...params, query: { token } } : params;
+      const { records, next } = await this.request<{ next: string; records: T[] }>(url, requestParams);
+
+      if (records.length === 0) {
+        break;
+      }
+
+      yield records;
+
+      if (!next) {
+        break;
+      }
+
+      token = next;
+    }
   }
 
   /**

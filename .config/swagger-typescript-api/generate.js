@@ -9,6 +9,7 @@ const renamingDictionary = {
   ConsultaCnpjParams: 'OfficeReadDto',
   MapaAereoParams: 'OfficeMapReadDto',
   VisaoDaRuaParams: 'OfficeStreetReadDto',
+  PesquisaPessoasParams: 'PersonSearchBaseDto',
   ConsultaReceitaFederalParams: 'RfbReadDto',
   ComprovanteRfbParams: 'RfbCertificateReadDto',
   ConsultaSimplesEMeiParams: 'SimplesReadDto',
