@@ -1,3 +1,10 @@
+# [1.5.0-beta.2](https://github.com/cnpja/sdk-nodejs/compare/v1.5.0-beta.1...v1.5.0-beta.2) (2024-10-20)
+
+
+### Features
+
+* **office:** add office search ([e620f94](https://github.com/cnpja/sdk-nodejs/commit/e620f94bd80ae1df83377ed7a72a127bec44b802))
+
 # [1.5.0-beta.1](https://github.com/cnpja/sdk-nodejs/compare/v1.4.2...v1.5.0-beta.1) (2024-10-02)
 
 
