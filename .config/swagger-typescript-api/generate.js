@@ -7,17 +7,18 @@ const path = require('path');
  */
 const renamingDictionary = {
   ConsultaCnpjParams: 'OfficeReadDto',
-  MapaAereoParams: 'OfficeMapReadDto',
-  VisaoDaRuaParams: 'OfficeStreetReadDto',
-  PesquisaPessoasParams: 'PersonSearchBaseDto',
+  PesquisaCnpjParams: 'OfficeSearchDto',
+  MapaAereoParams: 'OfficeMapDto',
+  VisaoDaRuaParams: 'OfficeStreetDto',
+  PesquisaPessoasParams: 'PersonSearchDto',
   ConsultaReceitaFederalParams: 'RfbReadDto',
-  ComprovanteRfbParams: 'RfbCertificateReadDto',
+  ComprovanteRfbParams: 'RfbCertificateDto',
   ConsultaSimplesEMeiParams: 'SimplesReadDto',
-  ComprovanteSimplesEMeiParams: 'SimplesCertificateReadDto',
+  ComprovanteSimplesEMeiParams: 'SimplesCertificateDto',
   ConsultaCccParams: 'CccReadDto',
-  ComprovanteCccParams: 'CccCertificateReadDto',
+  ComprovanteCccParams: 'CccCertificateDto',
   ConsultaSuframaParams: 'SuframaReadDto',
-  ComprovanteSuframaParams: 'SuframaCertificateReadDto',
+  ComprovanteSuframaParams: 'SuframaCertificateDto',
 }
 
 /**

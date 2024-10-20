@@ -1,4 +1,4 @@
-import { SimplesCertificateReadDto, SimplesDto, SimplesReadDto } from '../cnpja/cnpja.dto';
+import { SimplesCertificateDto, SimplesDto, SimplesReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
 
 export class SimplesService {
@@ -23,7 +23,7 @@ export class SimplesService {
    * [ 1 ₪ ] Emite o comprovante em PDF do registro no Simples Nacional.
    * @param params
    */
-  public certificate(params: SimplesCertificateReadDto): Promise<Buffer> {
+  public certificate(params: SimplesCertificateDto): Promise<Buffer> {
     return this.httpService.get('simples/certificate', {
       query: params,
     });

@@ -1,4 +1,4 @@
-import { SuframaCertificateReadDto, SuframaDto, SuframaReadDto } from '../cnpja/cnpja.dto';
+import { SuframaCertificateDto, SuframaDto, SuframaReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
 
 export class SuframaService {
@@ -23,7 +23,7 @@ export class SuframaService {
    * [ 1 ₪ ] Emite o comprovante em PDF do registro na Suframa.
    * @param params
    */
-  public certificate(params: SuframaCertificateReadDto): Promise<Buffer> {
+  public certificate(params: SuframaCertificateDto): Promise<Buffer> {
     return this.httpService.get('suframa/certificate', {
       query: params,
     });

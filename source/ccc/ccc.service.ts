@@ -1,4 +1,4 @@
-import { CccCertificateReadDto, CccDto, CccReadDto } from '../cnpja/cnpja.dto';
+import { CccCertificateDto, CccDto, CccReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
 
 export class CccService {
@@ -23,7 +23,7 @@ export class CccService {
    * [ 1 ₪ ] Emite o comprovante em PDF do registro no Cadastro de Contribuintes.
    * @param params
    */
-  public certificate(params: CccCertificateReadDto): Promise<Buffer> {
+  public certificate(params: CccCertificateDto): Promise<Buffer> {
     return this.httpService.get('ccc/certificate', {
       query: params,
     });

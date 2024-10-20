@@ -1,4 +1,4 @@
-import { RfbCertificateReadDto, RfbDto, RfbReadDto } from '../cnpja/cnpja.dto';
+import { RfbCertificateDto, RfbDto, RfbReadDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
 
 export class RfbService {
@@ -23,7 +23,7 @@ export class RfbService {
    * [ 1 ₪ ] Emite o comprovante em PDF do registro na Receita Federal.
    * @param params
    */
-  public certificate(params: RfbCertificateReadDto): Promise<Buffer> {
+  public certificate(params: RfbCertificateDto): Promise<Buffer> {
     return this.httpService.get('rfb/certificate', {
       query: params,
     });

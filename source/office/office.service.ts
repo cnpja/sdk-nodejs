@@ -1,4 +1,4 @@
-import { OfficeDto, OfficeMapReadDto, OfficeReadDto } from '../cnpja/cnpja.dto';
+import { OfficeDto, OfficeMapDto, OfficeReadDto, OfficeSearchDto, OfficeStreetDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
 
 export class OfficeService {
@@ -23,11 +23,20 @@ export class OfficeService {
   }
 
   /**
+   * ### Pesquisa CNPJ
+   * [ 1₪ / 10 CNPJ ] Lista todos os estabelecimentos que correspondem aos filtros configurados.
+   * @param params
+   */
+  public async *search(params: OfficeSearchDto): AsyncIterable<OfficeDto[]> {
+    yield* this.httpService.getPage('office', { query: params });
+  }
+
+  /**
    * ### Mapa Aéreo
    * [ 3 ₪ ] Gera o mapa aéreo referente ao endereço do estabelecimento.
    * @param params
    */
-  public map(params: OfficeMapReadDto): Promise<Buffer> {
+  public map(params: OfficeMapDto): Promise<Buffer> {
     const { taxId, ...query } = params;
 
     return this.httpService.get('office/:taxId/map', {
@@ -41,7 +50,7 @@ export class OfficeService {
    * [ 10 ₪ ] Gera a visão da rua referente ao endereço do estabelecimento.
    * @param params
    */
-  public street(params: OfficeMapReadDto): Promise<Buffer> {
+  public street(params: OfficeStreetDto): Promise<Buffer> {
     const { taxId, ...query } = params;
 
     return this.httpService.get('office/:taxId/street', {
