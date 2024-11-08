@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/cnpja/sdk-nodejs/compare/v1.4.2...v1.5.0) (2024-11-08)
+
+
+### Bug Fixes
+
+* bump dto documentation ([f3c9e27](https://github.com/cnpja/sdk-nodejs/commit/f3c9e278b636daedba904a14ed59f148a19ecb2b))
+
+
+### Features
+
+* **office:** add office search ([e620f94](https://github.com/cnpja/sdk-nodejs/commit/e620f94bd80ae1df83377ed7a72a127bec44b802))
+* **person:** add person search support ([148df3c](https://github.com/cnpja/sdk-nodejs/commit/148df3c2b43e1d67ca1f934b22e9b57e998cb2f8))
+
 # [1.5.0-beta.1](https://github.com/cnpja/sdk-nodejs/compare/v1.4.2...v1.5.0-beta.1) (2024-10-02)
 
 
