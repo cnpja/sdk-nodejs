@@ -211,7 +211,7 @@ export interface SuframaStatusDto {
    * • `2`: Inativa.
    * • `3`: Bloqueada.
    * • `4`: Cancelada.
-   * • `5`: Cancelada Ag. Rec..
+   * • `5`: Cancelada Ag. Rec.
    * @format integer
    * @example 1
    */
@@ -692,7 +692,7 @@ export interface PersonBaseDto {
    * • `NATURAL`: Pessoa física.
    * • `LEGAL`: Pessoa jurídica.
    * • `FOREIGN`: Pessoa residente no exterior.
-   * • `UNKNOWN`: Desconhecida.
+   * • `UNKNOWN`: Pessoa desconhecida.
    * @example "NATURAL"
    */
   type: "LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN";
@@ -906,7 +906,7 @@ export interface PersonDto {
    * • `NATURAL`: Pessoa física.
    * • `LEGAL`: Pessoa jurídica.
    * • `FOREIGN`: Pessoa residente no exterior.
-   * • `UNKNOWN`: Desconhecida.
+   * • `UNKNOWN`: Pessoa desconhecida.
    * @example "NATURAL"
    */
   type: "LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN";
@@ -1250,6 +1250,75 @@ export interface OfficeDto {
   links?: OfficeLinkDto[];
 }
 
+/** OfficePageRecordDto */
+export interface OfficePageRecordDto {
+  /**
+   * Número do CNPJ sem pontuação.
+   * @format cnpj
+   * @example "37335118000180"
+   */
+  taxId: string;
+  /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-06-05T17:52:39.136Z"
+   */
+  updated: string;
+  /** Informações da empresa. */
+  company: OfficeCompanyDto;
+  /**
+   * Nome fantasia.
+   * @format not empty
+   * @example "CNPJA"
+   */
+  alias: string;
+  /**
+   * Data de abertura.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  founded: string;
+  /**
+   * Indica se o estabelecimento é a Matriz.
+   * @example true
+   */
+  head: boolean;
+  /**
+   * Data da situação cadastral.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  statusDate: string;
+  /** Informações da situação cadastral. */
+  status: OfficeStatusDto;
+  /**
+   * Presente quando `status.id != 2`
+   * Informações do motivo da situação cadastral.
+   */
+  reason?: OfficeReasonDto;
+  /**
+   * Data da situação especial.
+   * @format iso8601
+   * @example "2022-01-01"
+   */
+  specialDate?: string;
+  /**
+   * Presente quando `specialDate != undefined`
+   * Informações da situação especial.
+   */
+  special?: OfficeSpecialDto;
+  /** Informações do endereço. */
+  address: AddressDto;
+  /** Lista de telefones. */
+  phones: PhoneDto[];
+  /** Lista de e-mails. */
+  emails: EmailDto[];
+  /** Informações da atividade econômica principal. */
+  mainActivity: ActivityDto;
+  /** Lista de atividades econômicas secundárias. */
+  sideActivities: ActivityDto[];
+}
+
 /** OfficePageDto */
 export interface OfficePageDto {
   /**
@@ -1276,7 +1345,7 @@ export interface OfficePageDto {
    */
   count: number;
   /** Lista de estabelecimentos que obedecem aos critérios de pesquisa. */
-  records: OfficeDto[];
+  records: OfficePageRecordDto[];
 }
 
 /** LegacyRegistrationDto */
@@ -1417,7 +1486,7 @@ export interface LegacySimplesNacionalDto {
   /**
    * Data da última atualização do Simples Nacional.
    * @format iso8601
-   * @example "2024-10-20T17:23:59.519Z"
+   * @example "2024-11-08T15:43:45.456Z"
    */
   last_update: string;
   /**
@@ -1496,7 +1565,7 @@ export interface LegacySintegraDto {
   /**
    * Data da última atualização do Cadastro de Contribuintes.
    * @format iso8601
-   * @example "2024-10-20T17:23:59.528Z"
+   * @example "2024-11-08T15:43:45.468Z"
    */
   last_update: string;
   /**
@@ -1635,7 +1704,7 @@ export interface LegacyCompanyDto {
   /**
    * Data da última atualização.
    * @format iso8601
-   * @example "2024-10-20T17:23:59.529Z"
+   * @example "2024-11-08T15:43:45.469Z"
    */
   last_update: string;
   /**
@@ -1894,10 +1963,10 @@ export interface SuframaReadDto {
   taxId: string;
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -1938,17 +2007,17 @@ export interface SimplesReadDto {
    */
   taxId: string;
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona o histórico de períodos
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona o histórico de períodos
    * anteriores do Simples e MEI.
    * @default false
    */
   history?: boolean;
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -1990,10 +2059,10 @@ export interface RfbReadDto {
   taxId: string;
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -2044,7 +2113,7 @@ export interface PersonSearchDto {
    * Quantidade de registros a serem lidos por página.
    * @format integer
    * @min 1
-   * @max 1000
+   * @max 100
    * @default 10
    */
   limit?: number;
@@ -2053,7 +2122,7 @@ export interface PersonSearchDto {
    * • `NATURAL`: Pessoa física.
    * • `LEGAL`: Pessoa jurídica.
    * • `FOREIGN`: Pessoa residente no exterior.
-   * • `UNKNOWN`: Desconhecida.
+   * • `UNKNOWN`: Pessoa desconhecida.
    * @example "NATURAL,LEGAL"
    */
   "type.in"?: ("LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN")[];
@@ -2101,19 +2170,19 @@ export interface PersonSearchDto {
 
 export interface OfficeReadDto {
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona as informações de opção pelo
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona as informações de opção pelo
    * Simples e enquadramento no MEI.
    * @default false
    */
   simples?: boolean;
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona o histórico de períodos
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona o histórico de períodos
    * anteriores do Simples e MEI.
    * @default false
    */
   simplesHistory?: boolean;
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona as Inscrições Estaduais para as selecionadas
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona as Inscrições Estaduais para as selecionadas
    * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas.
    * @example "PR,RS,SC"
    */
@@ -2148,12 +2217,12 @@ export interface OfficeReadDto {
     | "TO"
   )[];
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona a inscrição na SUFRAMA.
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona a inscrição na SUFRAMA.
    * @default false
    */
   suframa?: boolean;
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona a latitude e longitude do endereço.
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona a latitude e longitude do endereço.
    * @default false
    */
   geocoding?: boolean;
@@ -2171,10 +2240,10 @@ export interface OfficeReadDto {
   )[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -2217,7 +2286,7 @@ export interface OfficeSearchDto {
    * Quantidade de registros a serem lidos por página.
    * @format integer
    * @min 1
-   * @max 1000
+   * @max 100
    * @default 10
    */
   limit?: number;
@@ -2647,11 +2716,11 @@ export interface OfficeMapDto {
    */
   zoom?: number;
   /**
-   * Tipo do mapa::
-   * • `roadmap`: Rodovias..
-   * • `terrain`: Elevação..
-   * • `satellite`: Satélite..
-   * • `hybrid`: Rodovias e satélite..
+   * Tipo do mapa:
+   * • `roadmap`: Rodovias.
+   * • `terrain`: Elevação.
+   * • `satellite`: Satélite.
+   * • `hybrid`: Rodovias e satélite.
    * @default "roadmap"
    */
   type?: "roadmap" | "terrain" | "satellite" | "hybrid";
@@ -2696,33 +2765,32 @@ export interface OfficeStreetDto {
   taxId: string;
 }
 
-export interface ConsultaCnpjDescontParams {
+export interface ConsultaCnpjParams {
   /**
    * Habilita retornar dados em cache caso a busca em tempo real falhe.
    * @default true
    */
   enable_cache_fallback?: boolean;
   /**
-   * Idade máxima que um dado em cache da Receita Federal é aceite.
+   * Idade máxima, em dias, que um dado em cache é aceite.
    * @format integer
    * @min 0
-   * @default 30
+   * @default 45
    */
   company_max_age?: number;
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona as informações de opção pelo Simples e
-   * enquadramento no MEI, e configura a idade máxima que um dado em cache do Simples Nacional é aceite.
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona as informações de opção pelo Simples e
+   * enquadramento no MEI.
    * @format integer
    * @min 0
-   * @default 30
+   * @example 1
    */
   simples_max_age?: number;
   /**
-   * <span style="color: #EAED37">[ +1 ₪ ]</span> Adiciona a lista de Inscrições Estaduais e configura
-   * a idade máxima que um dado em cache do Cadastro de Contribuintes é aceite.
+   * +<span style="color: #EAED37">1 ₪</span> Adiciona a lista de Inscrições Estaduais.
    * @format integer
    * @min 0
-   * @default 30
+   * @example 1
    */
   sintegra_max_age?: number;
   /**
@@ -2777,10 +2845,10 @@ export interface CccReadDto {
   )[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";

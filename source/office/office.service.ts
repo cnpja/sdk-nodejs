@@ -9,7 +9,7 @@ export class OfficeService {
 
   /**
    * ### Consulta CNPJ
-   * [ 1 ₪ ] Adquire de forma centralizada múltiplas informações de um estabelecimento,
+   * Adquire de forma centralizada múltiplas informações de um estabelecimento,
    * incluindo Receita Federal, Simples Nacional e Cadastro de Contribuintes.
    * @param params
    */
@@ -24,7 +24,7 @@ export class OfficeService {
 
   /**
    * ### Pesquisa CNPJ
-   * [ 1₪ / 10 CNPJ ] Lista todos os estabelecimentos que correspondem aos filtros configurados.
+   * Lista todos os estabelecimentos que correspondem aos filtros configurados.
    * @param params
    */
   public async *search(params: OfficeSearchDto): AsyncIterable<OfficeDto[]> {
@@ -33,7 +33,7 @@ export class OfficeService {
 
   /**
    * ### Mapa Aéreo
-   * [ 3 ₪ ] Gera o mapa aéreo referente ao endereço do estabelecimento.
+   * Gera o mapa aéreo referente ao endereço do estabelecimento.
    * @param params
    */
   public map(params: OfficeMapDto): Promise<Buffer> {
@@ -47,7 +47,7 @@ export class OfficeService {
 
   /**
    * ### Visão da Rua
-   * [ 10 ₪ ] Gera a visão da rua referente ao endereço do estabelecimento.
+   * Gera a visão da rua referente ao endereço do estabelecimento.
    * @param params
    */
   public street(params: OfficeStreetDto): Promise<Buffer> {

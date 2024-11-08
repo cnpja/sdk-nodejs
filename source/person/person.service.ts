@@ -24,7 +24,7 @@ export class PersonService {
 
   /**
    * ### Pesquisa Pessoas
-   * [ 1₪ / 10 CNPJ ] Lista todas as pessoas que correspondem aos filtros configurados.
+   * Lista todas as pessoas que correspondem aos filtros configurados.
    * @param params
    */
   public async *search(params: PersonSearchReadDto): AsyncIterable<PersonDto[]> {

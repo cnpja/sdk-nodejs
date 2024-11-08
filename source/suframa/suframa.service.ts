@@ -9,7 +9,7 @@ export class SuframaService {
 
   /**
    * ### Consulta Suframa
-   * [ 1 ₪ ] Adquire informações do registro na Suframa.
+   * Adquire informações do registro na Suframa.
    * @param params
    */
   public read(params: SuframaReadDto): Promise<SuframaDto> {
@@ -20,7 +20,7 @@ export class SuframaService {
 
   /**
    * ### Comprovante Suframa
-   * [ 1 ₪ ] Emite o comprovante em PDF do registro na Suframa.
+   * Emite o comprovante em PDF do registro na Suframa.
    * @param params
    */
   public certificate(params: SuframaCertificateDto): Promise<Buffer> {

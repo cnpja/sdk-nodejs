@@ -9,7 +9,7 @@ export class CccService {
 
   /**
    * ### Consulta CCC
-   * [ 1 ₪ ] Adquire informações do registro no Cadastro de Contribuintes.
+   * Adquire informações do registro no Cadastro de Contribuintes.
    * @param params
    */
   public read(params: CccReadDto): Promise<CccDto> {
@@ -20,7 +20,7 @@ export class CccService {
 
   /**
    * ### Comprovante CCC
-   * [ 1 ₪ ] Emite o comprovante em PDF do registro no Cadastro de Contribuintes.
+   * Emite o comprovante em PDF do registro no Cadastro de Contribuintes.
    * @param params
    */
   public certificate(params: CccCertificateDto): Promise<Buffer> {

@@ -9,7 +9,7 @@ export class RfbService {
 
   /**
    * ### Consulta Receita Federal
-   * [ 1 ₪ ] Adquire informações do registro na Receita Federal.
+   * Adquire informações do registro na Receita Federal.
    * @param params
    */
   public read(params: RfbReadDto): Promise<RfbDto> {
@@ -20,7 +20,7 @@ export class RfbService {
 
   /**
    * ### Comprovante RFB
-   * [ 1 ₪ ] Emite o comprovante em PDF do registro na Receita Federal.
+   * Emite o comprovante em PDF do registro na Receita Federal.
    * @param params
    */
   public certificate(params: RfbCertificateDto): Promise<Buffer> {

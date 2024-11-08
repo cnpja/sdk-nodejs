@@ -19,6 +19,7 @@ const renamingDictionary = {
   ComprovanteCccParams: 'CccCertificateDto',
   ConsultaSuframaParams: 'SuframaReadDto',
   ComprovanteSuframaParams: 'SuframaCertificateDto',
+  '⚠️ConsultaCnpjParams': 'ConsultaCnpjParams'
 }
 
 /**

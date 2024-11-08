@@ -9,7 +9,7 @@ export class SimplesService {
 
   /**
    * ### Consulta Simples e MEI
-   * [ 1 ₪ ] Adquire informações do registro no Simples Nacional e MEI.
+   * Adquire informações do registro no Simples Nacional e MEI.
    * @param params
    */
   public read(params: SimplesReadDto): Promise<SimplesDto> {
@@ -20,7 +20,7 @@ export class SimplesService {
 
   /**
    * ### Comprovante Simples e MEI
-   * [ 1 ₪ ] Emite o comprovante em PDF do registro no Simples Nacional.
+   * Emite o comprovante em PDF do registro no Simples Nacional.
    * @param params
    */
   public certificate(params: SimplesCertificateDto): Promise<Buffer> {
