@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { PersonDto } from '../cnpja/cnpja.dto';
+import { PersonDto, PersonSearchDto } from '../cnpja/cnpja.dto';
 import { HttpService } from '../http/http.service';
-import { PersonSearchReadDto } from './person.dto';
 
 export class PersonService {
 
@@ -13,12 +12,13 @@ export class PersonService {
    * ### Consulta Pessoa
    * Adquire os dados de uma pessoa incluindo todos os quadros societários que faz parte.
    * @param params
+   * @param params.personId
    */
-  public read(params: Pick<PersonDto, 'id'>): Promise<PersonDto> {
-    const { id } = params;
+  public read(params: { personId: string }): Promise<PersonDto> {
+    const { personId } = params;
 
-    return this.httpService.get('person/:id', {
-      replacements: { id },
+    return this.httpService.get('person/:personId', {
+      replacements: { personId },
     });
   }
 
@@ -27,7 +27,7 @@ export class PersonService {
    * Lista todas as pessoas que correspondem aos filtros configurados.
    * @param params
    */
-  public async *search(params: PersonSearchReadDto): AsyncIterable<PersonDto[]> {
+  public async *search(params: PersonSearchDto): AsyncIterable<PersonDto[]> {
     yield* this.httpService.getPage('person', { query: params });
   }
 
