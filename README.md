@@ -1,4 +1,4 @@
-# CNPJá! Node.js SDK
+# CNPJá — SDK para Node.js
 
 Pacote para interagir com a API de consultas CNPJ em tempo real fornecida pelo CNPJá.
 
@@ -8,7 +8,7 @@ https://cnpja.com/api/reference
 ## Requisitos
 
 - Node.js 18 ou superior: Necessário para suporte ao `fetch()` nativo.
-- Chave de API: Disponível gratuitamente registrando-se pelo website [CNPJá!](https://cnpja.com/me)
+- Chave de API: Disponível gratuitamente registrando-se pelo website [CNPJá](https://cnpja.com/me).
 
 ## Instalação
 
@@ -27,7 +27,7 @@ Instancie o pacote utilizando sua chave de API:
 ```ts
 import { Cnpja } from '@cnpja/sdk';
 
-const cnpja = new Cnpja({ apiKey: 'sua_api_key' });
+const cnpja = new Cnpja({ apiKey: '[chave-de-api]' });
 ```
 
 ## Consulta CNPJ
