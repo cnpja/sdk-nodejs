@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/cnpja/sdk-nodejs/compare/v1.5.1...v1.5.2) (2024-11-12)
+
+
+### Bug Fixes
+
+* minor typings and doc intro fixes ([15640b5](https://github.com/cnpja/sdk-nodejs/commit/15640b5782a0009997497bf7d2076f9c3e4cdebf))
+
 ## [1.5.1](https://github.com/cnpja/sdk-nodejs/compare/v1.5.0...v1.5.1) (2024-11-12)
 
 
