@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/cnpja/sdk-nodejs/compare/v1.5.0...v1.5.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* **company:** param name ([4b43ae0](https://github.com/cnpja/sdk-nodejs/commit/4b43ae0fb9d374257f44cb4a6748b9a7809964f1))
+* **person:** param name ([f222756](https://github.com/cnpja/sdk-nodejs/commit/f222756b577951a7f76b7ad1e2403cd2d241efce))
+
 # [1.5.0](https://github.com/cnpja/sdk-nodejs/compare/v1.4.2...v1.5.0) (2024-11-08)
 
 
