@@ -33,7 +33,8 @@
     "release": "semantic-release",
     "lint": "export TIMING=1 || set TIMING=1&& eslint **/*.ts --max-warnings=0",
     "test": "jest --forceExit --config .config/jest/.jestrc.json --passWithNoTests",
-    "generate": "node .config/swagger-typescript-api/generate.js"
+    "generate": "node .config/swagger-typescript-api/generate.js",
+    "readme": "node .config/readme/index.js"
   },
   "devDependencies": {
     "@bechara/eslint-config-bechara-ts": "1.5.0",
