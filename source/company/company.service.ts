@@ -11,12 +11,13 @@ export class CompanyService {
    * ### Consulta Empresa
    * Adquire os dados de uma empresa includindo todos os sócios e estabelecimentos.
    * @param params
+   * @param params.companyId
    */
-  public read(params: Pick<CompanyDto, 'id'>): Promise<CompanyDto> {
-    const { id } = params;
+  public read(params: { companyId: number }): Promise<CompanyDto> {
+    const { companyId } = params;
 
-    return this.httpService.get('company/:id', {
-      replacements: { id },
+    return this.httpService.get('company/:companyId', {
+      replacements: { companyId },
     });
   }
 
