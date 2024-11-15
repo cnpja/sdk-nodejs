@@ -1,7 +1,7 @@
-import { ZipDto } from '../cnpja/cnpja.dto';
-import { HttpService } from '../http/http.service';
+import { ZipDto } from '../../cnpja/cnpja.dto';
+import { HttpService } from '../../http/http.service';
 
-export class ZipService {
+export class OpenZipService {
 
   public constructor(
     private httpService: HttpService,

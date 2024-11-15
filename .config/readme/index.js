@@ -5,7 +5,8 @@ const fs = require('fs');
  */
 function generateReadme() {
   const openApi = JSON.parse(fs.readFileSync('./.config/readme/openapi.json').toString());
-  const intro = fs.readFileSync('./.config/readme/intro.md').toString();
+  const introduction = fs.readFileSync('./.config/readme/introduction.md').toString();
+  const appendix = fs.readFileSync('./.config/readme/appendix.md').toString();
   const endpoints = new Map();
 
   // Configures README endpoint structure order
@@ -37,7 +38,7 @@ function generateReadme() {
     }
   }
 
-  let readme = intro
+  let readme = introduction
 
   // Iterate each item of desired structure and find matching OpenAPI endpoint definition
   for (const item of structure) {
@@ -120,8 +121,9 @@ ${code}
 `;
   }
 
-  // Replace shortened file example URLs
+  // Replace shortened file example URLs and add appendix
   readme = readme.replaceAll('/proxy/api', 'https://cnpja.com/proxy/api');
+  readme = `${readme}\n${appendix}`
 
   // Write complete README
   fs.writeFileSync('./README.md', readme);

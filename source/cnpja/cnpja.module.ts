@@ -18,7 +18,8 @@ export class Cnpja {
   public company: CompanyService;
   /** Operações relacionadas a API de Pessoas. */
   public person: PersonService;
-
+  /** Operações relacionadas a API de Códigos Postais. */
+  public zip: ZipService;
   /** Operações relacionadas a API da Receita Federal. */
   public rfb: RfbService;
   /** Operações relacionadas a API do Simples Nacional. */
@@ -27,9 +28,6 @@ export class Cnpja {
   public ccc: CccService;
   /** Operações relacionadas a API do SUFRAMA. */
   public suframa: SuframaService;
-  /** Operações relacionadas a API dos Correios. */
-  public zip: ZipService;
-
   /** Operações relacionadas a API de Créditos. */
   public credit: CreditService;
 

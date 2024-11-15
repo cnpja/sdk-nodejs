@@ -1,10 +1,13 @@
 import { HttpService } from '../http/http.service';
 import { OpenOfficeService } from './office/open.office.service';
+import { OpenZipService } from './zip/open.zip.service';
 
 export class CnpjaOpen {
 
   /** Operações relacionadas a API de Estabelecimentos. */
   public office: OpenOfficeService;
+  /** Operações relacionadas a API de Códigos Postais. */
+  public zip: OpenZipService;
 
   public constructor() {
     this.setup();
@@ -19,6 +22,7 @@ export class CnpjaOpen {
     });
 
     this.office = new OpenOfficeService(httpService);
+    this.zip = new OpenZipService(httpService);
   }
 
 }
