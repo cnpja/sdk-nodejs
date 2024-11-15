@@ -6,7 +6,7 @@ Permite pesquisas de empresas e sócios utilizando múltiplos filtros, como data
 
 Também possibilita a emissão de comprovantes em PDF, geração de mapas aéreos e visualização da rua do estabelecimento, além de obter latitude e longitude via geocodificação.
 
-Este pacote interage com a API de consultas CNPJ em tempo real fornecida pelo CNPJá, baseada na especificação disponível em:
+Este pacote interage com a API de consultas CNPJ em tempo real fornecida pelo CNPJá, baseada na especificação disponível em:  
 https://cnpja.com/api/reference
 
 ## Requisitos
