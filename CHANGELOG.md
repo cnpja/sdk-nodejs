@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/cnpja/sdk-nodejs/compare/v1.5.2...v1.6.0) (2024-11-15)
+
+
+### Features
+
+* **zip:** add open zip support ([0d34861](https://github.com/cnpja/sdk-nodejs/commit/0d348617d1c3ebc27c58147693e85bd4e3d6d8a7))
+
 ## [1.5.2](https://github.com/cnpja/sdk-nodejs/compare/v1.5.1...v1.5.2) (2024-11-12)
 
 
