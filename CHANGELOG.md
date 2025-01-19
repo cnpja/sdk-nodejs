@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/cnpja/sdk-nodejs/compare/v1.6.0...v1.6.1) (2025-01-19)
+
+
+### Bug Fixes
+
+* **dto:** add phone and e-mail types ([7201092](https://github.com/cnpja/sdk-nodejs/commit/72010927dc6f039f7b8e6aca3e7be023e1ec4f1e))
+
 # [1.6.0](https://github.com/cnpja/sdk-nodejs/compare/v1.5.2...v1.6.0) (2024-11-15)
 
 
