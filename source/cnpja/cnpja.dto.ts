@@ -207,11 +207,11 @@ export interface ZipDto {
 export interface SuframaStatusDto {
   /**
    * Código da situação cadastral:
-   * • `1`: Ativa.
-   * • `2`: Inativa.
-   * • `3`: Bloqueada.
-   * • `4`: Cancelada.
-   * • `5`: Cancelada Ag. Rec.
+   * - `1`: Ativa.
+   * - `2`: Inativa.
+   * - `3`: Bloqueada.
+   * - `4`: Cancelada.
+   * - `5`: Cancelada Ag. Rec.
    * @format integer
    * @example 1
    */
@@ -355,6 +355,13 @@ export interface AddressDto {
 /** PhoneDto */
 export interface PhoneDto {
   /**
+   * Tipo do telefone:
+   * - `LANDLINE`: Linha terrestre, telefone fixo.
+   * - `MOBILE`: Linha móvel, telefone celular.
+   * @example "LANDLINE"
+   */
+  type: "LANDLINE" | "MOBILE";
+  /**
    * Código de DDD.
    * @format numeric
    * @minLength 2
@@ -374,6 +381,14 @@ export interface PhoneDto {
 
 /** EmailDto */
 export interface EmailDto {
+  /**
+   * Tipo de propriedade do e-mail:
+   * - `PERSONAL`: Pessoal, registrado em provedor gratuito.
+   * - `CORPORATE`: Corporativo, registrado em provedor privado.
+   * - `ACCOUNTING`: Contabilidade, domínio remete a empresas de contadores.
+   * @example "ACCOUNTING"
+   */
+  ownership: "ACCOUNTING" | "CORPORATE" | "PERSONAL";
   /**
    * Endereço de e-mail.
    * @format e-mail
@@ -569,9 +584,9 @@ export interface SimplesDto {
 export interface CompanySizeDto {
   /**
    * Código do porte:
-   * • `1`: Microempresa (ME).
-   * • `3`: Empresa de Pequeno Porte (EPP).
-   * • `5`: Demais.
+   * - `1`: Microempresa (ME).
+   * - `3`: Empresa de Pequeno Porte (EPP).
+   * - `5`: Demais.
    * @format integer
    * @example 1
    */
@@ -594,11 +609,11 @@ export interface CompanySizeDto {
 export interface OfficeStatusDto {
   /**
    * Código da situação cadastral:
-   * • `1`: Nula.
-   * • `2`: Ativa.
-   * • `3`: Suspensa.
-   * • `4`: Inapta.
-   * • `8`: Baixada.
+   * - `1`: Nula.
+   * - `2`: Ativa.
+   * - `3`: Suspensa.
+   * - `4`: Inapta.
+   * - `8`: Baixada.
    * @format integer
    * @example 2
    */
@@ -689,10 +704,10 @@ export interface PersonBaseDto {
   id: string;
   /**
    * Tipo da pessoa:
-   * • `NATURAL`: Pessoa física.
-   * • `LEGAL`: Pessoa jurídica.
-   * • `FOREIGN`: Pessoa residente no exterior.
-   * • `UNKNOWN`: Pessoa desconhecida.
+   * - `NATURAL`: Pessoa física.
+   * - `LEGAL`: Pessoa jurídica.
+   * - `FOREIGN`: Pessoa residente no exterior.
+   * - `UNKNOWN`: Pessoa desconhecida.
    * @example "NATURAL"
    */
   type: "LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN";
@@ -703,22 +718,17 @@ export interface PersonBaseDto {
    */
   name: string;
   /**
-   * Presente quando `type == 'NATURAL' | 'LEGAL'`
-   * CPF ou CNPJ.
+   * CPF ou CNPJ, presente quando `type == 'NATURAL' | 'LEGAL'`.
    * @format not empty
    * @example "***123456**"
    */
   taxId?: string;
   /**
-   * Presente quando `type == 'NATURAL'`
-   * Faixa etária.
+   * Faixa etária, presente quando `type == 'NATURAL'`.
    * @example "31-40"
    */
   age?: "0-12" | "13-20" | "21-30" | "31-40" | "41-50" | "51-60" | "61-70" | "71-80" | "81+";
-  /**
-   * Presente quando `type == 'FOREIGN'`
-   * País de origem.
-   */
+  /** País de origem, presente quando `type == 'FOREIGN'`. */
   country?: CountryDto;
 }
 
@@ -742,10 +752,7 @@ export interface RfbMemberDto {
   role: RoleDto;
   /** Informações do sócio ou administrador. */
   person: PersonBaseDto;
-  /**
-   * Presente quando aplicável na qualificação
-   * Informações do representante legal.
-   */
+  /** Informações do representante legal, presente quando aplicável na qualificação. */
   agent: MemberAgentDto;
 }
 
@@ -770,8 +777,7 @@ export interface RfbDto {
    */
   name: string;
   /**
-   * Presente quando `nature.id < 2000`
-   * Ente federativo responsável.
+   * Ente federativo responsável, presente quando `nature.id < 2000`.
    * @format not empty
    * @example "Uniao"
    */
@@ -811,10 +817,7 @@ export interface RfbDto {
   statusDate: string;
   /** Informações da situação cadastral. */
   status: OfficeStatusDto;
-  /**
-   * Presente quando `status.id != 2`
-   * Informações do motivo da situação cadastral.
-   */
+  /** Informações do motivo da situação cadastral, presente quando `status.id != 2`. */
   reason?: OfficeReasonDto;
   /**
    * Data da situação especial.
@@ -822,10 +825,7 @@ export interface RfbDto {
    * @example "2022-01-01"
    */
   specialDate?: string;
-  /**
-   * Presente quando `specialDate != undefined`
-   * Informações da situação especial.
-   */
+  /** Informações da situação especial, presente quando `specialDate != undefined`. */
   special?: OfficeSpecialDto;
   /** Informações do endereço. */
   address: AddressDto;
@@ -856,8 +856,7 @@ export interface PersonMemberCompanyDto {
    */
   name: string;
   /**
-   * Presente quando `nature.id < 2000`
-   * Ente federativo responsável.
+   * Ente federativo responsável, presente quando `nature.id < 2000`.
    * @format not empty
    * @example "Uniao"
    */
@@ -884,10 +883,7 @@ export interface PersonMemberDto {
   since: string;
   /** Informações da qualificação. */
   role: RoleDto;
-  /**
-   * Presente quando aplicável na qualificação
-   * Informações do representante legal.
-   */
+  /** Informações do representante legal, presente quando aplicável na qualificação. */
   agent?: MemberAgentDto;
   /** Informações da empresa. */
   company: PersonMemberCompanyDto;
@@ -903,10 +899,10 @@ export interface PersonDto {
   id: string;
   /**
    * Tipo da pessoa:
-   * • `NATURAL`: Pessoa física.
-   * • `LEGAL`: Pessoa jurídica.
-   * • `FOREIGN`: Pessoa residente no exterior.
-   * • `UNKNOWN`: Pessoa desconhecida.
+   * - `NATURAL`: Pessoa física.
+   * - `LEGAL`: Pessoa jurídica.
+   * - `FOREIGN`: Pessoa residente no exterior.
+   * - `UNKNOWN`: Pessoa desconhecida.
    * @example "NATURAL"
    */
   type: "LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN";
@@ -917,22 +913,17 @@ export interface PersonDto {
    */
   name: string;
   /**
-   * Presente quando `type == 'NATURAL' | 'LEGAL'`
-   * CPF ou CNPJ.
+   * CPF ou CNPJ, presente quando `type == 'NATURAL' | 'LEGAL'`.
    * @format not empty
    * @example "***123456**"
    */
   taxId?: string;
   /**
-   * Presente quando `type == 'NATURAL'`
-   * Faixa etária.
+   * Faixa etária, presente quando `type == 'NATURAL'`.
    * @example "31-40"
    */
   age?: "0-12" | "13-20" | "21-30" | "31-40" | "41-50" | "51-60" | "61-70" | "71-80" | "81+";
-  /**
-   * Presente quando `type == 'FOREIGN'`
-   * País de origem.
-   */
+  /** País de origem, presente quando `type == 'FOREIGN'`. */
   country?: CountryDto;
   /** Lista de sociedades participantes. */
   membership: PersonMemberDto[];
@@ -979,10 +970,7 @@ export interface MemberDto {
   person: PersonBaseDto;
   /** Informações da qualificação. */
   role: RoleDto;
-  /**
-   * Presente quando aplicável na qualificação
-   * Informações do representante legal.
-   */
+  /** Informações do representante legal, presente quando aplicável na qualificação. */
   agent?: MemberAgentDto;
 }
 
@@ -1001,8 +989,7 @@ export interface OfficeCompanyDto {
    */
   name: string;
   /**
-   * Presente quando `nature.id < 2000`
-   * Ente federativo responsável.
+   * Ente federativo responsável, presente quando `nature.id < 2000`.
    * @format not empty
    * @example "Uniao"
    */
@@ -1029,9 +1016,9 @@ export interface OfficeCompanyDto {
 export interface RegistrationStatusDto {
   /**
    * Código da situação cadastral:
-   * • `1`: Sem restrição.
-   * • `2`: Bloqueado como destinatário na UF.
-   * • `3`: Vedada operação como destinatário na UF.
+   * - `1`: Sem restrição.
+   * - `2`: Bloqueado como destinatário na UF.
+   * - `3`: Vedada operação como destinatário na UF.
    * @format integer
    * @example 2
    */
@@ -1048,10 +1035,10 @@ export interface RegistrationStatusDto {
 export interface RegistrationTypeDto {
   /**
    * Código do tipo:
-   * • `1`: IE Normal.
-   * • `2`: IE Substituto Tributário.
-   * • `3`: IE Não Contribuinte (Canteiro de Obras, IE Virtual, outros).
-   * • `4`: IE de Produtor Rural.
+   * - `1`: IE Normal.
+   * - `2`: IE Substituto Tributário.
+   * - `3`: IE Não Contribuinte (Canteiro de Obras, IE Virtual, outros).
+   * - `4`: IE de Produtor Rural.
    * @format integer
    * @example 2
    */
@@ -1216,10 +1203,7 @@ export interface OfficeDto {
   statusDate: string;
   /** Informações da situação cadastral. */
   status: OfficeStatusDto;
-  /**
-   * Presente quando `status.id != 2`
-   * Informações do motivo da situação cadastral.
-   */
+  /** Informações do motivo da situação cadastral, presente quando `status.id != 2`. */
   reason?: OfficeReasonDto;
   /**
    * Data da situação especial.
@@ -1227,10 +1211,7 @@ export interface OfficeDto {
    * @example "2022-01-01"
    */
   specialDate?: string;
-  /**
-   * Presente quando `specialDate != undefined`
-   * Informações da situação especial.
-   */
+  /** Informações da situação especial, presente quando `specialDate != undefined`. */
   special?: OfficeSpecialDto;
   /** Informações do endereço. */
   address: AddressDto;
@@ -1291,10 +1272,7 @@ export interface OfficePageRecordDto {
   statusDate: string;
   /** Informações da situação cadastral. */
   status: OfficeStatusDto;
-  /**
-   * Presente quando `status.id != 2`
-   * Informações do motivo da situação cadastral.
-   */
+  /** Informações do motivo da situação cadastral, presente quando `status.id != 2`. */
   reason?: OfficeReasonDto;
   /**
    * Data da situação especial.
@@ -1302,10 +1280,7 @@ export interface OfficePageRecordDto {
    * @example "2022-01-01"
    */
   specialDate?: string;
-  /**
-   * Presente quando `specialDate != undefined`
-   * Informações da situação especial.
-   */
+  /** Informações da situação especial, presente quando `specialDate != undefined`. */
   special?: OfficeSpecialDto;
   /** Informações do endereço. */
   address: AddressDto;
@@ -1346,6 +1321,170 @@ export interface OfficePageDto {
   count: number;
   /** Lista de estabelecimentos que obedecem aos critérios de pesquisa. */
   records: OfficePageRecordDto[];
+}
+
+/** ListCreateDto */
+export interface ListCreateDto {
+  /**
+   * Título da lista.
+   * @format not empty
+   * @maxLength 50
+   * @example "Minha Lista de Empresas"
+   */
+  title: string;
+  /**
+   * Descrição da lista.
+   * @format not empty
+   * @maxLength 2000
+   * @example "Fornecedores da unidade de Manaus."
+   */
+  description?: string;
+  /**
+   * Itens pertencentes a lista.
+   * @maxItems 100000
+   */
+  items: string[];
+}
+
+/** ListDto */
+export interface ListDto {
+  /**
+   * Identificador único.
+   * @format uuid
+   * @example "5680a75e-750e-4c31-a1a1-e61e0e4f5618"
+   */
+  id: string;
+  /**
+   * Data de criação.
+   * @format iso8601
+   * @example "2024-03-11T17:30:20.757Z"
+   */
+  created: string;
+  /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-03-27T08:47:56.384Z"
+   */
+  updated: string;
+  /**
+   * Título da lista.
+   * @format not empty
+   * @maxLength 50
+   * @example "Minha Lista de Empresas"
+   */
+  title: string;
+  /**
+   * Descrição da lista.
+   * @format not empty
+   * @maxLength 2000
+   * @example "Fornecedores da unidade de Manaus."
+   */
+  description?: string;
+  /**
+   * Quantidade de itens.
+   * @format integer
+   * @example 9264
+   */
+  size: number;
+  /**
+   * Itens pertencentes a lista.
+   * @maxItems 100000
+   */
+  items?: string[];
+}
+
+/** ListSummaryDto */
+export interface ListSummaryDto {
+  /**
+   * Identificador único.
+   * @format uuid
+   * @example "5680a75e-750e-4c31-a1a1-e61e0e4f5618"
+   */
+  id: string;
+  /**
+   * Data de criação.
+   * @format iso8601
+   * @example "2024-03-11T17:30:20.757Z"
+   */
+  created: string;
+  /**
+   * Data da última atualização.
+   * @format iso8601
+   * @example "2024-03-27T08:47:56.384Z"
+   */
+  updated: string;
+  /**
+   * Título da lista.
+   * @format not empty
+   * @maxLength 50
+   * @example "Minha Lista de Empresas"
+   */
+  title: string;
+  /**
+   * Descrição da lista.
+   * @format not empty
+   * @maxLength 2000
+   * @example "Fornecedores da unidade de Manaus."
+   */
+  description?: string;
+  /**
+   * Quantidade de itens.
+   * @format integer
+   * @example 9264
+   */
+  size: number;
+}
+
+/** ListPageDto */
+export interface ListPageDto {
+  /**
+   * Token da próxima página.
+   * @format not empty
+   * @minLength 32
+   * @maxLength 32
+   * @example "8d47bdcbde4a7a2d4a98d5f555a19701"
+   */
+  next: string;
+  /**
+   * Quantidade de registros lidos.
+   * @format integer
+   * @min 1
+   * @max 100
+   * @example 100
+   */
+  limit: number;
+  /**
+   * Quantidade de registros disponíveis.
+   * @format integer
+   * @min 0
+   * @example 345
+   */
+  count: number;
+  /** Listas que obedecem aos critérios de pesquisa. */
+  records: ListSummaryDto[];
+}
+
+/** ListUpdateDto */
+export interface ListUpdateDto {
+  /**
+   * Título da lista.
+   * @format not empty
+   * @maxLength 50
+   * @example "Minha Lista de Empresas"
+   */
+  title?: string;
+  /**
+   * Descrição da lista.
+   * @format not empty
+   * @maxLength 2000
+   * @example "Fornecedores da unidade de Manaus."
+   */
+  description?: string;
+  /**
+   * Itens pertencentes a lista.
+   * @maxItems 100000
+   */
+  items?: string[];
 }
 
 /** LegacyRegistrationDto */
@@ -1843,10 +1982,7 @@ export interface CompanyOfficeDto {
   statusDate: string;
   /** Informações da situação cadastral. */
   status: OfficeStatusDto;
-  /**
-   * Presente quando `status.id != 2`
-   * Informações do motivo da situação cadastral.
-   */
+  /** Informações do motivo da situação cadastral, presente quando `status.id != 2`. */
   reason?: OfficeReasonDto;
   /**
    * Data da situação especial.
@@ -1854,10 +1990,7 @@ export interface CompanyOfficeDto {
    * @example "2022-01-01"
    */
   specialDate?: string;
-  /**
-   * Presente quando `specialDate != undefined`
-   * Informações da situação especial.
-   */
+  /** Informações da situação especial, presente quando `specialDate != undefined`. */
   special?: OfficeSpecialDto;
   /** Informações da atividade econômica principal. */
   mainActivity: ActivityDto;
@@ -1878,8 +2011,7 @@ export interface CompanyDto {
    */
   name: string;
   /**
-   * Presente quando `nature.id < 2000`
-   * Ente federativo responsável.
+   * Ente federativo responsável, presente quando `nature.id < 2000`.
    * @format not empty
    * @example "Uniao"
    */
@@ -1963,10 +2095,10 @@ export interface SuframaReadDto {
   taxId: string;
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -2007,17 +2139,17 @@ export interface SimplesReadDto {
    */
   taxId: string;
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona o histórico de períodos
+   * +**1 ₪** Adiciona o histórico de períodos
    * anteriores do Simples e MEI.
    * @default false
    */
   history?: boolean;
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -2059,10 +2191,10 @@ export interface RfbReadDto {
   taxId: string;
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -2119,10 +2251,10 @@ export interface PersonSearchDto {
   limit?: number;
   /**
    * Tipos das pessoas serem incluídos, separados por vírgula:
-   * • `NATURAL`: Pessoa física.
-   * • `LEGAL`: Pessoa jurídica.
-   * • `FOREIGN`: Pessoa residente no exterior.
-   * • `UNKNOWN`: Pessoa desconhecida.
+   * - `NATURAL`: Pessoa física.
+   * - `LEGAL`: Pessoa jurídica.
+   * - `FOREIGN`: Pessoa residente no exterior.
+   * - `UNKNOWN`: Pessoa desconhecida.
    * @example "NATURAL,LEGAL"
    */
   "type.in"?: ("LEGAL" | "NATURAL" | "FOREIGN" | "UNKNOWN")[];
@@ -2141,10 +2273,10 @@ export interface PersonSearchDto {
    */
   "name.nin"?: string[];
   /**
-   * CPFs a serem incluídos, separados por vírgula. A correspondência será feita pelos dígitos
-   * entre o quarto e nono, uma vez que não armazenamos CPFs completos em nossa plataforma.
-   * @format cpf
-   * @example "78326957062,92854908082"
+   * CPFs ou CNPJs a serem incluídos, separados por vírgula. A correspondência por CPF será feita pelos
+   * dígitos entre o quarto e nono, uma vez que não armazenamos CPFs completos em nossa plataforma.
+   * @format cnpj|cpf
+   * @example "78326957062,92854908082,07526557000100"
    */
   "taxId.in"?: string[];
   /**
@@ -2170,19 +2302,19 @@ export interface PersonSearchDto {
 
 export interface OfficeReadDto {
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona as informações de opção pelo
+   * +**1 ₪** Adiciona as informações de opção pelo
    * Simples e enquadramento no MEI.
    * @default false
    */
   simples?: boolean;
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona o histórico de períodos
+   * +**1 ₪** Adiciona o histórico de períodos
    * anteriores do Simples e MEI.
    * @default false
    */
   simplesHistory?: boolean;
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona as Inscrições Estaduais para as selecionadas
+   * +**1 ₪** Adiciona as Inscrições Estaduais para as selecionadas
    * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas.
    * @example "PR,RS,SC"
    */
@@ -2217,12 +2349,12 @@ export interface OfficeReadDto {
     | "TO"
   )[];
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona a inscrição na SUFRAMA.
+   * +**1 ₪** Adiciona a inscrição na SUFRAMA.
    * @default false
    */
   suframa?: boolean;
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona a latitude e longitude do endereço.
+   * +**1 ₪** Adiciona a latitude e longitude do endereço.
    * @default false
    */
   geocoding?: boolean;
@@ -2240,10 +2372,10 @@ export interface OfficeReadDto {
   )[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
@@ -2348,17 +2480,17 @@ export interface OfficeSearchDto {
   "company.nature.id.nin"?: number[];
   /**
    * Códigos dos portes a serem incluídos, separados por vírgula:
-   * • `1`: Microempresa (ME).
-   * • `3`: Empresa de Pequeno Porte (EPP).
-   * • `5`: Demais.
+   * - `1`: Microempresa (ME).
+   * - `3`: Empresa de Pequeno Porte (EPP).
+   * - `5`: Demais.
    * @format integer
    * @example "1,3"
    */
   "company.size.id.in"?: number[];
   /**
    * Indicador de opção pelo Simples Nacional:
-   * • `true`: Apenas empresas optantes.
-   * • `false`: Apenas empresas não optantes.
+   * - `true`: Apenas empresas optantes.
+   * - `false`: Apenas empresas não optantes.
    * @example true
    */
   "company.simples.optant.eq"?: boolean;
@@ -2376,8 +2508,8 @@ export interface OfficeSearchDto {
   "company.simples.since.lte"?: string;
   /**
    * Indicador de enquadramento no MEI:
-   * • `true`: Apenas empresas enquadradas.
-   * • `false`: Apenas empresas não enquadradas.
+   * - `true`: Apenas empresas enquadradas.
+   * - `false`: Apenas empresas não enquadradas.
    * @example true
    */
   "company.simei.optant.eq"?: boolean;
@@ -2393,6 +2525,12 @@ export interface OfficeSearchDto {
    * @example "2020-12-31"
    */
   "company.simei.since.lte"?: string;
+  /**
+   * Identificadores de listas de CNPJs a serem excluídos, separados por vírgula.
+   * @format uuid
+   * @example "37505509-b2a5-42c2-94f4-aa99d2033bf5"
+   */
+  "taxId.nin"?: string[];
   /**
    * Termos a serem incluídos no nome fantasia, separados por espaço para correspondência no mesmo
    * estabelecimento, ou separados por vírgula para correspondência em diferentes.
@@ -2421,8 +2559,8 @@ export interface OfficeSearchDto {
   "founded.lte"?: string;
   /**
    * Indicador de estabelecimento matriz:
-   * • `true`: Apenas matrizes.
-   * • `false`: Apenas filiais.
+   * - `true`: Apenas matrizes.
+   * - `false`: Apenas filiais.
    * @example true
    */
   "head.eq"?: boolean;
@@ -2440,11 +2578,11 @@ export interface OfficeSearchDto {
   "statusDate.lte"?: string;
   /**
    * Códigos das situações cadastrais a serem incluídos, separados por vírgula:
-   * • `1`: Nula.
-   * • `2`: Ativa.
-   * • `3`: Suspensa.
-   * • `4`: Inapta.
-   * • `8`: Baixada.
+   * - `1`: Nula.
+   * - `2`: Ativa.
+   * - `3`: Suspensa.
+   * - `4`: Inapta.
+   * - `8`: Baixada.
    * @format integer
    * @example "3,4,8"
    */
@@ -2576,11 +2714,16 @@ export interface OfficeSearchDto {
   "address.country.id.nin"?: number[];
   /**
    * Indicador de existência de telefone:
-   * • `true`: Apenas estabelecimentos com telefone.
-   * • `false`: Apenas estabelecimentos sem telefone.
+   * - `true`: Apenas estabelecimentos com telefone.
+   * - `false`: Apenas estabelecimentos sem telefone.
    * @example true
    */
   "phones.ex"?: boolean;
+  /**
+   * Tipos de telefone a serem incluídos, separados por vírgula.
+   * @example "LANDLINE,MOBILE"
+   */
+  "phones.type.in"?: ("LANDLINE" | "MOBILE")[];
   /**
    * Códigos de DDD a serem incluídos, separados por vírgula.
    * @format numeric
@@ -2607,11 +2750,16 @@ export interface OfficeSearchDto {
   "phones.area.lte"?: string;
   /**
    * Indicador de existência de e-mail:
-   * • `true`: Apenas estabelecimentos com e-mail.
-   * • `false`: Apenas estabelecimentos sem e-mail.
+   * - `true`: Apenas estabelecimentos com e-mail.
+   * - `false`: Apenas estabelecimentos sem e-mail.
    * @example true
    */
   "emails.ex"?: boolean;
+  /**
+   * Tipos de propriedade de e-mail a serem incluídos, separados por vírgula.
+   * @example "CORPORATE,ACCOUNTING"
+   */
+  "emails.ownership.in"?: ("ACCOUNTING" | "CORPORATE" | "PERSONAL")[];
   /**
    * Domínios de e-mail a serem incluídos, separados por vírgula.
    * @format not empty
@@ -2703,10 +2851,10 @@ export interface OfficeMapDto {
   zoom?: number;
   /**
    * Tipo do mapa:
-   * • `roadmap`: Rodovias.
-   * • `terrain`: Elevação.
-   * • `satellite`: Satélite.
-   * • `hybrid`: Rodovias e satélite.
+   * - `roadmap`: Rodovias.
+   * - `terrain`: Elevação.
+   * - `satellite`: Satélite.
+   * - `hybrid`: Rodovias e satélite.
    * @default "roadmap"
    */
   type?: "roadmap" | "terrain" | "satellite" | "hybrid";
@@ -2751,6 +2899,32 @@ export interface OfficeStreetDto {
   taxId: string;
 }
 
+export interface PesquisaListasParams {
+  /**
+   * Token de paginação, mutualmente exclusivo com as demais propriedades.
+   * @format not empty
+   * @minLength 32
+   * @maxLength 32
+   * @example "8d47bdcbde4a7a2d4a98d5f555a19701"
+   */
+  token?: string;
+  /**
+   * Quantidade de registros a serem lidos por página.
+   * @format integer
+   * @min 1
+   * @max 1000
+   * @default 100
+   */
+  limit?: number;
+  /**
+   * Termo a ser pesquisado no título ou descrição.
+   * @format not empty
+   * @minLength 1
+   * @example "Clientes"
+   */
+  search?: string;
+}
+
 export interface ConsultaCnpjParams {
   /**
    * Habilita retornar dados em cache caso a busca em tempo real falhe.
@@ -2765,7 +2939,7 @@ export interface ConsultaCnpjParams {
    */
   company_max_age?: number;
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona as informações de opção pelo Simples e
+   * +**1 ₪** Adiciona as informações de opção pelo Simples e
    * enquadramento no MEI.
    * @format integer
    * @min 0
@@ -2773,7 +2947,7 @@ export interface ConsultaCnpjParams {
    */
   simples_max_age?: number;
   /**
-   * +<span style="color: #EAED37">1 ₪</span> Adiciona a lista de Inscrições Estaduais.
+   * +**1 ₪** Adiciona a lista de Inscrições Estaduais.
    * @format integer
    * @min 0
    * @example 1
@@ -2831,10 +3005,10 @@ export interface CccReadDto {
   )[];
   /**
    * Estratégia de cache utilizada na aquisição dos dados:
-   * • `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
-   * • `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
-   * • `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
-   * • `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
    * @default "CACHE_IF_ERROR"
    */
   strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
