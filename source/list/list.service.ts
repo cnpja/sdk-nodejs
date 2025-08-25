@@ -83,7 +83,7 @@ export class ListService {
 	public createExport(params: { listId: string } & ListExportCreateDto): Promise<ListExportIdDto> {
 		const { listId, ...json } = params;
 
-		return this.httpService.post('list/:listId', {
+		return this.httpService.post('list/:listId/export', {
 			replacements: { listId },
 			json,
 		});
@@ -97,7 +97,7 @@ export class ListService {
 	public async *searchExport(params: ListExportSearchDto): AsyncIterable<ListExportDto[]> {
 		const { listId, ...query } = params;
 
-		yield* this.httpService.getPage('list', {
+		yield* this.httpService.getPage('list/:listId/export', {
 			replacements: { listId },
 			query,
 		});
