@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/cnpja/sdk-nodejs/compare/v1.7.0...v1.7.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* **list:** fix export paths ([299b503](https://github.com/cnpja/sdk-nodejs/commit/299b503e75de5a1e660cebdc8facfe0756535b83))
+
 # [1.7.0](https://github.com/cnpja/sdk-nodejs/compare/v1.6.1...v1.7.0) (2025-08-25)
 
 
