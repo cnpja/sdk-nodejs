@@ -1323,6 +1323,423 @@ export interface OfficePageDto {
   records: OfficePageRecordDto[];
 }
 
+/** ListParamsDto */
+export interface ListParamsDto {
+  /**
+   * Termos a serem incluídos na razão social ou nome fantasia, separados por espaço para correspondência
+   * no mesmo estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "CNPJá,Banco do Brasil,AMBEV S/A"
+   */
+  "names.in"?: string[];
+  /**
+   * Termos a serem excluídos na razão social ou nome fantasia, separados por espaço para correspondência
+   * no mesmo estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "EI,Eireli,LTDA"
+   */
+  "names.nin"?: string[];
+  /**
+   * Termos a serem incluídos na razão social, separados por espaço para correspondência na mesma empresa,
+   * ou separados por vírgula para correspondência em diferentes.
+   * @example "CNPJá,Banco do Brasil,AMBEV S/A"
+   */
+  "company.name.in"?: string[];
+  /**
+   * Termos a serem excluídos na razão social, separados por espaço para correspondência na mesma empresa,
+   * ou separados por vírgula para correspondência em diferentes.
+   * @example "EI,Eireli,LTDA"
+   */
+  "company.name.nin"?: string[];
+  /**
+   * Capital social maior ou igual ao valor especificado.
+   * @format float
+   * @min 0
+   * @example 12345.67
+   */
+  "company.equity.gte"?: number;
+  /**
+   * Capital social menor ou igual ao valor especificado.
+   * @format float
+   * @min 0
+   * @example 98765.43
+   */
+  "company.equity.lte"?: number;
+  /**
+   * Códigos das naturezas jurídicas a serem incluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2021).
+   * @example "1015,2011,3034"
+   */
+  "company.nature.id.in"?: number[];
+  /**
+   * Códigos das naturezas jurídicas a serem excluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2021).
+   * @example "1015,2011,3034"
+   */
+  "company.nature.id.nin"?: number[];
+  /**
+   * Códigos dos portes a serem incluídos, separados por vírgula:
+   * - `1`: Microempresa (ME).
+   * - `3`: Empresa de Pequeno Porte (EPP).
+   * - `5`: Demais.
+   * @example "1,3"
+   */
+  "company.size.id.in"?: number[];
+  /**
+   * Indicador de opção pelo Simples Nacional:
+   * - `true`: Apenas empresas optantes.
+   * - `false`: Apenas empresas não optantes.
+   * @example true
+   */
+  "company.simples.optant.eq"?: boolean;
+  /**
+   * Data de opção pelo Simples Nacional maior ou igual a especificada.
+   * @format iso8601
+   * @example "2018-01-01"
+   */
+  "company.simples.since.gte"?: string;
+  /**
+   * Data de opção pelo Simples Nacional menor ou igual a especificada.
+   * @format iso8601
+   * @example "2020-12-31"
+   */
+  "company.simples.since.lte"?: string;
+  /**
+   * Indicador de enquadramento no MEI:
+   * - `true`: Apenas empresas enquadradas.
+   * - `false`: Apenas empresas não enquadradas.
+   * @example true
+   */
+  "company.simei.optant.eq"?: boolean;
+  /**
+   * Data de enquadramento no MEI maior ou igual a especificada.
+   * @format iso8601
+   * @example "2018-01-01"
+   */
+  "company.simei.since.gte"?: string;
+  /**
+   * Data de enquadramento no MEI menor ou igual a especificada.
+   * @format iso8601
+   * @example "2020-12-31"
+   */
+  "company.simei.since.lte"?: string;
+  /**
+   * Identificadores de listas de CNPJs a serem excluídos, separados por vírgula.
+   * @example "37505509-b2a5-42c2-94f4-aa99d2033bf5"
+   */
+  "taxId.nin"?: string[];
+  /**
+   * Termos a serem incluídos no nome fantasia, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "CNPJá,Banco do Brasil,AMBEV S/A"
+   */
+  "alias.in"?: string[];
+  /**
+   * Termos a serem excluídos no nome fantasia, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Eireli,LTDA"
+   */
+  "alias.nin"?: string[];
+  /**
+   * Data de abertura maior ou igual a especificada.
+   * @format iso8601
+   * @example "2018-01-01"
+   */
+  "founded.gte"?: string;
+  /**
+   * Data de abertura menor ou igual a especificada.
+   * @format iso8601
+   * @example "2020-12-31"
+   */
+  "founded.lte"?: string;
+  /**
+   * Indicador de estabelecimento matriz:
+   * - `true`: Apenas matrizes.
+   * - `false`: Apenas filiais.
+   * @example true
+   */
+  "head.eq"?: boolean;
+  /**
+   * Data da situação cadastral maior ou igual a especificada.
+   * @format iso8601
+   * @example "2018-01-01"
+   */
+  "statusDate.gte"?: string;
+  /**
+   * Data da situação cadastral menor ou igual a especificada.
+   * @format iso8601
+   * @example "2020-12-31"
+   */
+  "statusDate.lte"?: string;
+  /**
+   * Códigos das situações cadastrais a serem incluídos, separados por vírgula:
+   * - `1`: Nula.
+   * - `2`: Ativa.
+   * - `3`: Suspensa.
+   * - `4`: Inapta.
+   * - `8`: Baixada.
+   * @example "3,4,8"
+   */
+  "status.id.in"?: number[];
+  /**
+   * Códigos dos motivos das situações cadastrais a serem incluídos, separados por vírgula, conforme
+   * [Receita Federal 🡭](http://www.consultas.cge.rj.gov.br/scadastral.pdf).
+   * @example "1,3,5"
+   */
+  "reason.id.in"?: number[];
+  /**
+   * Data da situação especial maior ou igual a especificada.
+   * @format iso8601
+   * @example "2018-01-01"
+   */
+  "specialDate.gte"?: string;
+  /**
+   * Data da situação especial menor ou igual a especificada.
+   * @format iso8601
+   * @example "2020-12-31"
+   */
+  "specialDate.lte"?: string;
+  /**
+   * Códigos das situações especiais a serem incluídos, separados por vírgula, conforme
+   * [Receita Federal 🡭](http://www38.receita.fazenda.gov.br/cadsincnac/jsp/coleta/ajuda/topicos/Eventos_de_Alteracao.htm).
+   * @example "405,410,417"
+   */
+  "special.id.in"?: number[];
+  /**
+   * Códigos dos municípios a serem incluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
+   * @example "4106902,4205407,4314902"
+   */
+  "address.municipality.in"?: number[];
+  /**
+   * Códigos dos municípios a serem excluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
+   * @example "4106902,4205407,4314902"
+   */
+  "address.municipality.nin"?: number[];
+  /**
+   * Termos a serem incluídos no logradouro, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Avenida Copacabana,Rua das Pedras,Rua Oscar Freire"
+   */
+  "address.street.in"?: string[];
+  /**
+   * Termos a serem excluídos no logradouro, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Avenida Copacabana,Rua das Pedras,Rua Oscar Freire"
+   */
+  "address.street.nin"?: string[];
+  /**
+   * Números do logradouro a serem incluídos, separados por vírgula.
+   * @example "10,435,10387"
+   */
+  "address.number.in"?: string[];
+  /**
+   * Números do logradouro a serem excluídos, separados por vírgula.
+   * @example "10,435,10387"
+   */
+  "address.number.nin"?: string[];
+  /**
+   * Termos a serem incluídos no complemento, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Cj 1403,Andar 4,Bloco C"
+   */
+  "address.details.in"?: string[];
+  /**
+   * Termos a serem excluídos no complemento, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Cj 1403,Andar 4,Bloco C"
+   */
+  "address.details.nin"?: string[];
+  /**
+   * Termos a serem incluídos no bairro, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Leblon,Vila Olímpia,Belvedere"
+   */
+  "address.district.in"?: string[];
+  /**
+   * Termos a serem excluídos no bairro, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Leblon,Vila Olímpia,Belvedere"
+   */
+  "address.district.nin"?: string[];
+  /**
+   * Unidades federativas a serem incluídas, separadas por vírgula.
+   * @example "ES,RJ,SP"
+   */
+  "address.state.in"?: (
+    | "AC"
+    | "AL"
+    | "AM"
+    | "AP"
+    | "BA"
+    | "CE"
+    | "DF"
+    | "ES"
+    | "GO"
+    | "MA"
+    | "MG"
+    | "MS"
+    | "MT"
+    | "PA"
+    | "PB"
+    | "PE"
+    | "PI"
+    | "PR"
+    | "RJ"
+    | "RN"
+    | "RO"
+    | "RR"
+    | "RS"
+    | "SC"
+    | "SP"
+    | "SE"
+    | "TO"
+  )[];
+  /**
+   * Códigos de endereçamento postal a serem incluídos, separados por vírgula.
+   * @example "01430000,01452922,01310100"
+   */
+  "address.zip.in"?: string[];
+  /**
+   * Código de endereçamento postal maior ou igual ao especificado.
+   * @format numeric
+   * @minLength 8
+   * @maxLength 8
+   * @example "01452922"
+   */
+  "address.zip.gte"?: string;
+  /**
+   * Código de endereçamento postal menor ou igual ao especificado.
+   * @format numeric
+   * @minLength 8
+   * @maxLength 8
+   * @example "01452922"
+   */
+  "address.zip.lte"?: string;
+  /**
+   * Códigos dos países a serem incluídos, separados por vírgula, conforme
+   * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
+   * @example "32,152,600"
+   */
+  "address.country.id.in"?: number[];
+  /**
+   * Códigos dos países a serem excluídos, separados por vírgula, conforme
+   * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
+   * @example "32,152,600"
+   */
+  "address.country.id.nin"?: number[];
+  /**
+   * Indicador de existência de telefone:
+   * - `true`: Apenas estabelecimentos com telefone.
+   * - `false`: Apenas estabelecimentos sem telefone.
+   * @example true
+   */
+  "phones.ex"?: boolean;
+  /**
+   * Tipos de telefone a serem incluídos, separados por vírgula.
+   * @example "LANDLINE,MOBILE"
+   */
+  "phones.type.in"?: ("LANDLINE" | "MOBILE")[];
+  /**
+   * Códigos de DDD a serem incluídos, separados por vírgula.
+   * @example "11,13,15"
+   */
+  "phones.area.in"?: string[];
+  /**
+   * Códigos de DDD maior ou igual ao especificado.
+   * @format numeric
+   * @minLength 2
+   * @maxLength 2
+   * @example "11"
+   */
+  "phones.area.gte"?: string;
+  /**
+   * Códigos de DDD menor ou igual ao especificado.
+   * @format numeric
+   * @minLength 2
+   * @maxLength 2
+   * @example "11"
+   */
+  "phones.area.lte"?: string;
+  /**
+   * Números de telefone a serem incluídos, separados por vírgula.
+   * @example "92635835,44594576,36285962"
+   */
+  "phones.number.in"?: string[];
+  /**
+   * Números de telefone a serem excluídos, separados por vírgula.
+   * @example "92635835,44594576,36285962"
+   */
+  "phones.number.nin"?: string[];
+  /**
+   * Indicador de existência de e-mail:
+   * - `true`: Apenas estabelecimentos com e-mail.
+   * - `false`: Apenas estabelecimentos sem e-mail.
+   * @example true
+   */
+  "emails.ex"?: boolean;
+  /**
+   * Tipos de propriedade de e-mail a serem incluídos, separados por vírgula.
+   * @example "CORPORATE,ACCOUNTING"
+   */
+  "emails.ownership.in"?: ("ACCOUNTING" | "CORPORATE" | "PERSONAL")[];
+  /**
+   * Endereços de e-mail a serem incluídos, separados por vírgula.
+   * @example "alex.costa@company.com,jane.doe@gmail.com,support@domain.com"
+   */
+  "emails.address.in"?: string[];
+  /**
+   * Endereços de e-mail a serem excluídos, separados por vírgula.
+   * @example "alex.costa@company.com,jane.doe@gmail.com,support@domain.com"
+   */
+  "emails.address.nin"?: string[];
+  /**
+   * Domínios de e-mail a serem incluídos, separados por vírgula.
+   * @example "cnpja.com,bb.com.br,ambev.com.br"
+   */
+  "emails.domain.in"?: string[];
+  /**
+   * Domínios de e-mail a serem excluídos, separados por vírgula.
+   * @example "gmail.com,hotmail.com,yahoo.com"
+   */
+  "emails.domain.nin"?: string[];
+  /**
+   * Códigos das atividades econômicas principais ou secundárias a serem incluídos, separados por vírgula,
+   * conforme [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
+   * @example "0111301,1011201,3511501"
+   */
+  "activities.id.in"?: number[];
+  /**
+   * Códigos das atividades econômicas principais ou secundárias a serem excluídos, separados por vírgula,
+   * conforme [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
+   * @example "0111301,1011201,3511501"
+   */
+  "activities.id.nin"?: number[];
+  /**
+   * Códigos das atividades econômicas principais a serem incluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
+   * @example "0111301,1011201,3511501"
+   */
+  "mainActivity.id.in"?: number[];
+  /**
+   * Códigos das atividades econômicas principais a serem excluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
+   * @example "0111301,1011201,3511501"
+   */
+  "mainActivity.id.nin"?: number[];
+  /**
+   * Códigos das atividades econômicas secundárias a serem incluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
+   * @example "0111301,1011201,3511501"
+   */
+  "sideActivities.id.in"?: number[];
+  /**
+   * Códigos das atividades econômicas secundárias a serem excluídos, separados por vírgula, conforme
+   * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
+   * @example "0111301,1011201,3511501"
+   */
+  "sideActivities.id.nin"?: number[];
+}
+
 /** ListCreateDto */
 export interface ListCreateDto {
   /**
@@ -1340,10 +1757,26 @@ export interface ListCreateDto {
    */
   description?: string;
   /**
-   * Itens pertencentes a lista.
-   * @maxItems 100000
+   * Números dos CNPJs sem pontuação, mutualmente exclusivo com `params`.
+   * @maxItems 1000000
+   * @minItems 1
    */
-  items: string[];
+  items?: string[];
+  /**
+   * +**1 ₪** por 10 registros.
+   * Filtros de pesquisa para compor a lista de estabelecimentos, mutualmente exclusivo com `items`.
+   *
+   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
+   */
+  params?: ListParamsDto;
+  /**
+   * Limite de estabelecimentos a serem obtidos ao compor uma lista através de filtros.
+   * @format integer
+   * @min 1
+   * @max 1000000
+   * @example 10000
+   */
+  limit?: number;
 }
 
 /** ListDto */
@@ -1381,16 +1814,32 @@ export interface ListDto {
    */
   description?: string;
   /**
-   * Quantidade de itens.
+   * Quantidade de estabelecimentos.
    * @format integer
    * @example 9264
    */
   size: number;
   /**
-   * Itens pertencentes a lista.
-   * @maxItems 100000
+   * Números dos CNPJs sem pontuação, mutualmente exclusivo com `params`.
+   * @maxItems 1000000
+   * @minItems 1
    */
   items?: string[];
+  /**
+   * +**1 ₪** por 10 registros.
+   * Filtros de pesquisa para compor a lista de estabelecimentos, mutualmente exclusivo com `items`.
+   *
+   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
+   */
+  params?: ListParamsDto;
+  /**
+   * Limite de estabelecimentos a serem obtidos ao compor uma lista através de filtros.
+   * @format integer
+   * @min 1
+   * @max 1000000
+   * @example 10000
+   */
+  limit?: number;
 }
 
 /** ListSummaryDto */
@@ -1428,11 +1877,26 @@ export interface ListSummaryDto {
    */
   description?: string;
   /**
-   * Quantidade de itens.
+   * Quantidade de estabelecimentos.
    * @format integer
    * @example 9264
    */
   size: number;
+  /**
+   * +**1 ₪** por 10 registros.
+   * Filtros de pesquisa para compor a lista de estabelecimentos, mutualmente exclusivo com `items`.
+   *
+   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
+   */
+  params?: ListParamsDto;
+  /**
+   * Limite de estabelecimentos a serem obtidos ao compor uma lista através de filtros.
+   * @format integer
+   * @min 1
+   * @max 1000000
+   * @example 10000
+   */
+  limit?: number;
 }
 
 /** ListPageDto */
@@ -1481,10 +1945,216 @@ export interface ListUpdateDto {
    */
   description?: string;
   /**
-   * Itens pertencentes a lista.
-   * @maxItems 100000
+   * Números dos CNPJs sem pontuação, mutualmente exclusivo com `params`.
+   * @maxItems 1000000
+   * @minItems 1
    */
   items?: string[];
+  /**
+   * +**1 ₪** por 10 registros.
+   * Filtros de pesquisa para compor a lista de estabelecimentos, mutualmente exclusivo com `items`.
+   *
+   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
+   */
+  params?: ListParamsDto;
+  /**
+   * Limite de estabelecimentos a serem obtidos ao compor uma lista através de filtros.
+   * @format integer
+   * @min 1
+   * @max 1000000
+   * @example 10000
+   */
+  limit?: number;
+}
+
+/** ListJobParamsDto */
+export interface ListJobParamsDto {
+  /**
+   * +**1 ₪** Adiciona as informações de opção pelo
+   * Simples e enquadramento no MEI.
+   * @default false
+   */
+  simples?: boolean;
+  /**
+   * +**1 ₪** Adiciona o histórico de períodos
+   * anteriores do Simples e MEI.
+   * @default false
+   */
+  simplesHistory?: boolean;
+  /**
+   * +**1 ₪** Adiciona as Inscrições Estaduais para as selecionadas
+   * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas.
+   * @example "PR,RS,SC"
+   */
+  registrations?: (
+    | "BR"
+    | "AC"
+    | "AL"
+    | "AM"
+    | "AP"
+    | "BA"
+    | "CE"
+    | "DF"
+    | "ES"
+    | "GO"
+    | "MA"
+    | "MG"
+    | "MS"
+    | "MT"
+    | "PA"
+    | "PB"
+    | "PE"
+    | "PI"
+    | "PR"
+    | "RJ"
+    | "RN"
+    | "RO"
+    | "RR"
+    | "RS"
+    | "SC"
+    | "SP"
+    | "SE"
+    | "TO"
+  )[];
+  /**
+   * +**1 ₪** Adiciona a inscrição na SUFRAMA.
+   * @default false
+   */
+  suframa?: boolean;
+  /**
+   * +**1 ₪** Adiciona a latitude e longitude do endereço.
+   * @default false
+   */
+  geocoding?: boolean;
+  /**
+   * Estratégia de cache utilizada na aquisição dos dados:
+   * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
+   * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
+   * - `CACHE_IF_ERROR`: Idem ao `CACHE_IF_FRESH`, mas se a consulta online falhar retorna os dados do cache respeitando o limite em `maxStale`.
+   * - `ONLINE`: Consulta diretamente online, não recomendado pois ignora qualquer cache, sugerimos configurar `maxAge=1` como alternativa.
+   * @default "CACHE_IF_ERROR"
+   */
+  strategy?: "ONLINE" | "CACHE_IF_FRESH" | "CACHE_IF_ERROR" | "CACHE";
+  /**
+   * Idade máxima, em dias, que um dado em cache é aceite, relevante para as estratégias `CACHE_IF_FRESH` e `CACHE_IF_ERROR`.
+   * @format integer
+   * @min 1
+   * @max 3650
+   * @default 45
+   */
+  maxAge?: number;
+  /**
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * @format integer
+   * @min 1
+   * @max 3650
+   * @default 365
+   */
+  maxStale?: number;
+}
+
+/** ListExportCreateDto */
+export interface ListExportCreateDto {
+  /** Parâmetros de consulta dos estabelecimentos. */
+  params?: ListJobParamsDto;
+}
+
+/** ListExportIdDto */
+export interface ListExportIdDto {
+  /**
+   * Código da exportação.
+   * @format uuid
+   * @example "db344b70-3daf-43f3-b324-0f204ebfbd99"
+   */
+  id: string;
+}
+
+/** ListExportDto */
+export interface ListExportDto {
+  /**
+   * Date of last update
+   * @format iso8601
+   * @example "2024-03-11T17:30:20.757Z"
+   */
+  updated: string;
+  /**
+   * Date of creation
+   * @format iso8601
+   * @example "2024-03-11T17:30:20.757Z"
+   */
+  created: string;
+  /**
+   * Unique identifier
+   * @format uuid
+   * @example "5680a75e-750e-4c31-a1a1-e61e0e4f5618"
+   */
+  id: string;
+  /**
+   * Situação da exportação:
+   * - `PENDING`: Exportação aguardando na fila, limitado a uma por usuário.
+   * - `PROCESSING`: Obtenção dos dados empresariais em andamento.
+   * - `PROCESSED`: Dados empresariais obtidos, aguardando exportação dos arquivos.
+   * - `EXPORTING`: Exportando os dados em formato ZIP e Excel.
+   * - `COMPLETED`: Exportação concluída com sucesso.
+   * - `FAILED`: Exportação falhou, verifique o campo `statusReason`.
+   * @example "COMPLETED"
+   */
+  status: "PENDING" | "PROCESSING" | "PROCESSED" | "EXPORTING" | "COMPLETED" | "FAILED";
+  /**
+   * Motivo de falha da exportação.
+   * @format not empty
+   * @example "Saldo insuficiente"
+   */
+  statusReason: string;
+  /**
+   * Percentual de conclusão da exportação.
+   * @format float
+   * @example 0.5
+   */
+  progress: number;
+  /**
+   * URL para download da exportação em formato ZIP.
+   * @format url
+   * @example "https://storage.googleapis.com/cnpja/list/.../lista.zip"
+   */
+  zipUrl: string;
+  /**
+   * URL para download da exportação em formato Excel.
+   * @format url
+   * @example "https://storage.googleapis.com/cnpja/list/.../lista.xlsx"
+   */
+  xlsxUrl: string;
+  /** Parâmetros de consulta dos estabelecimentos. */
+  params: ListJobParamsDto;
+}
+
+/** ListExportPageDto */
+export interface ListExportPageDto {
+  /**
+   * Token da próxima página.
+   * @format not empty
+   * @minLength 32
+   * @maxLength 32
+   * @example "8d47bdcbde4a7a2d4a98d5f555a19701"
+   */
+  next: string;
+  /**
+   * Quantidade de registros lidos.
+   * @format integer
+   * @min 1
+   * @max 100
+   * @example 100
+   */
+  limit: number;
+  /**
+   * Quantidade de registros disponíveis.
+   * @format integer
+   * @min 0
+   * @example 345
+   */
+  count: number;
+  /** Exportações pertencentes a lista. */
+  records: ListExportDto[];
 }
 
 /** LegacyRegistrationDto */
@@ -2245,7 +2915,7 @@ export interface PersonSearchDto {
    * Quantidade de registros a serem lidos por página.
    * @format integer
    * @min 1
-   * @max 100
+   * @max 1000
    * @default 10
    */
   limit?: number;
@@ -2261,21 +2931,18 @@ export interface PersonSearchDto {
   /**
    * Nomes a serem incluídos, separados por espaço para correspondência na mesma pessoa,
    * ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "Maria Oliveira,Ana Martins,João"
    */
   "name.in"?: string[];
   /**
    * Nomes a serem excluídos, separados por espaço para correspondência na mesma pessoa,
    * ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "Maria Oliveira,Ana Martins,João"
    */
   "name.nin"?: string[];
   /**
    * CPFs ou CNPJs a serem incluídos, separados por vírgula. A correspondência por CPF será feita pelos
    * dígitos entre o quarto e nono, uma vez que não armazenamos CPFs completos em nossa plataforma.
-   * @format cnpj|cpf
    * @example "78326957062,92854908082,07526557000100"
    */
   "taxId.in"?: string[];
@@ -2287,14 +2954,12 @@ export interface PersonSearchDto {
   /**
    * Códigos dos países a serem incluídos, separados por vírgula, conforme
    * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
-   * @format integer
    * @example "32,152,600"
    */
   "country.id.in"?: number[];
   /**
    * Códigos dos países a serem excluídos, separados por vírgula, conforme
    * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
-   * @format integer
    * @example "32,152,600"
    */
   "country.id.nin"?: number[];
@@ -2418,35 +3083,31 @@ export interface OfficeSearchDto {
    * Quantidade de registros a serem lidos por página.
    * @format integer
    * @min 1
-   * @max 100
+   * @max 1000
    * @default 10
    */
   limit?: number;
   /**
    * Termos a serem incluídos na razão social ou nome fantasia, separados por espaço para correspondência
    * no mesmo estabelecimento, ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "CNPJá,Banco do Brasil,AMBEV S/A"
    */
   "names.in"?: string[];
   /**
    * Termos a serem excluídos na razão social ou nome fantasia, separados por espaço para correspondência
    * no mesmo estabelecimento, ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "EI,Eireli,LTDA"
    */
   "names.nin"?: string[];
   /**
    * Termos a serem incluídos na razão social, separados por espaço para correspondência na mesma empresa,
    * ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "CNPJá,Banco do Brasil,AMBEV S/A"
    */
   "company.name.in"?: string[];
   /**
    * Termos a serem excluídos na razão social, separados por espaço para correspondência na mesma empresa,
    * ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "EI,Eireli,LTDA"
    */
   "company.name.nin"?: string[];
@@ -2467,14 +3128,12 @@ export interface OfficeSearchDto {
   /**
    * Códigos das naturezas jurídicas a serem incluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2021).
-   * @format integer
    * @example "1015,2011,3034"
    */
   "company.nature.id.in"?: number[];
   /**
    * Códigos das naturezas jurídicas a serem excluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://concla.ibge.gov.br/estrutura/natjur-estrutura/natureza-juridica-2021).
-   * @format integer
    * @example "1015,2011,3034"
    */
   "company.nature.id.nin"?: number[];
@@ -2483,7 +3142,6 @@ export interface OfficeSearchDto {
    * - `1`: Microempresa (ME).
    * - `3`: Empresa de Pequeno Porte (EPP).
    * - `5`: Demais.
-   * @format integer
    * @example "1,3"
    */
   "company.size.id.in"?: number[];
@@ -2527,21 +3185,18 @@ export interface OfficeSearchDto {
   "company.simei.since.lte"?: string;
   /**
    * Identificadores de listas de CNPJs a serem excluídos, separados por vírgula.
-   * @format uuid
    * @example "37505509-b2a5-42c2-94f4-aa99d2033bf5"
    */
   "taxId.nin"?: string[];
   /**
    * Termos a serem incluídos no nome fantasia, separados por espaço para correspondência no mesmo
    * estabelecimento, ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "CNPJá,Banco do Brasil,AMBEV S/A"
    */
   "alias.in"?: string[];
   /**
    * Termos a serem excluídos no nome fantasia, separados por espaço para correspondência no mesmo
    * estabelecimento, ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "Eireli,LTDA"
    */
   "alias.nin"?: string[];
@@ -2583,14 +3238,12 @@ export interface OfficeSearchDto {
    * - `3`: Suspensa.
    * - `4`: Inapta.
    * - `8`: Baixada.
-   * @format integer
    * @example "3,4,8"
    */
   "status.id.in"?: number[];
   /**
    * Códigos dos motivos das situações cadastrais a serem incluídos, separados por vírgula, conforme
    * [Receita Federal 🡭](http://www.consultas.cge.rj.gov.br/scadastral.pdf).
-   * @format integer
    * @example "1,3,5"
    */
   "reason.id.in"?: number[];
@@ -2609,35 +3262,64 @@ export interface OfficeSearchDto {
   /**
    * Códigos das situações especiais a serem incluídos, separados por vírgula, conforme
    * [Receita Federal 🡭](http://www38.receita.fazenda.gov.br/cadsincnac/jsp/coleta/ajuda/topicos/Eventos_de_Alteracao.htm).
-   * @format integer
    * @example "405,410,417"
    */
   "special.id.in"?: number[];
   /**
    * Códigos dos municípios a serem incluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
-   * @format integer
    * @example "4106902,4205407,4314902"
    */
   "address.municipality.in"?: number[];
   /**
    * Códigos dos municípios a serem excluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://www.ibge.gov.br/explica/codigos-dos-municipios.php).
-   * @format integer
    * @example "4106902,4205407,4314902"
    */
   "address.municipality.nin"?: number[];
   /**
+   * Termos a serem incluídos no logradouro, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Avenida Copacabana,Rua das Pedras,Rua Oscar Freire"
+   */
+  "address.street.in"?: string[];
+  /**
+   * Termos a serem excluídos no logradouro, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Avenida Copacabana,Rua das Pedras,Rua Oscar Freire"
+   */
+  "address.street.nin"?: string[];
+  /**
+   * Números do logradouro a serem incluídos, separados por vírgula.
+   * @example "10,435,10387"
+   */
+  "address.number.in"?: string[];
+  /**
+   * Números do logradouro a serem excluídos, separados por vírgula.
+   * @example "10,435,10387"
+   */
+  "address.number.nin"?: string[];
+  /**
+   * Termos a serem incluídos no complemento, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Cj 1403,Andar 4,Bloco C"
+   */
+  "address.details.in"?: string[];
+  /**
+   * Termos a serem excluídos no complemento, separados por espaço para correspondência no mesmo
+   * estabelecimento, ou separados por vírgula para correspondência em diferentes.
+   * @example "Cj 1403,Andar 4,Bloco C"
+   */
+  "address.details.nin"?: string[];
+  /**
    * Termos a serem incluídos no bairro, separados por espaço para correspondência no mesmo
    * estabelecimento, ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "Leblon,Vila Olímpia,Belvedere"
    */
   "address.district.in"?: string[];
   /**
    * Termos a serem excluídos no bairro, separados por espaço para correspondência no mesmo
    * estabelecimento, ou separados por vírgula para correspondência em diferentes.
-   * @format not empty
    * @example "Leblon,Vila Olímpia,Belvedere"
    */
   "address.district.nin"?: string[];
@@ -2676,7 +3358,6 @@ export interface OfficeSearchDto {
   )[];
   /**
    * Códigos de endereçamento postal a serem incluídos, separados por vírgula.
-   * @format numeric
    * @minLength 8
    * @maxLength 8
    * @example "01430000,01452922,01310100"
@@ -2701,14 +3382,12 @@ export interface OfficeSearchDto {
   /**
    * Códigos dos países a serem incluídos, separados por vírgula, conforme
    * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
-   * @format integer
    * @example "32,152,600"
    */
   "address.country.id.in"?: number[];
   /**
    * Códigos dos países a serem excluídos, separados por vírgula, conforme
    * [M49 🡭](https://unstats.un.org/unsd/methodology/m49/).
-   * @format integer
    * @example "32,152,600"
    */
   "address.country.id.nin"?: number[];
@@ -2726,7 +3405,6 @@ export interface OfficeSearchDto {
   "phones.type.in"?: ("LANDLINE" | "MOBILE")[];
   /**
    * Códigos de DDD a serem incluídos, separados por vírgula.
-   * @format numeric
    * @minLength 2
    * @maxLength 2
    * @example "11,13,15"
@@ -2749,6 +3427,20 @@ export interface OfficeSearchDto {
    */
   "phones.area.lte"?: string;
   /**
+   * Números de telefone a serem incluídos, separados por vírgula.
+   * @minLength 8
+   * @maxLength 8
+   * @example "92635835,44594576,36285962"
+   */
+  "phones.number.in"?: string[];
+  /**
+   * Números de telefone a serem excluídos, separados por vírgula.
+   * @minLength 8
+   * @maxLength 8
+   * @example "92635835,44594576,36285962"
+   */
+  "phones.number.nin"?: string[];
+  /**
    * Indicador de existência de e-mail:
    * - `true`: Apenas estabelecimentos com e-mail.
    * - `false`: Apenas estabelecimentos sem e-mail.
@@ -2761,56 +3453,58 @@ export interface OfficeSearchDto {
    */
   "emails.ownership.in"?: ("ACCOUNTING" | "CORPORATE" | "PERSONAL")[];
   /**
+   * Endereços de e-mail a serem incluídos, separados por vírgula.
+   * @example "alex.costa@company.com,jane.doe@gmail.com,support@domain.com"
+   */
+  "emails.address.in"?: string[];
+  /**
+   * Endereços de e-mail a serem excluídos, separados por vírgula.
+   * @example "alex.costa@company.com,jane.doe@gmail.com,support@domain.com"
+   */
+  "emails.address.nin"?: string[];
+  /**
    * Domínios de e-mail a serem incluídos, separados por vírgula.
-   * @format not empty
    * @example "cnpja.com,bb.com.br,ambev.com.br"
    */
   "emails.domain.in"?: string[];
   /**
    * Domínios de e-mail a serem excluídos, separados por vírgula.
-   * @format not empty
    * @example "gmail.com,hotmail.com,yahoo.com"
    */
   "emails.domain.nin"?: string[];
   /**
    * Códigos das atividades econômicas principais ou secundárias a serem incluídos, separados por vírgula,
    * conforme [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
-   * @format integer
    * @example "0111301,1011201,3511501"
    */
   "activities.id.in"?: number[];
   /**
    * Códigos das atividades econômicas principais ou secundárias a serem excluídos, separados por vírgula,
    * conforme [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
-   * @format integer
    * @example "0111301,1011201,3511501"
    */
   "activities.id.nin"?: number[];
   /**
    * Códigos das atividades econômicas principais a serem incluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
-   * @format integer
    * @example "0111301,1011201,3511501"
    */
   "mainActivity.id.in"?: number[];
   /**
    * Códigos das atividades econômicas principais a serem excluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
-   * @format integer
    * @example "0111301,1011201,3511501"
    */
   "mainActivity.id.nin"?: number[];
   /**
    * Códigos das atividades econômicas secundárias a serem incluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
-   * @format integer
    * @example "0111301,1011201,3511501"
    */
   "sideActivities.id.in"?: number[];
   /**
    * Códigos das atividades econômicas secundárias a serem excluídos, separados por vírgula, conforme
    * [IBGE 🡭](https://concla.ibge.gov.br/busca-online-cnae.html?view=estrutura).
-   * @format integer
    * @example "0111301,1011201,3511501"
    */
   "sideActivities.id.nin"?: number[];
@@ -2899,7 +3593,7 @@ export interface OfficeStreetDto {
   taxId: string;
 }
 
-export interface PesquisaListasParams {
+export interface ListSearchDto {
   /**
    * Token de paginação, mutualmente exclusivo com as demais propriedades.
    * @format not empty
@@ -2913,7 +3607,7 @@ export interface PesquisaListasParams {
    * @format integer
    * @min 1
    * @max 1000
-   * @default 100
+   * @default 10
    */
   limit?: number;
   /**
@@ -2923,6 +3617,31 @@ export interface PesquisaListasParams {
    * @example "Clientes"
    */
   search?: string;
+}
+
+export interface ListExportSearchDto {
+  /**
+   * Token de paginação, mutualmente exclusivo com as demais propriedades.
+   * @format not empty
+   * @minLength 32
+   * @maxLength 32
+   * @example "8d47bdcbde4a7a2d4a98d5f555a19701"
+   */
+  token?: string;
+  /**
+   * Quantidade de registros a serem lidos por página.
+   * @format integer
+   * @min 1
+   * @max 1000
+   * @default 10
+   */
+  limit?: number;
+  /**
+   * Código da lista.
+   * @format uuid
+   * @example "97d34b55-ecba-4e22-bd05-9e27ff24632b"
+   */
+  listId: string;
 }
 
 export interface ConsultaCnpjParams {

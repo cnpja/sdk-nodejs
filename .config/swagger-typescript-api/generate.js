@@ -1,42 +1,44 @@
 const { generateApi } = require('swagger-typescript-api');
-const path = require('path');
+const path = require('node:path');
 
 /**
  * Configures interfaces which should be renamed in
  * other to match project standards.
  */
 const renamingDictionary = {
-  ConsultaCnpjParams: 'OfficeReadDto',
-  PesquisaCnpjParams: 'OfficeSearchDto',
-  MapaAereoParams: 'OfficeMapDto',
-  VisaoDaRuaParams: 'OfficeStreetDto',
-  PesquisaPessoasParams: 'PersonSearchDto',
-  ConsultaReceitaFederalParams: 'RfbReadDto',
-  ComprovanteRfbParams: 'RfbCertificateDto',
-  ConsultaSimplesEMeiParams: 'SimplesReadDto',
-  ComprovanteSimplesEMeiParams: 'SimplesCertificateDto',
-  ConsultaCccParams: 'CccReadDto',
-  ComprovanteCccParams: 'CccCertificateDto',
-  ConsultaSuframaParams: 'SuframaReadDto',
-  ComprovanteSuframaParams: 'SuframaCertificateDto',
-  '⚠️ConsultaCnpjParams': 'ConsultaCnpjParams'
-}
+	ConsultaCnpjParams: 'OfficeReadDto',
+	PesquisaCnpjParams: 'OfficeSearchDto',
+	MapaAereoParams: 'OfficeMapDto',
+	VisaoDaRuaParams: 'OfficeStreetDto',
+	PesquisaPessoasParams: 'PersonSearchDto',
+	ConsultaReceitaFederalParams: 'RfbReadDto',
+	ComprovanteRfbParams: 'RfbCertificateDto',
+	ConsultaSimplesEMeiParams: 'SimplesReadDto',
+	ComprovanteSimplesEMeiParams: 'SimplesCertificateDto',
+	ConsultaCccParams: 'CccReadDto',
+	ComprovanteCccParams: 'CccCertificateDto',
+	ConsultaSuframaParams: 'SuframaReadDto',
+	ComprovanteSuframaParams: 'SuframaCertificateDto',
+	PesquisaListasParams: 'ListSearchDto',
+	PesquisaExportacoesParams: 'ListExportSearchDto',
+	'⚠️ConsultaCnpjParams': 'ConsultaCnpjParams',
+};
 
 /**
  * Generates CNPJá API interfaces at /source/cnpja/cnpja.dto.ts
  * Renames input params according to dictionary.
  */
 generateApi({
-  name: 'cnpja.dto.ts',
-  output: path.resolve(process.cwd(), './source/cnpja'),
-  url: 'https://api.cnpja-stg.com/docs/json',
-  generateClient: false,
-  extractRequestParams: true,
-  hooks: {
-    onParseSchema: (_, parsedSchema) => {
-      if (renamingDictionary[parsedSchema.name]) {
-        parsedSchema.name = renamingDictionary[parsedSchema.name];
-      }
-    },
-  }
+	name: 'cnpja.dto.ts',
+	output: path.resolve(process.cwd(), './source/cnpja'),
+	url: 'https://api.cnpja-stg.com/docs/json',
+	generateClient: false,
+	extractRequestParams: true,
+	hooks: {
+		onParseSchema: (_, parsedSchema) => {
+			if (renamingDictionary[parsedSchema.name]) {
+				parsedSchema.name = renamingDictionary[parsedSchema.name];
+			}
+		},
+	},
 });
