@@ -10,7 +10,7 @@ permissions:
 jobs:
   quality:
     name: Quality Control
-    uses: cnpja/workflows/.github/workflows/nodejs_quality_control.yaml@master
+    uses: ./.github/workflows/nodejs_cloud_run_deploy.yaml
     secrets: inherit
     with:
       node-version: 22.x

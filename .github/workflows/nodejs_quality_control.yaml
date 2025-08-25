@@ -1,0 +1,70 @@
+name: Node.js Quality Control
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        type: string
+        required: true
+
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install Dependencies
+        run: |
+          npm i -g pnpm@10
+          pnpm i --frozen-lockfile
+      - name: Run Unit Test
+        run: pnpm test
+
+      - name: Upload Test Coverage
+        uses: actions/upload-artifact@v4
+        continue-on-error: true
+        with:
+          name: test-coverage
+          path: |
+            coverage
+            test-report.xml
+  build:
+    name: Build Dry Run
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          npm i -g pnpm@10
+          pnpm i --frozen-lockfile
+      - name: Run Build Dry Run
+        run: pnpm build
+
+  lint:
+    name: Lint Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          npm i -g pnpm@10
+          pnpm i --frozen-lockfile
+      - name: Run Lint Check
+        run: pnpm lint
