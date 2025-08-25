@@ -31,13 +31,13 @@
     "build:index": "rimraf ./source/index.ts && barrelsby -q -e \\.spec\\.ts$ -d ./source",
     "build:cleanup": "rimraf ./source/index.ts",
     "release": "semantic-release",
-    "lint": "export TIMING=1 || set TIMING=1&& eslint **/*.ts --max-warnings=0",
+    "lint": "pnpm biome check --max-diagnostics=none --log-kind=compact",
     "test": "jest --forceExit --config .config/jest/.jestrc.json --passWithNoTests",
     "generate": "node .config/swagger-typescript-api/generate.js",
     "readme": "node .config/readme/index.js"
   },
   "devDependencies": {
-    "@bechara/eslint-config-bechara-ts": "1.5.0",
+    "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "17.7.1",
     "@commitlint/config-conventional": "17.7.0",
     "@semantic-release/changelog": "6.0.3",
@@ -45,7 +45,6 @@
     "@types/jest": "29.5.5",
     "@types/node": "20.6.5",
     "barrelsby": "2.8.1",
-    "eslint": "8.50.0",
     "husky": "8.0.3",
     "jest": "29.7.0",
     "jest-sonar-reporter": "2.0.0",
