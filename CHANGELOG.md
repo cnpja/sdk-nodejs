@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/cnpja/sdk-nodejs/compare/v1.6.1...v1.7.0) (2025-08-25)
+
+
+### Bug Fixes
+
+* replace eslint with biome ([aaedb1f](https://github.com/cnpja/sdk-nodejs/commit/aaedb1f77093af48cd1a49e33ffc38b3d6e1c2d0))
+
+
+### Features
+
+* **list:** add list support ([8b02409](https://github.com/cnpja/sdk-nodejs/commit/8b02409730c973f5e8fcc4606913d675ee5339f2))
+
 ## [1.6.1](https://github.com/cnpja/sdk-nodejs/compare/v1.6.0...v1.6.1) (2025-01-19)
 
 
