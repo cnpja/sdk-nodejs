@@ -6,7 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignore": ["package.json"]
+		"ignore": ["package.json", "cnpja.dto.ts"]
 	},
 	"formatter": {
 		"enabled": true,
