@@ -1,3 +1,11 @@
+## [1.7.2](https://github.com/cnpja/sdk-nodejs/compare/v1.7.1...v1.7.2) (2025-08-28)
+
+
+### Bug Fixes
+
+* **biome:** add dto file to exclusion ([2b5e846](https://github.com/cnpja/sdk-nodejs/commit/2b5e84621722d63b1b046b73d97300cab8fb22c3))
+* **dto:** update api dtos ([c275ebb](https://github.com/cnpja/sdk-nodejs/commit/c275ebb655283dbed9e1395a29f0c0ca58a09a74))
+
 ## [1.7.1](https://github.com/cnpja/sdk-nodejs/compare/v1.7.0...v1.7.1) (2025-08-25)
 
 
