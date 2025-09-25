@@ -41,11 +41,13 @@ export class Cnpja {
 	 * Resolve dependency tree and inject providers.
 	 */
 	private setup(): void {
-		const { apiKey, baseUrl } = this.options;
+		const { apiKey, baseUrl, headers, retryLimit, retryDelay } = this.options;
 
 		const httpService = new HttpService({
 			baseUrl: baseUrl || 'https://api.cnpja.com',
-			authorization: apiKey,
+			headers: { ...(headers || {}), Authorization: apiKey },
+			retryLimit: retryLimit ?? 3,
+			retryDelay: retryDelay || ((r) => 2 ** (r - 1) * 1000),
 		});
 
 		this.office = new OfficeService(httpService);

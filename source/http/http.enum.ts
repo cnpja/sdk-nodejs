@@ -1,6 +1,8 @@
 export interface HttpOptions {
 	baseUrl: string;
-	authorization?: string;
+	headers: Record<string, string>;
+	retryLimit: number;
+	retryDelay: (retries: number) => number;
 }
 
 export enum HttpMethod {

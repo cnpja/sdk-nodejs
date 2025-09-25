@@ -7,19 +7,43 @@ export class HttpService {
 	public constructor(private readonly options: HttpOptions) {}
 
 	/**
-	 * Executes configure HTTP request using native fetch().
+	 * Executes configure HTTP request within a retry handler
 	 * @param url
 	 * @param params
 	 */
 	public async request<T>(url: string, params: HttpRequestParams): Promise<T> {
+		const { retryLimit, retryDelay } = this.options;
+
+		for (let retry = 0; retry <= retryLimit; retry++) {
+			try {
+				const response = await this.requestHandler<T>(url, params);
+				return response;
+			} catch (e) {
+				const { code } = e as CnpjaException;
+				const isRetryable = !code || code === 429 || code < 400 || code >= 500;
+				const isOverLimit = retry >= retryLimit;
+
+				if (!isRetryable || isOverLimit) {
+					throw e;
+				}
+
+				await new Promise((r) => setTimeout(r, retryDelay(retry)));
+			}
+		}
+	}
+
+	/**
+	 * Executes configure HTTP request using native fetch().
+	 * @param url
+	 * @param params
+	 */
+	public async requestHandler<T>(url: string, params: HttpRequestParams): Promise<T> {
 		const { method, replacements, query, json } = params;
-		const { baseUrl, authorization } = this.options;
+		const { baseUrl, headers } = this.options;
 
 		const replacedUrl = this.replaceUrlPlaceholders(`${baseUrl}/${url}`, replacements);
 		const queryUrl = this.buildUrlQuery(query);
 		const finalUrl = `${replacedUrl}${queryUrl ? `?${queryUrl}` : ''}`;
-
-		const headers: Record<string, string> = { authorization };
 		const body = JSON.stringify(json);
 
 		if (json) {
