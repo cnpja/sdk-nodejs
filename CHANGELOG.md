@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/cnpja/sdk-nodejs/compare/v1.7.2...v1.8.0) (2025-09-25)
+
+
+### Features
+
+* **http:** add retry and custom headers support ([f98a65f](https://github.com/cnpja/sdk-nodejs/commit/f98a65f98f15fffe82ec9e1922de7dbfcabb5128))
+
 ## [1.7.2](https://github.com/cnpja/sdk-nodejs/compare/v1.7.1...v1.7.2) (2025-08-28)
 
 
