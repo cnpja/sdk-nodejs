@@ -1019,6 +1019,7 @@ export interface RegistrationStatusDto {
    * - `1`: Sem restrição.
    * - `2`: Bloqueado como destinatário na UF.
    * - `3`: Vedada operação como destinatário na UF.
+   * - `10`: Emitente bloqueado no destino.
    * @format integer
    * @example 2
    */
@@ -1038,7 +1039,9 @@ export interface RegistrationTypeDto {
    * - `1`: IE Normal.
    * - `2`: IE Substituto Tributário.
    * - `3`: IE Não Contribuinte (Canteiro de Obras, IE Virtual, outros).
-   * - `4`: IE de Produtor Rural.
+   * - `4`: IE Contribuinte da UF com Endereço em Outra UF.
+   * - `5`: IE de Produtor Rural.
+   * - `9`: IE Não Informada.
    * @format integer
    * @example 2
    */
@@ -1223,7 +1226,7 @@ export interface OfficeDto {
   mainActivity: ActivityDto;
   /** Lista de atividades econômicas secundárias. */
   sideActivities: ActivityDto[];
-  /** Lista de Inscrições Estaduais. */
+  /** Inscrições Estaduais. */
   registrations?: RegistrationDto[];
   /** Lista de inscrições SUFRAMA */
   suframa?: OfficeSuframaDto[];
@@ -1757,19 +1760,6 @@ export interface ListCreateDto {
    */
   description?: string;
   /**
-   * Números dos CNPJs sem pontuação, mutualmente exclusivo com `query`.
-   * @maxItems 1000000
-   * @minItems 1
-   */
-  items?: string[];
-  /**
-   * +**1 ₪** por 10 registros.
-   * Filtros de pesquisa para gerar a lista de estabelecimentos, mutualmente exclusivo com `items`.
-   *
-   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
-   */
-  query?: ListQueryDto;
-  /**
    * Limite de estabelecimentos a serem obtidos ao gerar uma lista através de filtros.
    * @format integer
    * @min 1
@@ -1777,6 +1767,18 @@ export interface ListCreateDto {
    * @example 10000
    */
   limit?: number;
+  /**
+   * Números dos CNPJs sem pontuação, mutualmente exclusivo com `query`.
+   * @maxItems 1000000
+   * @minItems 1
+   */
+  items?: string[];
+  /**
+   * +**1 ₪** por 10 registros.
+   * Filtros de pesquisa utilizados para gerar a lista de estabelecimentos, mutualmente exclusivo com `items`.
+   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
+   */
+  query?: ListQueryDto;
 }
 
 /** ListDto */
@@ -1812,7 +1814,7 @@ export interface ListDto {
    * @maxLength 2000
    * @example "Fornecedores da unidade de Manaus."
    */
-  description?: string;
+  description: string;
   /**
    * Quantidade de estabelecimentos.
    * @format integer
@@ -1820,15 +1822,13 @@ export interface ListDto {
    */
   size: number;
   /**
-   * Números dos CNPJs sem pontuação, mutualmente exclusivo com `query`.
+   * Números dos CNPJs sem pontuação.
    * @maxItems 1000000
-   * @minItems 1
+   * @minItems 0
    */
-  items?: string[];
+  items: string[];
   /**
-   * +**1 ₪** por 10 registros.
-   * Filtros de pesquisa para gerar a lista de estabelecimentos, mutualmente exclusivo com `items`.
-   *
+   * Filtros de pesquisa utilizados para gerar a lista de estabelecimentos.
    * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
    */
   query?: ListQueryDto;
@@ -1875,7 +1875,7 @@ export interface ListSummaryDto {
    * @maxLength 2000
    * @example "Fornecedores da unidade de Manaus."
    */
-  description?: string;
+  description: string;
   /**
    * Quantidade de estabelecimentos.
    * @format integer
@@ -1883,9 +1883,7 @@ export interface ListSummaryDto {
    */
   size: number;
   /**
-   * +**1 ₪** por 10 registros.
-   * Filtros de pesquisa para gerar a lista de estabelecimentos, mutualmente exclusivo com `items`.
-   *
+   * Filtros de pesquisa utilizados para gerar a lista de estabelecimentos.
    * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
    */
   query?: ListQueryDto;
@@ -1950,21 +1948,6 @@ export interface ListUpdateDto {
    * @minItems 1
    */
   items?: string[];
-  /**
-   * +**1 ₪** por 10 registros.
-   * Filtros de pesquisa para gerar a lista de estabelecimentos, mutualmente exclusivo com `items`.
-   *
-   * Os CNPJs serão obtidos na primeira exportação e armazenados de forma estática, não sendo atualizados em execuções posteriores.
-   */
-  query?: ListQueryDto;
-  /**
-   * Limite de estabelecimentos a serem obtidos ao gerar uma lista através de filtros.
-   * @format integer
-   * @min 1
-   * @max 1000000
-   * @example 10000
-   */
-  limit?: number;
 }
 
 /** ListJobOptionsDto */
@@ -1982,12 +1965,16 @@ export interface ListJobOptionsDto {
    */
   simplesHistory?: boolean;
   /**
-   * +**1 ₪** Adiciona as Inscrições Estaduais para as selecionadas
-   * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas.
+   * +**1 ₪** quando `registrationsSource` for `CCC`,
+   * +**1 ₪** por UF quando `registrationsSource` for `SINTEGRA`.
+   * Adiciona as Inscrições Estaduais para as selecionadas Unidades Federativas separadas por vírgula.
+   * Aceita os termos especiais `ORIGIN` (mesma UF do endereço do estabelecimento) e `ALL` (todas).
+   * @minItems 1
    * @example "PR,RS,SC"
    */
   registrations?: (
-    | "BR"
+    | "ORIGIN"
+    | "ALL"
     | "AC"
     | "AL"
     | "AM"
@@ -2017,6 +2004,14 @@ export interface ListJobOptionsDto {
     | "TO"
   )[];
   /**
+   * Fonte de dados para obtenção das Inscrições Estaduais:
+   * - `AUTO`: Idem a utilizar `CCC`, sujeito a alterações no futuro caso credenciais sejam necessárias.
+   * - `CCC`: Utiliza o Cadastro Centralizado de Contribuintes para leitura de todas as inscrições.
+   * - `SINTEGRA`: Utiliza individualmente cada SINTEGRA estadual para leitura das inscrições.
+   * @default "AUTO"
+   */
+  registrationsSource?: "AUTO" | "CCC" | "SINTEGRA";
+  /**
    * +**1 ₪** Adiciona a inscrição na SUFRAMA.
    * @default false
    */
@@ -2044,7 +2039,7 @@ export interface ListJobOptionsDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -2726,6 +2721,12 @@ export interface CccDto {
    */
   updated: string;
   /**
+   * Razão social ou nome do produtor rural.
+   * @format not empty
+   * @example "CNPJA TECNOLOGIA LTDA"
+   */
+  name: string;
+  /**
    * Unidade Federativa de origem.
    * @example "PR"
    */
@@ -2786,7 +2787,7 @@ export interface SuframaReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -2837,7 +2838,7 @@ export interface SimplesReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -2882,7 +2883,7 @@ export interface RfbReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -2984,12 +2985,16 @@ export interface OfficeReadDto {
    */
   simplesHistory?: boolean;
   /**
-   * +**1 ₪** Adiciona as Inscrições Estaduais para as selecionadas
-   * Unidades Federativas separadas por vírgula, utilize `BR` para considerar todas.
+   * +**1 ₪** quando `registrationsSource` for `CCC`,
+   * +**1 ₪** por UF quando `registrationsSource` for `SINTEGRA`.
+   * Adiciona as Inscrições Estaduais para as selecionadas Unidades Federativas separadas por vírgula.
+   * Aceita os termos especiais `ORIGIN` (mesma UF do endereço do estabelecimento) e `ALL` (todas).
+   * @minItems 1
    * @example "PR,RS,SC"
    */
   registrations?: (
-    | "BR"
+    | "ORIGIN"
+    | "ALL"
     | "AC"
     | "AL"
     | "AM"
@@ -3018,6 +3023,14 @@ export interface OfficeReadDto {
     | "SE"
     | "TO"
   )[];
+  /**
+   * Fonte de dados para obtenção das Inscrições Estaduais:
+   * - `AUTO`: Idem a utilizar `CCC`, sujeito a alterações no futuro caso credenciais sejam necessárias.
+   * - `CCC`: Utiliza o Cadastro Centralizado de Contribuintes para leitura de todas as inscrições.
+   * - `SINTEGRA`: Utiliza individualmente cada SINTEGRA estadual para leitura das inscrições.
+   * @default "AUTO"
+   */
+  registrationsSource?: "AUTO" | "CCC" | "SINTEGRA";
   /**
    * +**1 ₪** Adiciona a inscrição na SUFRAMA.
    * @default false
@@ -3058,7 +3071,7 @@ export interface OfficeReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
@@ -3693,12 +3706,14 @@ export interface CccReadDto {
    */
   taxId: string;
   /**
-   * Unidades Federativas para consulta separadas por vírgula, utilize `BR` para considerar todas.
-   * Consultas de CPF de produtor rural exigem informar a UF exata.
+   * Unidades Federativas separadas por vírgula. Aceita os termos especiais `ORIGIN`
+   * (mesma UF do endereço do estabelecimento) e `ALL` (todas). Consultas de CPF de produtor rural exigem
+   * informar a UF exata.
    * @example "PR,RS,SC"
    */
   states: (
-    | "BR"
+    | "ORIGIN"
+    | "ALL"
     | "AC"
     | "AL"
     | "AM"
@@ -3728,6 +3743,14 @@ export interface CccReadDto {
     | "TO"
   )[];
   /**
+   * Fonte de dados para obtenção das Inscrições Estaduais:
+   * - `AUTO`: Idem a utilizar `CCC`, sujeito a alterações no futuro caso credenciais sejam necessárias.
+   * - `CCC`: Utiliza o Cadastro Centralizado de Contribuintes para leitura de todas as inscrições.
+   * - `SINTEGRA`: Utiliza individualmente cada SINTEGRA estadual para leitura das inscrições.
+   * @default "AUTO"
+   */
+  source?: "AUTO" | "CCC" | "SINTEGRA";
+  /**
    * Estratégia de cache utilizada na aquisição dos dados:
    * - `CACHE`: Entrega os dados do cache, evitando cobranças de créditos, se os dados não estiverem disponíveis resultará em um erro 404.
    * - `CACHE_IF_FRESH`: Retorna os dados do cache respeitando o limite em `maxAge`, se os dados estiverem desatualizados será consultado online.
@@ -3745,7 +3768,7 @@ export interface CccReadDto {
    */
   maxAge?: number;
   /**
-   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_FRESH`.
+   * Idade máxima, em dias, que um dado em cache é aceite em caso de erro na busca online, relevante apenas para a estratégia `CACHE_IF_ERROR`.
    * @format integer
    * @min 1
    * @max 3650
