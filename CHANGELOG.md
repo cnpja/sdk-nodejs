@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/cnpja/sdk-nodejs/compare/v1.8.0...v1.8.1) (2025-11-05)
+
+
+### Bug Fixes
+
+* **dto:** new typings for ccc source ([0007ae2](https://github.com/cnpja/sdk-nodejs/commit/0007ae21c2ee3d0931f2bc8e086a851f67e62731))
+
 # [1.8.0](https://github.com/cnpja/sdk-nodejs/compare/v1.7.2...v1.8.0) (2025-09-25)
 
 
