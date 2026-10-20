@@ -1,3 +1,16 @@
+# [1.9.0](https://github.com/cnpja/sdk-nodejs/compare/v1.8.1...v1.9.0) (2026-10-20)
+
+
+### Bug Fixes
+
+* allow builds ([98a6d82](https://github.com/cnpja/sdk-nodejs/commit/98a6d82b2bea0c2bec3f9d9ba0166a9c846b0a58))
+* approve builds ([e4ef685](https://github.com/cnpja/sdk-nodejs/commit/e4ef68581e466ada420f25ada6f47512ad7d7f3c))
+
+
+### Features
+
+* add events field with ibs/cbs regular regime event types ([1262b50](https://github.com/cnpja/sdk-nodejs/commit/1262b504ba1d2e7591a3a34cb0bd6b2a214f5fc1))
+
 ## [1.8.1](https://github.com/cnpja/sdk-nodejs/compare/v1.8.0...v1.8.1) (2025-11-05)
 
 
