@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/cnpja/sdk-nodejs/compare/v1.9.0...v1.9.1) (2026-10-20)
+
+
+### Bug Fixes
+
+* name of events field with ibs/cbs regular regime event types ([9c01b30](https://github.com/cnpja/sdk-nodejs/commit/9c01b30a4ae14c5b5b5a80db774cdedaa56bee8b))
+
 # [1.9.0](https://github.com/cnpja/sdk-nodejs/compare/v1.8.1...v1.9.0) (2026-10-20)
 
 
