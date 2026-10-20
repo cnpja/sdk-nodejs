@@ -543,6 +543,46 @@ export interface SimplesSimeiHistoryDto {
   text: string;
 }
 
+/** SimplesRegularRegimeEventDto */
+export interface SimplesRegularRegimeEventDto {
+  /**
+   * Tributo do regime regular.
+   * @example "IBS"
+   */
+  regime: "IBS" | "CBS";
+  /**
+   * Data de efeito do evento.
+   * @format iso8601
+   * @example "2027-01-01"
+   */
+  from: string;
+  /**
+   * Descrição do evento.
+   * @format not empty
+   * @example "Opção pelo Regime Regular"
+   */
+  text: string;
+}
+
+/** SimplesNacionalDto */
+export interface SimplesNacionalDto {
+  /**
+   * Indica se optante ou enquadrado.
+   * @example true
+   */
+  optant: boolean;
+  /**
+   * Data de inclusão no período vigente.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  since: string;
+  /** Histórico de períodos anteriores. */
+  history?: SimplesSimeiHistoryDto[];
+  /** Eventos futuros do regime regular do IBS e da CBS. */
+  regularRegimeEvents?: SimplesRegularRegimeEventDto[];
+}
+
 /** SimplesSimeiDto */
 export interface SimplesSimeiDto {
   /**
@@ -575,7 +615,7 @@ export interface SimplesDto {
    */
   updated: string;
   /** Informações da opção pelo Simples Nacional. */
-  simples: SimplesSimeiDto;
+  simples: SimplesNacionalDto;
   /** Informações do enquadramento no MEI. */
   simei: SimplesSimeiDto;
 }
@@ -845,10 +885,10 @@ export interface RfbDto {
 export interface PersonMemberCompanyDto {
   /**
    * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
-   * @format integer
-   * @example 37335118
+   * @format not empty
+   * @example "37335118"
    */
-  id: number;
+  id: string;
   /**
    * Razão social.
    * @format not empty
@@ -978,10 +1018,10 @@ export interface MemberDto {
 export interface OfficeCompanyDto {
   /**
    * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
-   * @format integer
-   * @example 37335118
+   * @format not empty
+   * @example "37335118"
    */
-  id: number;
+  id: string;
   /**
    * Razão social.
    * @format not empty
@@ -1005,7 +1045,7 @@ export interface OfficeCompanyDto {
   /** Informações do porte. */
   size: CompanySizeDto;
   /** Informações da opção pelo Simples Nacional. */
-  simples?: SimplesSimeiDto;
+  simples?: SimplesNacionalDto;
   /** Informações do enquadramento no MEI. */
   simei?: SimplesSimeiDto;
   /** Quadro de sócios e administradores. */
@@ -1234,6 +1274,59 @@ export interface OfficeDto {
   links?: OfficeLinkDto[];
 }
 
+/** CompanySimplesDto */
+export interface CompanySimplesDto {
+  /**
+   * Indica se optante ou enquadrado.
+   * @example true
+   */
+  optant: boolean;
+  /**
+   * Data de inclusão no período vigente.
+   * @format iso8601
+   * @example "2020-06-05"
+   */
+  since: string;
+}
+
+/** OfficePageRecordCompanyDto */
+export interface OfficePageRecordCompanyDto {
+  /**
+   * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
+   * @format not empty
+   * @example "37335118"
+   */
+  id: string;
+  /**
+   * Razão social.
+   * @format not empty
+   * @example "CNPJA TECNOLOGIA LTDA"
+   */
+  name: string;
+  /**
+   * Ente federativo responsável, presente quando `nature.id < 2000`.
+   * @format not empty
+   * @example "Uniao"
+   */
+  jurisdiction?: string;
+  /**
+   * Capital social
+   * @format float
+   * @example 1000
+   */
+  equity: number;
+  /** Informações da natureza jurídica. */
+  nature: NatureDto;
+  /** Informações do porte. */
+  size: CompanySizeDto;
+  /** Informações da opção pelo Simples Nacional. */
+  simples?: CompanySimplesDto;
+  /** Informações do enquadramento no MEI. */
+  simei?: CompanySimplesDto;
+  /** Quadro de sócios e administradores. */
+  members: MemberDto[];
+}
+
 /** OfficePageRecordDto */
 export interface OfficePageRecordDto {
   /**
@@ -1249,7 +1342,7 @@ export interface OfficePageRecordDto {
    */
   updated: string;
   /** Informações da empresa. */
-  company: OfficeCompanyDto;
+  company: OfficePageRecordCompanyDto;
   /**
    * Nome fantasia.
    * @format not empty
@@ -1647,6 +1740,11 @@ export interface ListQueryDto {
    * @example "11,13,15"
    */
   "phones.area.in"?: string[];
+  /**
+   * Códigos de DDD a serem excluídos, separados por vírgula.
+   * @example "11,13,15"
+   */
+  "phones.area.nin"?: string[];
   /**
    * Códigos de DDD maior ou igual ao especificado.
    * @format numeric
@@ -2670,10 +2768,10 @@ export interface CompanyOfficeDto {
 export interface CompanyDto {
   /**
    * Código da empresa, idem aos oito primeiros caracteres do CNPJ.
-   * @format integer
-   * @example 37335118
+   * @format not empty
+   * @example "37335118"
    */
-  id: number;
+  id: string;
   /**
    * Razão social.
    * @format not empty
@@ -2697,9 +2795,9 @@ export interface CompanyDto {
   /** Informações do porte. */
   size: CompanySizeDto;
   /** Informações da opção pelo Simples Nacional. */
-  simples?: SimplesSimeiDto;
+  simples?: CompanySimplesDto;
   /** Informações do enquadramento no MEI. */
-  simei?: SimplesSimeiDto;
+  simei?: CompanySimplesDto;
   /** Quadro de sócios e administradores. */
   members: MemberDto[];
   /** Lista de estabelecimentos. */
@@ -2816,7 +2914,7 @@ export interface SimplesReadDto {
   taxId: string;
   /**
    * +**1 ₪** Adiciona o histórico de períodos
-   * anteriores do Simples e MEI.
+   * anteriores do Simples e MEI, e os eventos do regime regular do IBS e da CBS.
    * @default false
    */
   history?: boolean;
@@ -3428,6 +3526,13 @@ export interface OfficeSearchDto {
    * @example "11,13,15"
    */
   "phones.area.in"?: string[];
+  /**
+   * Códigos de DDD a serem excluídos, separados por vírgula.
+   * @minLength 2
+   * @maxLength 2
+   * @example "11,13,15"
+   */
+  "phones.area.nin"?: string[];
   /**
    * Códigos de DDD maior ou igual ao especificado.
    * @format numeric
