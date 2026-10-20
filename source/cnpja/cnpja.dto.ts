@@ -543,8 +543,8 @@ export interface SimplesSimeiHistoryDto {
   text: string;
 }
 
-/** SimplesRegularRegimeEventDto */
-export interface SimplesRegularRegimeEventDto {
+/** SimplesEventDto */
+export interface SimplesEventDto {
   /**
    * Tributo do regime regular.
    * @example "IBS"
@@ -580,7 +580,7 @@ export interface SimplesNacionalDto {
   /** Histórico de períodos anteriores. */
   history?: SimplesSimeiHistoryDto[];
   /** Eventos futuros do regime regular do IBS e da CBS. */
-  regularRegimeEvents?: SimplesRegularRegimeEventDto[];
+  events?: SimplesEventDto[];
 }
 
 /** SimplesSimeiDto */
